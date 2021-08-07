@@ -1,9 +1,9 @@
-<?php include("includes/header.php"); ?>
+<?php include("includes/admin_header.php"); ?>
 
     <div id="wrapper">
 
         <!-- Navigation -->
-        <?php include("includes/navigation.php"); ?>
+        <?php include("includes/admin_navigation.php"); ?>
 
         <div id="page-wrapper">
 
@@ -18,15 +18,31 @@
                         </h1>
 
                         <div class="col-xs-6">
-                            <form action="">
+
+                            <?php insert_categories(); ?>
+
+                            <form action="" method="post">
                                 <div class="form-group">
                                     <label for="cat" >Add Category</label>
                                     <input type="text" id="cat" name="cat_title" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" name="submit" value="Save" class="btn btn-primary" >
+                                    <input type="submit" name="submit" value="Add Category" class="btn btn-primary" >
                                 </div>
                             </form>
+
+
+                            <form action="" method="post">
+                                <?php
+
+                                if(isset($_GET['edit'])){
+                                    $cat_id = $_GET['edit'];
+
+                                    include"includes/update_categories.php";
+                                }
+
+
+                                ?>
                         </div>
 
                         <div class="col-xs-6">
@@ -38,18 +54,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Baseball</td>
-                                        <td>Basketball</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Baseball</td>
-                                        <td>Basketball</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Baseball</td>
-                                        <td>Basketball</td>
-                                    </tr>
+                                    
+                                    <?php showAllCategories(); ?>
+
+
+                                    <?php deleteCategory(); ?>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -64,4 +74,4 @@
         </div>
         <!-- /#page-wrapper -->
 
-<?php include("includes/footer.php"); ?>
+<?php include("includes/admin_footer.php"); ?>
