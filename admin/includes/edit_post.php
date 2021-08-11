@@ -16,7 +16,48 @@ if(isset($_GET['p_id'])){
         $post_content = $row['post_content'];
         $post_comment_count = $row['post_comment_count'];
         $post_date = $row['post_date'];
-    ?>
+
+    }
+
+
+    // update query
+	if(isset($_POST['update_post'])){
+		$post_title = $_POST['title'];
+		$post_category_id = $_POST['post_category'];
+		$post_author = $_POST['author'];
+		$post_status = $_POST['post_status'];
+
+		$post_image = $_FILES['image']['name'];
+		$post_img_temp = $_FILES['image']['tmp_name'];
+
+		$post_tags = $_POST['post_tags'];
+		$post_content = $_POST['post_content'];
+		$post_date = date('d-m-y');
+		$post_comment_count = 2;
+
+		move_uploaded_file($post_img_temp, "../images/$post_image");
+
+		if(empty($post_image)){
+			$query = "SELECT * FROM posts WHERE post_id={$post_id}";
+			$select_image_query = mysqli_query($connection, $query);
+
+			confirmQuery($select_image_query);
+
+			while($row = mysqli_fetch_assoc($select_image_query)){
+				$post_image = $row['post_image'];
+			}
+
+		}
+
+		$query = "UPDATE posts SET post_title='{$post_title}', post_category_id='{$post_category_id}', post_author='{$post_author}', post_status='{$post_status}', post_image='{$post_image}', post_tags='{$post_tags}', post_content='{$post_content}', post_date=now(), post_comment_count='{$post_comment_count}'  WHERE post_id='{$post_id}' ";
+		$edit_post_query_result = mysqli_query($connection, $query);
+
+		confirmQuery($edit_post_query_result);
+
+
+	}
+
+?>
 
         <form action="" method="post" enctype="multipart/form-data">
 	
@@ -26,8 +67,8 @@ if(isset($_GET['p_id'])){
 			</div>
 
 			<div class="form-group">
-				<label for="post_category">Post Category Id</label>
-				<select>
+				<label for="post_category">Post Category</label>
+				<select name="post_category" class="form-control">
 					<?php 
 
 					$query = "SELECT * FROM categories";
@@ -60,6 +101,7 @@ if(isset($_GET['p_id'])){
 
 			<div class="form-group">
 				<img src="../images/<?php echo $post_image; ?>" width="200" />
+				<input type="file" name="image" class="form-control">
 			</div>
 
 			<div class="form-group">
@@ -75,13 +117,13 @@ if(isset($_GET['p_id'])){
 
 			<div class="form-group">
 				<input type="submit" name="update_post" class="btn btn-primary" value="Update Post">
+				<a href="./posts.php" type="button" class="btn btn-primary">Cancel</a>
 			</div>
 
 		</form>
 
 <?php
     }
-}
 
 
 ?>
@@ -90,34 +132,6 @@ if(isset($_GET['p_id'])){
 
 
 
-
-<?php //Update query
-
-if(isset($_POST['update_post'])){
-	$post_title = $_POST['title'];
-	$post_category_id = $_POST['post_category_id'];
-	$post_author = $_POST['author'];
-	$post_status = $_POST['post_status'];
-
-	$post_image = $_FILES['image']['name'];
-	$post_img_temp = $_FILES['image']['tmp_name'];
-
-	$post_tags = $_POST['post_tags'];
-	$post_content = $_POST['post_content'];
-	$post_date = date('d-m-y');
-	$post_comment_count = 2;
-
-	$query = "UPDATE posts SET post_title='{$post_title}', post_category_id='{$post_category_id}', post_author='{$post_author}', post_status='{$post_status}', post_image='{$post_image}', post_tags='{$post_tags}', post_content='{$post_content}', post_date='now()', post_comment_count='{$post_comment_count}' WHERE post_id='{}' ";
-	$edit_post_query_result = mysqli_query($connection, $query);
-
-	confirmQuery($edit_post_query_result);
-
-
-}
-
-
-
-?>
 
 
 
