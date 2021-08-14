@@ -33,7 +33,7 @@
                                 include ("includes/edit_post.php");
                                 break;
                             default:
-                                include ("includes/view_all_post.php"); 
+                                include ("includes/view_all_comments.php"); 
                         }
 
 
