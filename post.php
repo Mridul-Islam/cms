@@ -68,12 +68,25 @@
                     $comment_content = $_POST['comment_content'];
 
 
+                    //create comment query
                     $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) ";
                     $query .= "VALUES ({$the_post_id}, '{$comment_author_name}', '{$comment_author_email}', '{$comment_content}', 'unapproved', now())";
 
                     $insert_comment_query = mysqli_query($connection, $query);
 
                     if(!$insert_comment_query){
+                        die("Qeury Failed" . mysqli_error($connection));
+                    }
+
+
+
+
+
+                    // add to the comment count query
+                    $query = "UPDATE posts SET post_comment_count = post_comment_count + 1";
+                    $query .= " WHERE post_id = $the_post_id";
+                    $comment_count_query = mysqli_query($connection, $query);
+                    if(!$comment_count_query){
                         die("Qeury Failed" . mysqli_error($connection));
                     }
 

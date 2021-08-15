@@ -33,7 +33,7 @@ if(isset($_GET['p_id'])){
 		$post_tags = $_POST['post_tags'];
 		$post_content = $_POST['post_content'];
 		$post_date = date('d-m-y');
-		$post_comment_count = 2;
+		//$post_comment_count = 2;
 
 		move_uploaded_file($post_img_temp, "../images/$post_image");
 
@@ -49,7 +49,7 @@ if(isset($_GET['p_id'])){
 
 		}
 
-		$query = "UPDATE posts SET post_title='{$post_title}', post_category_id='{$post_category_id}', post_author='{$post_author}', post_status='{$post_status}', post_image='{$post_image}', post_tags='{$post_tags}', post_content='{$post_content}', post_date=now(), post_comment_count='{$post_comment_count}'  WHERE post_id='{$post_id}' ";
+		$query = "UPDATE posts SET post_title='{$post_title}', post_category_id='{$post_category_id}', post_author='{$post_author}', post_status='{$post_status}', post_image='{$post_image}', post_tags='{$post_tags}', post_content='{$post_content}', post_date=now() WHERE post_id='{$post_id}' ";
 		$edit_post_query_result = mysqli_query($connection, $query);
 
 		confirmQuery($edit_post_query_result);
