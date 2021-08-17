@@ -14,7 +14,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Welcome to Admin
-                            <small>Mridul Islam</small>
+                            <small>Name will be here</small>
                         </h1>
 
                         <div class="col-xs-6">
