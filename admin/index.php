@@ -70,9 +70,9 @@
                                         $query = "SELECT * FROM comments";
                                         $select_all_comments_query = mysqli_query($connection, $query);
                                         confirmQuery($select_all_comments_query);
-                                        $comments_count = mysqli_num_rows($select_all_comments_query);
+                                        $comment_count = mysqli_num_rows($select_all_comments_query);
 
-                                        echo "<div class='huge'> {$comments_count} </div>"
+                                        echo "<div class='huge'> {$comment_count} </div>"
 
                                         ?>
 
@@ -160,6 +160,38 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <?php
+
+                // count draft post query
+                $query = "SELECT * FROM posts WHERE post_status = 'draft' ";
+                $select_draft_post_query = mysqli_query($connection, $query);
+                confirmQuery($select_draft_post_query);
+                $draft_post_count = mysqli_num_rows($select_draft_post_query);
+
+
+                // unapproved comments count
+                $query = "SELECT * FROM comments WHERE comment_status = 'unapproved' ";
+                $unapproved_comment_query = mysqli_query($connection, $query);
+                confirmQuery($unapproved_comment_query);
+                $unapproved_comment_count = mysqli_num_rows($unapproved_comment_query);
+
+
+                // Subscriber user count
+                $query = "SELECT * FROM users WHERE user_role = 'Subscriber' ";
+                $subscriber_user_query = mysqli_query($connection, $query);
+                confirmQuery($subscriber_user_query);
+                $subscriber_count = mysqli_num_rows($subscriber_user_query);
+
+
+
+                ?>
+
+
+
+
                 
                 <!-- /.row -->
                 <div class="row">
@@ -170,7 +202,19 @@
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
                                 ['Data', 'Count'],
-                                ['Posts', 1000]
+
+                                <?php
+
+                                $element_text = ['Posts', 'Draft posts', 'Comments', 'Pending comments', 'Users', 'Subscriber User', 'Categories'];
+                                $element_count = [$post_count, $draft_post_count, $comment_count, $unapproved_comment_count, $users_count, $subscriber_count, $categories_count];
+
+                                for($i = 0; $i < 7; $i++){
+                                    echo "['{$element_text[$i]}'" . "," . " {$element_count[$i]}],";
+                                }
+
+
+                                ?>
+
                             ]);
 
                             var options = {
