@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2021 at 01:12 PM
+-- Generation Time: Aug 20, 2021 at 07:54 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -37,7 +37,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
-(2, 'Phython'),
+(2, 'Python'),
 (3, 'Java'),
 (4, 'PHP'),
 (5, 'JavaScript'),
@@ -95,9 +95,10 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`) VALUES
-(1, 5, 'Angular.js Tutorial', 'Mridul Islam', '2021-08-19', 'AngularJS_logo.svg.png', 'Angular.js is a very  good frontend technology								', 'Angular', 4, 'published'),
-(2, 4, 'Best OOP course', 'Showrab', '2021-08-19', 'php-oop logo.png', 'This OOP course is changed my life... ', 'PHP,OOP', 0, 'draft'),
-(3, 5, 'Welcome to vue.js', 'Shohan', '2021-08-19', 'vue.js-logo.png', 'Vue.js is a very good front end technology....				', 'Vue.js, Front End', 1, 'published');
+(1, 5, 'Angular.js Tutorial', 'Mridul Islam', '2021-08-20', 'AngularJS_logo.svg.png', '<p>Angular.js is a very good frontend technology</p>', 'Angular', 4, 'published'),
+(2, 4, 'Best OOP course', 'Showrab', '2021-08-20', 'php-oop logo.png', 'This OOP course is changed my life... 				', 'PHP,OOP', 0, 'published'),
+(3, 5, 'Welcome to vue.js', 'Shohan', '2021-08-20', 'vue.js-logo.png', '<p>Vue.js is a very good front end technology....</p>', 'Vue.js, Front End', 1, 'draft'),
+(4, 2, 'Python Tutorial', 'Shagor', '2021-08-20', 'Python_logo_and_wordmark.svg.png', '<p>Python is very easy to learn………</p>', 'Python', 0, 'published');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,14 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `randSalt`) VALUES
 (1, 'Mridul Islam', '123', 'Mridul', 'Islam', 'mridul@mridul.com', '', 'Admin', ''),
 (2, 'Shamim Mridha', '123', 'Shamim', 'Hossain', 'shamimMridha@shamim.com', '', 'Subscriber', ''),
-(3, 'Aziz120', '123', 'Azizul ', 'Haq', 'Aziz@gmail.com', '', 'Subscriber', '');
+(3, 'Aziz120', '123', 'Azizul ', 'Haq', 'Aziz@gmail.com', '', 'Subscriber', ''),
+(4, 'Arfan Uddin', '123', 'Arfan', 'uddin', 'Arfan@gmail.com', '', 'Subscriber', ''),
+(5, 'Showrab', '123', 'Showrab', 'Ahmed', 'Showrab@gmail.com', '', 'Subscriber', ''),
+(6, 'Pranto', '123', 'Ragin', 'Ibne Hossain', 'RaginIbne@gmail.com', '', 'Subscriber', ''),
+(7, 'Shah Alam', '123', 'Shah ', 'Alam', 'ShalAlam@gmail.com', '', 'Subscriber', ''),
+(8, 'Shakil ', '123', 'Shakil ', 'Ahmed', 'Shakil@gmail.com', '', 'Subscriber', ''),
+(10, 'Biplob', '123', 'Biplob', 'Ahmed', 'Biplob@gmail.com', '', 'Subscriber', ''),
+(11, 'Shagor Mosta', '123', 'Shagor', 'Mostafa', 'ShagorMosta@gmail.com', '', 'Subscriber', '');
 
 --
 -- Indexes for dumped tables
@@ -174,13 +182,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

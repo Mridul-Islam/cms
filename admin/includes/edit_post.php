@@ -54,6 +54,9 @@ if(isset($_GET['p_id'])){
 
 		confirmQuery($edit_post_query_result);
 
+		echo "<p class='bg-success text-center'>Updated Successfully: <a href='../post.php?p_id={$post_id}'> View Post </a> or <a href='posts.php'>View All Post</a> </p>";
+		echo "<br>";
+
 
 	}
 
@@ -96,7 +99,19 @@ if(isset($_GET['p_id'])){
 
 			<div class="form-group">
 				<label for="post_status">Post Status</label>
-				<input type="text" name="post_status" class="form-control" value="<?php echo $post_status ?>">
+				<select name="post_status" class="form-control">
+					<option value='<?php echo $post_status; ?>'><?php echo $post_status; ?></option>
+					<?php
+
+					if($post_status == 'published'){
+						echo "<option value='draft'> Draft </option>";
+					}
+					else{
+						echo "<option value='published'> Publish </option>";
+					}
+
+					?>
+				</select>
 			</div>
 
 			<div class="form-group">
@@ -111,7 +126,7 @@ if(isset($_GET['p_id'])){
 
 			<div class="form-group">
 				<label for="post_content">Post Content</label>
-				<textarea class="form-control" name="post_content" id="" cols="30" rows="10" ><?php echo $post_content ?>
+				<textarea class="form-control" name="post_content" id="body" cols="30" rows="10" ><?php echo $post_content ?>
 				</textarea>
 			</div>
 
