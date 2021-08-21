@@ -12,7 +12,7 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
-                <?php
+                <?php //show single post query
 
                 if(isset($_GET['p_id'])){
                     $the_post_id = $_GET['p_id'];
@@ -58,7 +58,7 @@
 
                 <!-- Blog Comments -->
 
-                <?php
+                <?php //create comment query
 
                 if(isset($_POST['create_comment'])){
                     $the_post_id = $_GET['p_id'];

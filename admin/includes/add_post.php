@@ -12,7 +12,6 @@ if(isset($_POST['create_post'])){
 	$post_tags = $_POST['post_tags'];
 	$post_content = $_POST['post_content'];
 	$post_date = date('d-m-y');
-	//$post_comment_count = 4;
 
 	move_uploaded_file($post_img_temp, "../images/$post_image");
 
@@ -20,6 +19,13 @@ if(isset($_POST['create_post'])){
 	$add_post_query_result = mysqli_query($connection, $query);
 
 	confirmQuery($add_post_query_result);
+
+	// this function will pull the last created id
+	$the_post_id = mysqli_insert_id($connection);
+
+	echo "<p class='bg-success text-center'>Post Created Successfully: <a href='../post.php?p_id={$the_post_id}'> View Post </a> or <a href='posts.php'>View All Post</a> </p>";
+		echo "<br>";
+
 
 
 
@@ -71,7 +77,11 @@ if(isset($_POST['create_post'])){
 
 	<div class="form-group">
 		<label for="post_status">Post Status</label>
-		<input type="text" name="post_status" class="form-control">
+		<select name="post_status" class="form-control">
+			<option value="draft">Select option</option>
+			<option value="published">Publish</option>
+			<option value="draft">Draft</option>
+		</select>
 	</div>
 
 	<div class="form-group">

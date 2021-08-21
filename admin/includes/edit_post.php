@@ -54,7 +54,7 @@ if(isset($_GET['p_id'])){
 
 		confirmQuery($edit_post_query_result);
 
-		echo "<p class='bg-success text-center'>Updated Successfully: <a href='../post.php?p_id={$post_id}'> View Post </a> or <a href='posts.php'>View All Post</a> </p>";
+		echo "<p class='bg-success text-center'>Post Updated Successfully: <a href='../post.php?p_id={$post_id}'> View Post </a> or <a href='posts.php'>View All Post</a> </p>";
 		echo "<br>";
 
 
