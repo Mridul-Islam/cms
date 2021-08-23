@@ -8,9 +8,40 @@ if(isset($_POST['submit'])){
     $user_email    = $_POST['email'];
     $user_password = $_POST['password'];
 
-    $escaped_username       = mysqli_real_escape_string($connection, $username);
-    $escaped_user_email     = mysqli_real_escape_string($connection, $user_email);
-    $escaped_user_password  = mysqli_real_escape_string($connection, $user_password );
+    if(!empty($username) && !empty($user_email) &&!empty($user_password)){
+        $escaped_username       = mysqli_real_escape_string($connection, $username);
+        $escaped_user_email     = mysqli_real_escape_string($connection, $user_email);
+        $escaped_user_password  = mysqli_real_escape_string($connection, $user_password );
+
+        $query = "SELECT randSalt FROM users";
+        $select_randSalt_query = mysqli_query($connection, $query);
+        if(!$select_randSalt_query){
+            die("Qeury Failed" . mysqli_error($connection));
+        }
+
+        $row = mysqli_fetch_assoc($select_randSalt_query);
+        $salt = $row['randSalt'];
+
+        $new_password = crypt($escaped_user_password, $salt);
+
+        $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
+        $query .= "VALUES('{$escaped_username}', '{$escaped_user_email}', '{$new_password}', 'Subscriber')";
+        $user_registration_query = mysqli_query($connection, $query);
+        if(!$user_registration_query){
+            die("Qeury Failed" . mysqli_error($user_registration_query));
+        }
+
+        $message = "Your Registration has been done Successfully";
+
+    }
+    else{
+        $message = "Fields can not be empty";
+    }
+
+
+}
+else{
+    $message = "";
 }
 
 
@@ -33,6 +64,7 @@ if(isset($_POST['submit'])){
                 <div class="form-wrap">
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+                        <h5 class="text-center"><?php echo $message; ?></h5>
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
                             <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">

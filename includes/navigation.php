@@ -36,6 +36,10 @@
                     <li>
                         <a href="admin">Admin</a>
                     </li>
+
+                    <li>
+                        <a href="registration.php">Registration</a>
+                    </li>
                     
                     <?php // show Edit post button when loggen in and  stay to see single post
 
