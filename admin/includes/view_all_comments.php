@@ -101,7 +101,7 @@
 					header("Location: comments.php");
 				}
 				
-				echo "<td><a href='comments.php?delete={$comment_id}'> Delete </a></td>";
+				echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='comments.php?delete={$comment_id}'> Delete </a></td>";
 
 
 

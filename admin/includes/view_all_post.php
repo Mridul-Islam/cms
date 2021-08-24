@@ -125,7 +125,7 @@ if(isset($_POST['checkBoxArray'])){
 
                     echo "<td> <a href='posts.php?source=edit_post&p_id={$post_id}' class='text-normal'>Edit</a> </td>";
 
-                    echo "<td> <a href='posts.php?delete={$post_id}' class='text-danger'>Delete</a> </td>";
+                    echo "<td> <a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}' class='text-danger'>Delete</a> </td>";
 
                 echo "</tr>";
             }

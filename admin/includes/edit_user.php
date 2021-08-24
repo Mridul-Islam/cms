@@ -33,10 +33,26 @@ if(isset($_GET['u_id'])){
 
 		//move_uploaded_file($user_temp_image, "../images/$user_image");
 
-		$query = "UPDATE users SET username ='{$username}', user_password='{$password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
+
+		$query = "SELECT randSalt FROM users";
+		$select_randSalt_query = mysqli_query($connection, $query);
+		confirmQuery($select_randSalt_query);
+
+		$row = mysqli_fetch_assoc($select_randSalt_query);
+		$salt = $row['randSalt'];
+
+		$crypted_password = crypt($password, $salt);
+
+
+		$query = "UPDATE users SET username ='{$username}', user_password='{$crypted_password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
 		
 		$update_user_query = mysqli_query($connection, $query);
 		confirmQuery($update_user_query);
+
+
+		echo "<p class='bg-success text-center'>User Updated Successfully: <a href='./users.php'> View Users </a> </p>";
+		echo "<br>";
+
 	}
 
 }
