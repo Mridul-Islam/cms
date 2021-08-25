@@ -26,6 +26,7 @@
                 }
 
                 while($row = mysqli_fetch_assoc($select_author_posts_query)){
+                    $the_post_id = $row['post_id'];
                     $post_title = $row['post_title'];
                     $post_author = $row['post_author'];
                     $post_date = $row['post_date'];
@@ -41,14 +42,14 @@
 
                 <!-- First Blog Post -->
                 <h2>
-                    <a href="#"> <?php echo $post_title;?> </a>
+                    <a href="post.php?p_id=<?php echo $the_post_id; ?>"> <?php echo $post_title;?> </a>
                 </h2>
                 <p class="lead">
-                    by <a href="author_posts.php?author=<?php echo $post_author;?>"> <?php echo $post_author;?> </a>
+                    by <?php echo $post_author;?> 
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date;?> </p>
                 <hr>
-                <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+                <a href="post.php?p_id=<?php echo $the_post_id; ?>"><img class="img-responsive" src="images/<?php echo $post_image; ?>" alt=""></a>
                 <hr>
                 <p> <?php echo $post_content;?> </p>
 

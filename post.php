@@ -37,10 +37,10 @@
 
                 <!-- First Blog Post -->
                 <h2>
-                    <a href="#"> <?php echo $post_title;?> </a>
+                    <?php echo $post_title;?>
                 </h2>
                 <p class="lead">
-                    by <a href="index.php"> <?php echo $post_author;?> </a>
+                    by <?php echo $post_author;?>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date;?> </p>
                 <hr>

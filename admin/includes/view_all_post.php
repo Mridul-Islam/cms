@@ -22,6 +22,31 @@ if(isset($_POST['checkBoxArray'])){
                 $delete_selected_post_query = mysqli_query($connection, $query);
                 confirmQuery($delete_selected_post_query);
                 break;
+            case 'clone':
+                $query = "SELECT * FROM posts WHERE post_id = {$checkBoxValue}";
+                $post_clone_query = mysqli_query($connection, $query);
+
+                confirmQuery($post_clone_query);
+
+                while($row = mysqli_fetch_assoc($post_clone_query)){
+                    $post_category_id   = $row['post_category_id'];
+                    $post_title         = $row['post_title'];
+                    $post_author        = $row['post_author'];
+                    $post_status        = $row['post_status'];
+                    $post_image         = $row['post_image'];
+                    $post_tags          = $row['post_tags'];
+                    $post_content       = $row['post_content'];
+                    $post_date          = $row['post_date'];
+
+
+                    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_status, post_image, post_tags, post_content, post_date) VALUES({$post_category_id}, '{$post_title}', '{$post_author}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', now()) ";
+                    $post_clone_insert_query = mysqli_query($connection, $query);
+
+                    confirmQuery($post_clone_insert_query);
+
+                }
+
+
         }
 
     }
@@ -43,6 +68,7 @@ if(isset($_POST['checkBoxArray'])){
                 <option value="published">Publish</option>
                 <option value="draft">Draft</option>
                 <option value="delete">Delete</option>
+                <option value="clone">Clone</option>
             </select>
         </div>
         <div class="col-xs-4">
@@ -71,7 +97,7 @@ if(isset($_POST['checkBoxArray'])){
             
             <?php
 
-            $query = "SELECT * FROM posts";
+            $query = "SELECT * FROM posts ORDER BY post_id DESC";
             $posts_query_result = mysqli_query($connection, $query);
             
             confirmQuery($posts_query_result);

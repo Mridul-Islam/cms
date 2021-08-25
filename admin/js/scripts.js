@@ -10,6 +10,8 @@ $(document).ready(function(){
 
     // Rest of the code
 
+
+    // select all check boxes code in view all post
     $('#selectAllBoxes').click(function(event){
         if(this.checked){
             $('.checkBoxes').each(function(){
@@ -23,6 +25,16 @@ $(document).ready(function(){
         }
 
     });
+
+
+    // show loader admin
+    var div_box = "<div id='load-screen'><div id='loading'>  </div></div>";
+    $("body").prepend(div_box);
+
+    $('#load-screen').delay(700).fadeOut(600, function(){
+        $this.remove();
+    })
+
 
 
 });
