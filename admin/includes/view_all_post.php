@@ -91,6 +91,7 @@ if(isset($_POST['checkBoxArray'])){
                 <th>View</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Views</th>
             </tr>
         </thead>
         <tbody>
@@ -112,6 +113,7 @@ if(isset($_POST['checkBoxArray'])){
                 $post_tags = $row['post_tags'];
                 $post_comment_count = $row['post_comment_count'];
                 $post_date = $row['post_date'];
+                $post_views_count = $row['post_views_count'];
 
                 echo "<tr>";
 
@@ -153,6 +155,8 @@ if(isset($_POST['checkBoxArray'])){
 
                     echo "<td> <a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}' class='text-danger'>Delete</a> </td>";
 
+                    echo "<td><a href='posts.php?reset={$post_id}'> {$post_views_count} </a></td>";
+
                 echo "</tr>";
             }
 
@@ -176,6 +180,20 @@ if(isset($_GET['delete'])){
     $delete_query_result = mysqli_query($connection, $query);
 
     confirmQuery($delete_query_result);
+
+    header("Location: posts.php");
+}
+
+
+// delete post view count
+if(isset($_GET['reset'])){
+    $delete_views_count = $_GET['reset'];
+    
+    $escape_delete_views_count = mysqli_real_escape_string($connection, $delete_views_count);
+
+    $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = {$escape_delete_views_count}";
+    $delete_views_count_query = mysqli_query($connection, $query);
+    confirmQuery($delete_views_count_query);
 
     header("Location: posts.php");
 }

@@ -14,37 +14,7 @@
 
                 <?php
 
-                $post_per_page = 4;
-
-                if(isset($_GET['page'])){
-                    $page_number = $_GET['page'];
-                }else{
-                    $page_number = "";
-                }
-
-                if($page_number== "" || $page_number == 1){
-                    $show = 0;
-                }
-                else{
-                    $show = ($post_per_page * $page_number) - $post_per_page;
-                }
-
-
-
-                // count the number of posts
-                $count_query = "SELECT * FROM posts";
-                $count_all_post_query = mysqli_query($connection, $count_query);
-                if(!$count_all_post_query){
-                    die("Qeury Failed" . mysqli_error($connection));
-                }
-                $count_posts = mysqli_num_rows($count_all_post_query);
-                $count_page = ceil($count_posts/$post_per_page);
-
-
-
-               
-                // show all post query
-                $query = "SELECT * FROM posts LIMIT $show, $post_per_page";
+                $query = "SELECT * FROM posts";
                 $select_all_posts_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($select_all_posts_query)){
@@ -99,27 +69,6 @@
         <!-- /.row -->
 
         <hr>
-
-        <ul class="pager">
-            <?php
-
-            for($i = 1; $i <= $count_page; $i++){
-
-                if($i == $page_number){
-                    echo "<li><a class='active_link' href='index.php?page={$i}'> {$i} </a></li>";
-                }else{
-                    echo "<li><a href='index.php?page={$i}'> {$i} </a></li>";
-                }
-
-
-                
-            }
-
-
-
-            ?>
-        </ul>
-
 
 <!-- Footer -->
         
