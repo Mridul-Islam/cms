@@ -25,6 +25,12 @@
 
                 }
 
+                if(isset($_POST['create_comment'])){
+                    echo "<p class='bg-success text-center'>Your comment has been submitted,, please wait for the approval...</p>";
+                }
+
+
+                // select all information from the database to show the post information
                 $query = "SELECT * FROM posts WHERE post_id='{$the_post_id}' ";
                 $select_all_posts_query = mysqli_query($connection,$query);
 
@@ -83,6 +89,8 @@
                     if(!$insert_comment_query){
                         die("Qeury Failed" . mysqli_error($connection));
                     }
+
+                    
 
 
 

@@ -10,55 +10,83 @@ if(isset($_GET['u_id'])){
 
 	while($row = mysqli_fetch_assoc($selected_user_query)){
 		$user_firstname = $row['user_firstname'];
-		$user_lastname = $row['user_lastname'];
-		$username = $row['username'];
-		$user_password = $row['user_password'];
-		$user_email = $row['user_email'];
-		$user_role = $row['user_role'];
+		$user_lastname  = $row['user_lastname'];
+		$username       = $row['username'];
+		$user_password  = $row['user_password'];
+		$user_email     = $row['user_email'];
+		$user_role      = $row['user_role'];
 	}
 
 
 	// user update query......
 	if(isset($_POST['update_user'])){
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$user_email = $_POST['email'];
-
-		// $user_image = $_FILES['image']['name'];
-		// $user_temp_image = $_FILES['image']['tmp_name'];
-
-		$user_role = $_POST['role'];
-
-		//move_uploaded_file($user_temp_image, "../images/$user_image");
+		$username     = $_POST['username'];
+		$old_password = $_POST['old_password'];
+		$password     = $_POST['password'];
+		$firstname    = $_POST['firstname'];
+		$lastname     = $_POST['lastname'];
+		$user_email   = $_POST['email'];
+		$user_role    = $_POST['role'];
 
 
-		// $query = "SELECT randSalt FROM users";
-		// $select_randSalt_query = mysqli_query($connection, $query);
-		// confirmQuery($select_randSalt_query);
+		if(!empty($old_password) && !empty($password) && !empty($username) && !empty($firstname) && !empty($lastname) && !empty($user_email) && !empty($user_role)){
+			$query_password = "SELECT user_password FROM users WHERE user_id = $the_user_id";
+			$get_user_query = mysqli_query($connection, $query_password);
+			confirmQuery($get_user_query);
 
-		// $row = mysqli_fetch_assoc($select_randSalt_query);
-		// $salt = $row['randSalt'];
+			$row = mysqli_fetch_assoc($get_user_query);
+			$db_user_password = $row['user_password'];
+			if(password_verify($old_password, $db_user_password)){
+				if($db_user_password != $password){
+					$hashed_password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+				}
+				$query = "UPDATE users SET username ='{$username}', user_password='{$hashed_password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
+	
+				$update_user_query = mysqli_query($connection, $query);
+				confirmQuery($update_user_query);
 
-		// $crypted_password = crypt($password, $salt);
+				echo "<p class='bg-success text-center'>User Updated Successfully: <a href='./users.php'> View Users </a> </p>";
+				echo "<br>";
+				
+			}
+			else{
+				echo "<p class='text-center text-danger'> Old password did not match with the original password.. </p>";
+			}
+
+		}
+		else{
+			echo "<p class='text-center text-danger'> Fields can not be empty.. </p>";
+		}
 
 
-		$crypted_password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+		// if(!empty($password)){
+		// 	$query_password = "SELECT user_password FROM users WHERE user_id = $the_user_id";
+		// 	$get_user_query = mysqli_query($connection, $query);
+		// 	confirmQuery($get_user_query);
 
+		// 	$row = mysqli_fetch_assoc($get_user_query);
+		// 	$db_user_password = $row['user_password'];
 
+		// 	if($db_user_password != $password){
+		// 		$hashed_password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+		// 	}
 
-		$query = "UPDATE users SET username ='{$username}', user_password='{$crypted_password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
+		// 	$query = "UPDATE users SET username ='{$username}', user_password='{$hashed_password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
 		
-		$update_user_query = mysqli_query($connection, $query);
-		confirmQuery($update_user_query);
+		// 	$update_user_query = mysqli_query($connection, $query);
+		// 	confirmQuery($update_user_query);
 
+		// 	echo "<p class='bg-success text-center'>User Updated Successfully: <a href='./users.php'> View Users </a> </p>";
+		// 	echo "<br>";
 
-		echo "<p class='bg-success text-center'>User Updated Successfully: <a href='./users.php'> View Users </a> </p>";
-		echo "<br>";
+		// }else{
+		// 	echo "<p class='text-danger text-center'>Fields can not be empty.</p>";
+		// }
 
 	}
-
+}
+else{
+	header("Location: index.php");
 }
 
 
@@ -100,8 +128,12 @@ if(isset($_GET['u_id'])){
 		<input type="text" name="username" id="username" class="form-control" value="<?php echo $username;?>">
 	</div>
 	<div class="form-group">
+		<label for="old_password">Old Password</label>
+		<input autocomplete="off" type="password" name="old_password" id="old_password" class="form-control">
+	</div>
+	<div class="form-group">
 		<label for="password">New Password</label>
-		<input type="password" name="password" id="password" class="form-control" value="<?php echo $user_password;?>">
+		<input autocomplete="off" type="password" name="password" id="password" class="form-control">
 	</div>
 	<!-- <div class="form-group">
 		<label>Image</label>

@@ -146,7 +146,28 @@ if(isset($_POST['checkBoxArray'])){
                     echo "<td> {$post_status} </td>";
                     echo "<td> <img src='../images/{$post_image}' class='img-responsive' width='100' /> </td>";
                     echo "<td> {$post_tags} </td>";
-                    echo "<td> {$post_comment_count} </td>";
+
+
+
+
+
+                    $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+                    $send_comment_query = mysqli_query($connection, $query);
+
+                    $row = mysqli_fetch_assoc($send_comment_query);
+                    $comment_id = $row['comment_id'];
+                    
+                    confirmQuery($send_comment_query);
+                    $count_comment = mysqli_num_rows($send_comment_query);
+
+                    echo "<td><a href='comment.php?c_id={$comment_id}'> {$count_comment} </a></td>";
+
+
+
+
+
+
+
                     echo "<td> {$post_date} </td>";
 
                     echo "<td><a href='../post.php?p_id={$post_id}'> View Post </a></td>";
@@ -155,7 +176,7 @@ if(isset($_POST['checkBoxArray'])){
 
                     echo "<td> <a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}' class='text-danger'>Delete</a> </td>";
 
-                    echo "<td><a href='posts.php?reset={$post_id}'> {$post_views_count} </a></td>";
+                    echo "<td><a href='posts.php?reset={$post_id}' title='if your click it will set the value to 0'> {$post_views_count} </a></td>";
 
                 echo "</tr>";
             }

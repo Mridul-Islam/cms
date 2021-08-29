@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2021 at 01:24 PM
+-- Generation Time: Aug 30, 2021 at 12:42 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -65,11 +65,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`) VALUES
-(1, 1, 'shad', 'shad@gmail.com', 'This is good...', 'approved', '2021-08-19'),
-(2, 1, 'Aziz', 'Aziz@gmail.com', 'Wow, your are so good....', 'approved', '2021-08-19'),
-(3, 1, 'Arfan', 'Arfan@arfan.com', 'ok, this is nice...', 'unapproved', '2021-08-19'),
-(4, 1, 'Srijon', 'srijon@srijon.com', 'You are hot', 'approved', '2021-08-19'),
-(5, 3, 'Srijon', 'srijon@srijon.com', 'how nice is that......', 'approved', '2021-08-19');
+(7, 5, 'Mridul Islam', 'mridul@mridul.com', 'Ok, you are good........ ', 'approved', '2021-08-30'),
+(8, 5, 'Srijon', 'srijon@srijon.com', 'Hmmm, you are nice...', 'approved', '2021-08-30');
 
 -- --------------------------------------------------------
 
@@ -96,8 +93,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(5, 5, 'Welcome to vue.js', 'Shad', '2021-08-21', 'vue.js-logo.png', '<p>Vue (pronounced /vjuː/, like <strong>view</strong>) is a <strong>progressive framework</strong> for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with <a href=\"https://vuejs.org/v2/guide/single-file-components.html\"><strong>modern tooling</strong></a> and <a href=\"https://github.com/vuejs/awesome-vue#components--libraries\"><strong>supporting libraries</strong></a>.</p>', 'Vue,js', 0, 'published', 0),
-(6, 5, 'React Course', 'Azizul Haq', '2021-08-21', 'react_logo.png', '<p>We will build a small game during this tutorial. <strong>You might be tempted to skip it because you’re not building games — but give it a chance.</strong> The techniques you’ll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.</p>', 'React', 0, 'published', 7),
+(5, 5, 'Welcome to vue.js', 'Shad', '2021-08-21', 'vue.js-logo.png', '<p>Vue (pronounced /vjuː/, like <strong>view</strong>) is a <strong>progressive framework</strong> for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with <a href=\"https://vuejs.org/v2/guide/single-file-components.html\"><strong>modern tooling</strong></a> and <a href=\"https://github.com/vuejs/awesome-vue#components--libraries\"><strong>supporting libraries</strong></a>.</p>', 'Vue,js', 3, 'published', 0),
+(6, 5, 'React Course', 'Azizul Haq', '2021-08-21', 'react_logo.png', '<p>We will build a small game during this tutorial. <strong>You might be tempted to skip it because you’re not building games — but give it a chance.</strong> The techniques you’ll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.</p>', 'React', 0, 'published', 0),
 (8, 4, 'PHP developer', 'Shamim Hossain', '2021-08-21', 'php_logo.png', '<p>PHP is a server scripting language, and a powerful tool for making dynamic and interactive Web pages.</p><p>PHP is a widely-used, free, and efficient alternative to competitors such as Microsofts ASP.</p>', 'PHP', 0, 'published', 0),
 (9, 4, 'IOS tutorial', 'Showrab Ahmed', '2021-08-21', 'iOS-Logo-2010.jpg', '<p>iOS&nbsp;14 brings a fresh look to the things you do most often, making them easier than ever. New features help you get what you need in the moment. And the apps you use all the time become even more intelligent, more personal, and more&nbsp;private.</p>', 'Apple', 0, 'published', 0),
 (11, 4, 'PHP developer', 'Ragib Ibne', '2021-08-21', 'oop_logo.jpg', '<p>OOP stands for Object-Oriented Programming.</p><p>Procedural programming is about writing procedures or functions that perform operations on the data, while object-oriented programming is about creating objects that contain both data and functions.</p><p>Object-oriented programming has several advantages over procedural programming:</p><ul><li>OOP is faster and easier to execute</li><li>OOP provides a clear structure for the programs</li><li>OOP helps to keep the PHP code DRY \"Dont Repeat Yourself\", and makes the code easier to maintain, modify and debug</li><li>OOP makes it possible to create full reusable applications with less code and shorter development time</li></ul>', 'PHP ', 0, 'published', 0),
@@ -141,10 +138,9 @@ INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `
 (17, 'Khalid bin walid', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Khalid bin', 'Walid', 'Khalid@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
 (18, 'Md Omar Faruk', '$2y$12$joikZHetX.x2s.uY.oAh.O99pqaG1JuX8x1vO/O85VFzQMm8CV5WS', 'Md Omar', 'Faruk', 'Omar@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
 (19, 'Mridul Islam', '$1$80v1ifp4$M0t.JhP6wLwXcUMOOShAu/', 'Mridul ', 'Islam', 'Mridul@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22'),
-(27, 'Shad', '$2y$12$Dksp8ZVLY4/lvXdo2SnuguwXs/m/CWA52C/.KB3Pth5UcggqJbHzy', 'Shofiul', 'Alam', 'shad@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(28, 'Showrab', '$2y$12$ld/muIq/.du/qMANPdD5Je8LO0xRDvQlMXz43yhPHhVcVs7/zD.yO', '', '', 'showrab@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(30, 'Azizul Haq', '$2y$12$aqmxfF1eXteFTXsPQgp3oepH2sabfUtCH6yuUDEdNG6/dxtWoiezi', 'Azizul', 'Haq', 'Aziz@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(31, 'Shamim', '$2y$10$tSTfSAS0i12UFzJbj2jiiuVhaYMmTZRsiekk7GQ4IK.HuRvTwqyxe', 'Shamim', 'Hossain', 'shamimMridha@shamim.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22');
+(27, 'Shad', '$2y$12$.6IRmYshqoAmKr7EP5b5ueuarCsJxAf4DzmEDPvLiLyjZ7Ai3LJNK', 'Shofiul', 'Alam', 'shad@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(31, 'Shamim', '$2y$12$Hq31CLj0By8DZjEcEqUjsOvQx.Sd.2nBt5KRxNUmpE2.HVJcGbydu', 'Shamim', 'Hossain', 'shamimMridha@shamim.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(32, 'ILoveS', '$2y$12$ODSN0A5sFGjOw0tPlX7IDOmtJZqCwDVOOd37KrG9HGNYLIZDaezSK', 'I', 'Love', 'Ilove@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22');
 
 -- --------------------------------------------------------
 
@@ -165,7 +161,8 @@ CREATE TABLE `users_online` (
 INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (24, 'ah6hsh89oovm3gdpq7i825r4fa', 1630236239),
 (25, 'd4djd8icduqlmspuhptsndumec', 1630230184),
-(26, '9dm1jcvfua3rrp0uv65964bcqs', 1630230192);
+(26, '9dm1jcvfua3rrp0uv65964bcqs', 1630230192),
+(27, 'fbkh9qnva0pv0k51d00bkj7mvc', 1630276935);
 
 --
 -- Indexes for dumped tables
@@ -215,7 +212,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -227,13 +224,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

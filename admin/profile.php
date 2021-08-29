@@ -15,7 +15,6 @@ if(isset($_SESSION['username'])){
         $user_lastname = $row['user_lastname'];
         $user_password = $row['user_password'];
         $user_email = $row['user_email'];
-        $user_role = $row['user_role'];
     }
 }
 
@@ -51,7 +50,7 @@ if(isset($_SESSION['username'])){
                             $user_email = $_POST['email'];
                             $user_role = $_POST['role'];
 
-                            $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', username = '{$update_username}', user_password = '{$user_password}', user_email = '{$user_email}', user_role = '{$user_role}' WHERE username = '{$username}' ";
+                            $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', username = '{$update_username}', user_password = '{$user_password}', user_email = '{$user_email}' WHERE username = '{$username}' ";
                             $update_user_profile_query = mysqli_query($connection, $query);
                             confirmQuery($update_user_profile_query);
 
@@ -77,7 +76,7 @@ if(isset($_SESSION['username'])){
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" value="<?php echo $user_password;?>">
+                                <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -88,31 +87,9 @@ if(isset($_SESSION['username'])){
                                 <input type="file" name="image" class="form-control">
                             </div> -->
                             <div class="form-group">
-                                <label>User Role</label>
-                                <select name="role" class="form-control">
-                                    <option value="<?php echo $user_role;?>"><?php echo $user_role;?></option>
-                                    
-                                    <?php
-
-                                    if($user_role == 'Admin'){
-                                        echo "<option value='Subscriber'> Subscriber </option>";
-                                    }else{
-                                        echo "<option value='Admin'> Admin </option>";
-                                    }
-
-                                    ?>
-                                </select>   
-                            </div>
-                            <div class="form-group">
                                 <input type="submit" name="update_profile" value="Update Profile" class="btn btn-primary">
                             </div>
                         </form>
-
-
-
-
-
-
                     </div>
                 </div>
                 <!-- /.row -->

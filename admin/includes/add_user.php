@@ -16,14 +16,22 @@ if(isset($_POST['create_user'])){
 
 	$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
 
+	if(!empty($username) && !empty($password) && !empty($firstname) && !empty($lastname) && !empty($user_email)){
 
-	$query = "INSERT INTO users (username, user_password, user_firstname, user_lastname, user_email, user_role) ";
-	$query .= "VALUES ('{$username}', '{$password}', '{$firstname}', '{$lastname}', '{$user_email}', '{$user_role}')";
-	$create_user_query = mysqli_query($connection, $query);
-	confirmQuery($create_user_query);
+		$query = "INSERT INTO users (username, user_password, user_firstname, user_lastname, user_email,  user_role) ";
+		$query .= "VALUES ('{$username}', '{$password}', '{$firstname}', '{$lastname}', '{$user_email}', '{$user_role}')";
+		$create_user_query = mysqli_query($connection, $query);
+		confirmQuery($create_user_query);
 
-	echo "<div class='text-center'>User Created Successfully:" . " " . "<a href='users.php'> View Users</a>" . "<br> </div>";
-	echo "<br>";
+		echo "<div class='text-center bg-success'>User Created Successfully:" . " " . "<a href='users.php'> View Users</a>" . "<br> </div>";
+		echo "<br>";
+	}
+	else{
+		echo "<p class='text-center text-danger'> Fields can not be empty... </p>";
+	}
+
+
+	
 }
 
 
