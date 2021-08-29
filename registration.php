@@ -13,16 +13,18 @@ if(isset($_POST['submit'])){
         $escaped_user_email     = mysqli_real_escape_string($connection, $user_email);
         $escaped_user_password  = mysqli_real_escape_string($connection, $user_password );
 
-        $query = "SELECT randSalt FROM users";
-        $select_randSalt_query = mysqli_query($connection, $query);
-        if(!$select_randSalt_query){
-            die("Qeury Failed" . mysqli_error($connection));
-        }
+        $new_password = password_hash($escaped_user_password, PASSWORD_BCRYPT, array('cost' => 12)); 
 
-        $row = mysqli_fetch_assoc($select_randSalt_query);
-        $salt = $row['randSalt'];
+        // $query = "SELECT randSalt FROM users";
+        // $select_randSalt_query = mysqli_query($connection, $query);
+        // if(!$select_randSalt_query){
+        //     die("Qeury Failed" . mysqli_error($connection));
+        // }
 
-        $new_password = crypt($escaped_user_password, $salt);
+        // $row = mysqli_fetch_assoc($select_randSalt_query);
+        // $salt = $row['randSalt'];
+
+        // $new_password = crypt($escaped_user_password, $salt);
 
         $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
         $query .= "VALUES('{$escaped_username}', '{$escaped_user_email}', '{$new_password}', 'Subscriber')";

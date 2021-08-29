@@ -34,14 +34,18 @@ if(isset($_GET['u_id'])){
 		//move_uploaded_file($user_temp_image, "../images/$user_image");
 
 
-		$query = "SELECT randSalt FROM users";
-		$select_randSalt_query = mysqli_query($connection, $query);
-		confirmQuery($select_randSalt_query);
+		// $query = "SELECT randSalt FROM users";
+		// $select_randSalt_query = mysqli_query($connection, $query);
+		// confirmQuery($select_randSalt_query);
 
-		$row = mysqli_fetch_assoc($select_randSalt_query);
-		$salt = $row['randSalt'];
+		// $row = mysqli_fetch_assoc($select_randSalt_query);
+		// $salt = $row['randSalt'];
 
-		$crypted_password = crypt($password, $salt);
+		// $crypted_password = crypt($password, $salt);
+
+
+		$crypted_password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+
 
 
 		$query = "UPDATE users SET username ='{$username}', user_password='{$crypted_password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
@@ -72,22 +76,6 @@ if(isset($_GET['u_id'])){
 		<input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo $user_lastname;?>">
 	</div>
 	<div class="form-group">
-		<label for="username">User Name</label>
-		<input type="text" name="username" id="username" class="form-control" value="<?php echo $username;?>">
-	</div>
-	<div class="form-group">
-		<label for="password">New Password</label>
-		<input type="password" name="password" id="password" class="form-control" value="<?php echo $user_password;?>">
-	</div>
-	<div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" name="email" id="email" class="form-control" value="<?php echo $user_email;?>">
-	</div>
-	<!-- <div class="form-group">
-		<label>Image</label>
-		<input type="file" name="image" class="form-control">
-	</div> -->
-	<div class="form-group">
 		<label>Select Role</label>
 		<select name="role" class="form-control">
 			<option value="<?php echo $user_role;?>"><?php echo $user_role;?></option>
@@ -103,6 +91,23 @@ if(isset($_GET['u_id'])){
 			?>
 		</select>	
 	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email" class="form-control" value="<?php echo $user_email;?>">
+	</div>
+	<div class="form-group">
+		<label for="username">User Name</label>
+		<input type="text" name="username" id="username" class="form-control" value="<?php echo $username;?>">
+	</div>
+	<div class="form-group">
+		<label for="password">New Password</label>
+		<input type="password" name="password" id="password" class="form-control" value="<?php echo $user_password;?>">
+	</div>
+	<!-- <div class="form-group">
+		<label>Image</label>
+		<input type="file" name="image" class="form-control">
+	</div> -->
+	
 	<div class="form-group">
 		<input type="submit" name="update_user" value="Update User" class="btn btn-primary">
 		<a href="./users.php" type="button" class="btn btn-primary"> Cancel </a>

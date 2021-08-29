@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2021 at 09:47 AM
+-- Generation Time: Aug 29, 2021 at 01:24 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -136,11 +136,36 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `randSalt`) VALUES
-(13, 'Mahadi Hasan', '$1$YsFxNv5j$8LYJYJBwPlnBgSsQ/Mgk2/', 'Mahadi', 'Hasan', 'MahadiHasan@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(16, 'Mamunul haq', '$1$HSG/Hytw$gXbT6re8esjYKF2SgFFxE.', 'Mamunul', 'Haq', 'Mamun@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(17, 'Khalid bin walid', '$1$WEjqtdyP$bZ5ZnDJOQg2zlACaRwKff/', 'Khalid bin', 'Walid', 'Khalid@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(18, 'Md Omar Faruk', '$1$1FTcWzke$14r24vRaB4u3Rc2rGcdUw1', 'Md Omar', 'Faruk', 'Omar@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(19, 'Mridul Islam', '$1$80v1ifp4$M0t.JhP6wLwXcUMOOShAu/', 'Mridul ', 'Islam', 'Mridul@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22');
+(13, 'Mahadi Hasan', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Mahadi', 'Hasan', 'MahadiHasan@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(16, 'Mamunul haq', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Mamunul', 'Haq', 'Mamun@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(17, 'Khalid bin walid', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Khalid bin', 'Walid', 'Khalid@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(18, 'Md Omar Faruk', '$2y$12$joikZHetX.x2s.uY.oAh.O99pqaG1JuX8x1vO/O85VFzQMm8CV5WS', 'Md Omar', 'Faruk', 'Omar@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(19, 'Mridul Islam', '$1$80v1ifp4$M0t.JhP6wLwXcUMOOShAu/', 'Mridul ', 'Islam', 'Mridul@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22'),
+(27, 'Shad', '$2y$12$Dksp8ZVLY4/lvXdo2SnuguwXs/m/CWA52C/.KB3Pth5UcggqJbHzy', 'Shofiul', 'Alam', 'shad@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(28, 'Showrab', '$2y$12$ld/muIq/.du/qMANPdD5Je8LO0xRDvQlMXz43yhPHhVcVs7/zD.yO', '', '', 'showrab@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(30, 'Azizul Haq', '$2y$12$aqmxfF1eXteFTXsPQgp3oepH2sabfUtCH6yuUDEdNG6/dxtWoiezi', 'Azizul', 'Haq', 'Aziz@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(31, 'Shamim', '$2y$10$tSTfSAS0i12UFzJbj2jiiuVhaYMmTZRsiekk7GQ4IK.HuRvTwqyxe', 'Shamim', 'Hossain', 'shamimMridha@shamim.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_online`
+--
+
+CREATE TABLE `users_online` (
+  `id` int(5) NOT NULL,
+  `session` varchar(255) NOT NULL,
+  `time` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_online`
+--
+
+INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
+(24, 'ah6hsh89oovm3gdpq7i825r4fa', 1630236239),
+(25, 'd4djd8icduqlmspuhptsndumec', 1630230184),
+(26, '9dm1jcvfua3rrp0uv65964bcqs', 1630230192);
 
 --
 -- Indexes for dumped tables
@@ -171,6 +196,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `users_online`
+--
+ALTER TABLE `users_online`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -196,7 +227,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `users_online`
+--
+ALTER TABLE `users_online`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
