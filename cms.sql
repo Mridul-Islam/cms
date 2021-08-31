@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2021 at 12:42 AM
+-- Generation Time: Aug 31, 2021 at 09:12 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -65,8 +65,9 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`) VALUES
-(7, 5, 'Mridul Islam', 'mridul@mridul.com', 'Ok, you are good........ ', 'approved', '2021-08-30'),
-(8, 5, 'Srijon', 'srijon@srijon.com', 'Hmmm, you are nice...', 'approved', '2021-08-30');
+(8, 5, 'Srijon', 'srijon@srijon.com', 'Hmmm, you are nice...', 'approved', '2021-08-30'),
+(14, 27, 'shad', 'shad@gmail.com', 'Hi, this is good...', 'approved', '2021-09-01'),
+(15, 27, 'Srijon', 'srijon@srijon.com', 'This is best...', 'approved', '2021-09-01');
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(5, 5, 'Welcome to vue.js', 'Shad', '2021-08-21', 'vue.js-logo.png', '<p>Vue (pronounced /vjuː/, like <strong>view</strong>) is a <strong>progressive framework</strong> for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with <a href=\"https://vuejs.org/v2/guide/single-file-components.html\"><strong>modern tooling</strong></a> and <a href=\"https://github.com/vuejs/awesome-vue#components--libraries\"><strong>supporting libraries</strong></a>.</p>', 'Vue,js', 3, 'published', 0),
+(5, 5, 'Welcome to vue.js', 'Shad', '2021-08-21', 'vue.js-logo.png', '<p>Vue (pronounced /vjuː/, like <strong>view</strong>) is a <strong>progressive framework</strong> for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with <a href=\"https://vuejs.org/v2/guide/single-file-components.html\"><strong>modern tooling</strong></a> and <a href=\"https://github.com/vuejs/awesome-vue#components--libraries\"><strong>supporting libraries</strong></a>.</p>', 'Vue,js', 3, 'published', 1),
 (6, 5, 'React Course', 'Azizul Haq', '2021-08-21', 'react_logo.png', '<p>We will build a small game during this tutorial. <strong>You might be tempted to skip it because you’re not building games — but give it a chance.</strong> The techniques you’ll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.</p>', 'React', 0, 'published', 0),
 (8, 4, 'PHP developer', 'Shamim Hossain', '2021-08-21', 'php_logo.png', '<p>PHP is a server scripting language, and a powerful tool for making dynamic and interactive Web pages.</p><p>PHP is a widely-used, free, and efficient alternative to competitors such as Microsofts ASP.</p>', 'PHP', 0, 'published', 0),
 (9, 4, 'IOS tutorial', 'Showrab Ahmed', '2021-08-21', 'iOS-Logo-2010.jpg', '<p>iOS&nbsp;14 brings a fresh look to the things you do most often, making them easier than ever. New features help you get what you need in the moment. And the apps you use all the time become even more intelligent, more personal, and more&nbsp;private.</p>', 'Apple', 0, 'published', 0),
@@ -106,9 +107,9 @@ INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`,
 (23, 5, 'React Course', 'Shad', '2021-08-27', 'react_logo.png', '<p>React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>', 'React', 0, 'published', 0),
 (24, 5, 'React Native', 'Shohan', '2021-08-27', 'react-native-logo.jpg', '<p>React Native combines the best parts of native development with React, a best-in-class JavaScript library for building user interfaces.<br><br><strong>Use a little—or a lot</strong>. You can use React Native today in your existing Android and iOS projects or you can create a whole new app from scratch.</p>', 'React Native', 0, 'published', 0),
 (25, 5, 'React Course', 'Shad', '2021-08-28', 'react_logo.png', '<p>React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>', 'React', 0, 'published', 0),
-(26, 8, 'IOS tutorial', 'Arfan', '2021-08-28', 'iOS-Logo-2010.jpg', '<p>iOS&nbsp;14 brings a fresh look to the things you do most often, making them easier than ever. New features help you get what you need in the moment. And the apps you use all the time become even more intelligent, more personal, and more&nbsp;private.</p><p><br>&nbsp;</p>', 'IOS', 0, 'published', 0),
-(27, 5, 'Flutter Development', 'Mridul Islam', '2021-08-28', 'Flutter-logo.png', '<p>Flutter is Googles UI toolkit for building beautiful, natively compiled applications for <a href=\"https://flutter.dev/docs\">mobile</a>, <a href=\"https://flutter.dev/web\">web</a>, <a href=\"https://flutter.dev/desktop\">desktop</a>, and <a href=\"https://flutter.dev/embedded\">embedded</a> devices from a single codebase.</p>', 'Flutter', 0, 'published', 0),
-(28, 6, 'Bootstrap course', 'Ninad', '2021-08-28', 'bootstrap-logo.png', '<p>Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>', 'Bootstrap', 0, 'published', 0);
+(26, 8, 'IOS tutorial', 'Arfan', '2021-08-28', 'iOS-Logo-2010.jpg', '<p>iOS&nbsp;14 brings a fresh look to the things you do most often, making them easier than ever. New features help you get what you need in the moment. And the apps you use all the time become even more intelligent, more personal, and more&nbsp;private.</p><p><br>&nbsp;</p>', 'IOS', 0, 'published', 1),
+(27, 5, 'Flutter Development', 'Mridul Islam', '2021-08-28', 'Flutter-logo.png', '<p>Flutter is Googles UI toolkit for building beautiful, natively compiled applications for <a href=\"https://flutter.dev/docs\">mobile</a>, <a href=\"https://flutter.dev/web\">web</a>, <a href=\"https://flutter.dev/desktop\">desktop</a>, and <a href=\"https://flutter.dev/embedded\">embedded</a> devices from a single codebase.</p>', 'Flutter', 0, 'published', 15),
+(28, 6, 'Bootstrap course', 'Ninad', '2021-08-28', 'bootstrap-logo.png', '<p>Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>', 'Bootstrap', 0, 'published', 2);
 
 -- --------------------------------------------------------
 
@@ -162,7 +163,9 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (24, 'ah6hsh89oovm3gdpq7i825r4fa', 1630236239),
 (25, 'd4djd8icduqlmspuhptsndumec', 1630230184),
 (26, '9dm1jcvfua3rrp0uv65964bcqs', 1630230192),
-(27, 'fbkh9qnva0pv0k51d00bkj7mvc', 1630276935);
+(27, 'fbkh9qnva0pv0k51d00bkj7mvc', 1630276952),
+(28, '43bp62pn2hpdaujrcj251dss40', 1630415264),
+(29, 'fn3ln9t2uddufi151qvl11m2q4', 1630437157);
 
 --
 -- Indexes for dumped tables
@@ -212,7 +215,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -230,7 +233,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
