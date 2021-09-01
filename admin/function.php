@@ -98,10 +98,15 @@ function deleteCategory(){
 	global $connection;
 	if(isset($_GET['delete'])){
         $delete_cat_id = $_GET['delete'];
+        $escaped_cat_id = mysqli_real_escape_string($connection, $delete_cat_id);
 
-        $query = "DELETE FROM categories WHERE cat_id = {$delete_cat_id} ";
-        $delete_query_result = mysqli_query($connection, $query);
-        header("Location: categories.php");
+        if(isset($_SESSION['user_role'])){
+            if(isset($_SESSION['user_role']) == "Admin"){
+                $query = "DELETE FROM categories WHERE cat_id = {$escaped_cat_id} ";
+                $delete_query_result = mysqli_query($connection, $query);
+                header("Location: categories.php");
+            }
+        }
     }
 }
 

@@ -29,7 +29,8 @@ if(isset($_GET['u_id'])){
 		$user_role    = $_POST['role'];
 
 
-		if(!empty($old_password) && !empty($password) && !empty($username) && !empty($firstname) && !empty($lastname) && !empty($user_email) && !empty($user_role)){
+		//if(!empty($old_password) && !empty($password) && !empty($username) && !empty($firstname) && !empty($lastname) && !empty($user_email) && !empty($user_role)){
+		if(!empty($old_password) && !empty($username) && !empty($firstname) && !empty($lastname) && !empty($user_email) && !empty($user_role)){
 			$query_password = "SELECT user_password FROM users WHERE user_id = $the_user_id";
 			$get_user_query = mysqli_query($connection, $query_password);
 			confirmQuery($get_user_query);
@@ -37,8 +38,13 @@ if(isset($_GET['u_id'])){
 			$row = mysqli_fetch_assoc($get_user_query);
 			$db_user_password = $row['user_password'];
 			if(password_verify($old_password, $db_user_password)){
-				if($db_user_password != $password){
-					$hashed_password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+				if(!empty($password)){
+					if($db_user_password != $password){
+						$hashed_password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+					}	
+				}
+				else{
+					$hashed_password = password_hash($old_password, PASSWORD_BCRYPT, array('cost' => 12));
 				}
 				$query = "UPDATE users SET username ='{$username}', user_password='{$hashed_password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
 	

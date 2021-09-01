@@ -95,7 +95,16 @@
 				// Delete comment function
 				if(isset($_GET['delete'])){
 					$delete_comment_id = $_GET['delete'];
-					$query = "DELETE FROM comments WHERE comment_id={$delete_comment_id}";
+					$escaped_comment_id = mysqli_real_escape_string($delete_comment_id);
+					if(isset($_SESSION['user_role'])){
+						if (isset($_SESSION['user_role']) == "Admin") {
+							$query = "DELETE FROM comments WHERE comment_id={$escaped_comment_id}";
+							$delete_comment_query = mysqli_query($connection, $query);
+							confirmQuery($delete_comment_query);
+							header("Location: comments.php");
+						}
+					}
+					$query = "DELETE FROM comments WHERE comment_id={$escaped_comment_id}";
 					$delete_comment_query = mysqli_query($connection, $query);
 					confirmQuery($delete_comment_query);
 					header("Location: comments.php");
