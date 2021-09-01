@@ -80,7 +80,7 @@ if(isset($_POST['checkBoxArray'])){
             <tr>
                 <th><input type="checkbox" id="selectAllBoxes"></th>
                 <th>Id</th>
-                <th>Author</th>
+                <th>User</th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Status</th>
@@ -106,6 +106,7 @@ if(isset($_POST['checkBoxArray'])){
             while($row = mysqli_fetch_assoc($posts_query_result)){
                 $post_id = $row['post_id'];
                 $post_author = $row['post_author'];
+                $post_user = $row['post_user'];
                 $post_title = $row['post_title'];
                 $post_category_id = $row['post_category_id'];
                 $post_status = $row['post_status'];
@@ -124,7 +125,30 @@ if(isset($_POST['checkBoxArray'])){
             <?php
 
                     echo "<td> {$post_id} </td>";
-                    echo "<td> {$post_author} </td>";
+
+
+
+
+
+                    if(!empty($post_author)){
+                        echo "<td> $post_author </td>";
+                    }
+                    elseif(!empty($post_user)){
+                        // $post_user_query = "SELECT * FROM users WHERE user_id = {$post_user_id}";
+                        // $select_post_user_result = mysqli_query($connection, $post_user_query);
+                        // confirmQuery($select_post_user_result);
+
+                        // $row = mysqli_fetch_assoc($select_post_user_result);
+                        // $username = $row['username'];
+
+                        echo "<td> {$post_user} </td>";
+                    }
+
+
+                    
+
+
+
                     echo "<td> {$post_title} </td>";
 
 

@@ -3,7 +3,7 @@
 if(isset($_POST['create_post'])){
 	$post_title = $_POST['title'];
 	$post_category_id = $_POST['post_category'];
-	$post_author = $_POST['author'];
+	$post_user = $_POST['post_user_id'];
 	$post_status = $_POST['post_status'];
  
  	$post_image = $_FILES['image']['name'];
@@ -15,7 +15,7 @@ if(isset($_POST['create_post'])){
 
 	move_uploaded_file($post_img_temp, "../images/$post_image");
 
-	$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_status, post_image, post_tags, post_content, post_date) VALUES({$post_category_id}, '{$post_title}', '{$post_author}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', now()) ";
+	$query = "INSERT INTO posts(post_category_id, post_title, post_user, post_status, post_image, post_tags, post_content, post_date) VALUES({$post_category_id}, '{$post_title}', '{$post_user}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', now()) ";
 	$add_post_query_result = mysqli_query($connection, $query);
 
 	confirmQuery($add_post_query_result);
@@ -71,8 +71,28 @@ if(isset($_POST['create_post'])){
 	</div>
 
 	<div class="form-group">
-		<label for="title">Post Author</label>
-		<input type="text" name="author" class="form-control">
+		<label for="users">Users</label>
+		<select name="post_user_id" class="form-control">
+			
+			<?php
+
+			$user_query = "SELECT * FROM users";
+			$select_all_users = mysqli_query($connection, $user_query);
+			confirmQuery($select_all_users);
+
+			while($row = mysqli_fetch_assoc($select_all_users)){
+				$post_user_id = $row['user_id'];
+				$post_username = $row['username'];
+
+				echo "<option value='{$post_username}'> {$post_username} </option>";
+			}
+
+
+
+			?>
+
+
+		</select>
 	</div>
 
 	<div class="form-group">

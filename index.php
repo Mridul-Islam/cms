@@ -14,7 +14,7 @@
 
                 <?php
 
-                $post_per_page = 4;
+                $post_per_page = 10;
 
                 if(isset($_GET['page'])){
                     $page_number = $_GET['page'];
@@ -48,13 +48,14 @@
                 $select_all_posts_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($select_all_posts_query)){
-                    $post_id = $row['post_id'];
-                    $post_title = $row['post_title'];
-                    $post_author = $row['post_author'];
-                    $post_date = $row['post_date'];
-                    $post_image = $row['post_image'];
+                    $post_id      = $row['post_id'];
+                    $post_title   = $row['post_title'];
+                    $post_author  = $row['post_author'];
+                    $post_user = $row['post_user'];
+                    $post_date    = $row['post_date'];
+                    $post_image   = $row['post_image'];
                     $post_content = substr($row['post_content'],0,200);
-                    $post_status = $row['post_status'];
+                    $post_status  = $row['post_status'];
 
                     if($post_status == 'published'){
 
@@ -70,7 +71,30 @@
                     <a href="post.php?p_id=<?php echo $post_id;?>" > <?php echo $post_title;?> </a>
                 </h2>
                 <p class="lead">
-                    by <a href="author_posts.php?author=<?php echo $post_author;?>"> <?php echo $post_author;?> </a>
+                    by <a href="author_posts.php?author=<?php echo $post_user;?>"> 
+
+                        <?php 
+
+                        if(!empty($post_author)){
+                            echo $post_author;
+                        }
+                        else if(!empty($post_user)){
+                            // $post_user_query = "SELECT * FROM users WHERE user_id = {$post_user_id}";
+                            // $select_post_user_result = mysqli_query($connection, $post_user_query);
+                            // if(!$select_post_user_result){
+                            //     die("Qeury Failed" . mysqli_error($connection));
+                            // }
+                            // $row = mysqli_fetch_assoc($select_post_user_result);
+                            // $username = $row['username'];
+                            
+                            echo $post_user;
+                        }
+
+
+
+                        ?> 
+                    
+                    </a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date;?> </p>
                 <hr>
