@@ -29,7 +29,7 @@ if(isset($_GET['u_id'])){
 		$user_role    = $_POST['role'];
 
 
-		//if(!empty($old_password) && !empty($password) && !empty($username) && !empty($firstname) && !empty($lastname) && !empty($user_email) && !empty($user_role)){
+
 		if(!empty($old_password) && !empty($username) && !empty($firstname) && !empty($lastname) && !empty($user_email) && !empty($user_role)){
 			$query_password = "SELECT user_password FROM users WHERE user_id = $the_user_id";
 			$get_user_query = mysqli_query($connection, $query_password);
