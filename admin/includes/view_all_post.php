@@ -1,10 +1,10 @@
 <?php
 
 if(isset($_POST['checkBoxArray'])){
-    $checkBoxes_id = $_POST['checkBoxArray'];
+    $checkBoxes_id = escape($_POST['checkBoxArray']);
 
     foreach($checkBoxes_id as $checkBoxValue){
-        $bulk_options = $_POST['bulk_options'];
+        $bulk_options = escape($_POST['bulk_options']);
 
         switch($bulk_options){
             case 'published':
@@ -104,17 +104,17 @@ if(isset($_POST['checkBoxArray'])){
             confirmQuery($posts_query_result);
             
             while($row = mysqli_fetch_assoc($posts_query_result)){
-                $post_id = $row['post_id'];
-                $post_author = $row['post_author'];
-                $post_user = $row['post_user'];
-                $post_title = $row['post_title'];
-                $post_category_id = $row['post_category_id'];
-                $post_status = $row['post_status'];
-                $post_image = $row['post_image'];
-                $post_tags = $row['post_tags'];
+                $post_id            = $row['post_id'];
+                $post_author        = $row['post_author'];
+                $post_user          = $row['post_user'];
+                $post_title         = $row['post_title'];
+                $post_category_id   = $row['post_category_id'];
+                $post_status        = $row['post_status'];
+                $post_image         = $row['post_image'];
+                $post_tags          = $row['post_tags'];
                 $post_comment_count = $row['post_comment_count'];
-                $post_date = $row['post_date'];
-                $post_views_count = $row['post_views_count'];
+                $post_date          = $row['post_date'];
+                $post_views_count   = $row['post_views_count'];
 
                 echo "<tr>";
 

@@ -2,7 +2,7 @@
 
 if(isset($_GET['u_id'])){
 	// bring user information from database and show to the edit page query...
-	$the_user_id = $_GET['u_id'];
+	$the_user_id = escape($_GET['u_id']);
 
 	$query = "SELECT * FROM users WHERE user_id = {$the_user_id}";
 	$selected_user_query = mysqli_query($connection, $query);
@@ -20,13 +20,13 @@ if(isset($_GET['u_id'])){
 
 	// user update query......
 	if(isset($_POST['update_user'])){
-		$username     = $_POST['username'];
-		$old_password = $_POST['old_password'];
-		$password     = $_POST['password'];
-		$firstname    = $_POST['firstname'];
-		$lastname     = $_POST['lastname'];
-		$user_email   = $_POST['email'];
-		$user_role    = $_POST['role'];
+		$username     = escape($_POST['username']);
+		$old_password = escape($_POST['old_password']);
+		$password     = escape($_POST['password']);
+		$firstname    = escape($_POST['firstname']);
+		$lastname     = escape($_POST['lastname']);
+		$user_email   = escape($_POST['email']);
+		$user_role    = escape($_POST['role']);
 
 
 

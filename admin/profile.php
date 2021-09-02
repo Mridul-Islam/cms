@@ -11,10 +11,10 @@ if(isset($_SESSION['username'])){
 
     while ($row = mysqli_fetch_assoc($select_user_profile_query)) {
         $profile_username = $row['username'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_password = $row['user_password'];
-        $user_email = $row['user_email'];
+        $user_firstname   = $row['user_firstname'];
+        $user_lastname    = $row['user_lastname'];
+        $user_password    = $row['user_password'];
+        $user_email       = $row['user_email'];
     }
 }
 
@@ -43,12 +43,12 @@ if(isset($_SESSION['username'])){
                         <?php // update profile query
 
                         if(isset($_POST['update_profile'])){
-                            $user_firstname = $_POST['firstname'];
-                            $user_lastname = $_POST['lastname'];
-                            $update_username = $_POST['username'];
-                            $user_password = $_POST['password'];
-                            $user_email = $_POST['email'];
-                            $user_role = $_POST['role'];
+                            $user_firstname  = escape($_POST['firstname']);
+                            $user_lastname   = escape($_POST['lastname']);
+                            $update_username = escape($_POST['username']);
+                            $user_password   = escape($_POST['password']);
+                            $user_email      = escape($_POST['email']);
+                            $user_role       = escape($_POST['role']);
 
                             $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', username = '{$update_username}', user_password = '{$user_password}', user_email = '{$user_email}' WHERE username = '{$username}' ";
                             $update_user_profile_query = mysqli_query($connection, $query);

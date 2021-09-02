@@ -1,39 +1,38 @@
 <?php // Get post query for edit
 
 if(isset($_GET['p_id'])){
-    $post_id = $_GET['p_id'];
+    $post_id = escape($_GET['p_id']);
 
     $query = "SELECT * FROM posts WHERE post_id={$post_id}";
     $selected_post = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($selected_post)) {
-        $post_category_id = $row['post_category_id'];
-        $post_title = $row['post_title'];
-        $post_author = $row['post_author'];
-        $post_status = $row['post_status'];
-        $post_image = $row['post_image'];
-        $post_tags = $row['post_tags'];
-        $post_content = $row['post_content'];
+        $post_category_id   = $row['post_category_id'];
+        $post_title         = $row['post_title'];
+        $post_author        = $row['post_author'];
+        $post_status        = $row['post_status'];
+        $post_image         = $row['post_image'];
+        $post_tags          = $row['post_tags'];
+        $post_content       = $row['post_content'];
         $post_comment_count = $row['post_comment_count'];
-        $post_date = $row['post_date'];
+        $post_date          = $row['post_date'];
 
     }
 
 
     // update query
 	if(isset($_POST['update_post'])){
-		$post_title = $_POST['title'];
-		$post_category_id = $_POST['post_category'];
-		$post_author = $_POST['author'];
-		$post_status = $_POST['post_status'];
+		$post_title       = escape($_POST['title']);
+		$post_category_id = escape($_POST['post_category']);
+		$post_author      = escape($_POST['author']);
+		$post_status      = escape($_POST['post_status']);
 
-		$post_image = $_FILES['image']['name'];
-		$post_img_temp = $_FILES['image']['tmp_name'];
+		$post_image       = escape($_FILES['image']['name']);
+		$post_img_temp    = escape($_FILES['image']['tmp_name']);
 
-		$post_tags = $_POST['post_tags'];
-		$post_content = $_POST['post_content'];
-		$post_date = date('d-m-y');
-		//$post_comment_count = 2;
+		$post_tags        = escape($_POST['post_tags']);
+		$post_content     = escape($_POST['post_content']);
+		$post_date        = escape(date('d-m-y'));
 
 		move_uploaded_file($post_img_temp, "../images/$post_image");
 

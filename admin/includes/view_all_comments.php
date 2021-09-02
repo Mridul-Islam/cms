@@ -23,13 +23,13 @@
 		confirmQuery($comments_query_result);
 
 		while($row = mysqli_fetch_assoc($comments_query_result)){
-			$comment_id = $row['comment_id'];
+			$comment_id      = $row['comment_id'];
 			$comment_post_id = $row['comment_post_id'];
-			$comment_author = $row['comment_author'];
-			$comment_email = $row['comment_email'];
+			$comment_author  = $row['comment_author'];
+			$comment_email   = $row['comment_email'];
 			$commnet_content = $row['comment_content'];
-			$comment_status = $row['comment_status'];
-			$comment_date = $row['comment_date'];
+			$comment_status  = $row['comment_status'];
+			$comment_date    = $row['comment_date'];
 
 
 			echo "<tr>";
@@ -45,7 +45,7 @@
 
 				// comment approve query
 				if(isset($_GET['approve'])){
-					$comment_approve_id = $_GET['approve'];
+					$comment_approve_id = escape($_GET['approve']);
 
 					$query = "UPDATE comments SET comment_status='approved' WHERE comment_id=$comment_approve_id";
 					$comment_approve_query = mysqli_query($connection, $query);
@@ -55,7 +55,7 @@
 
 				//commment upapprove query
 				if(isset($_GET['unapprove'])){
-					$comment_unapprove_id = $_GET['unapprove'];
+					$comment_unapprove_id = escape($_GET['unapprove']);
 
 					$query = "UPDATE comments SET comment_status='unapproved' WHERE comment_id=$comment_unapprove_id";
 					$comment_unapprove_query = mysqli_query($connection, $query);
@@ -94,7 +94,7 @@
 
 				// Delete comment function
 				if(isset($_GET['delete'])){
-					$delete_comment_id = $_GET['delete'];
+					$delete_comment_id = escape($_GET['delete']);
 					$escaped_comment_id = mysqli_real_escape_string($delete_comment_id);
 					if(isset($_SESSION['user_role'])){
 						if (isset($_SESSION['user_role']) == "Admin") {

@@ -5,7 +5,7 @@
             <?php // Bring the cat_title into input query  for editing
 
             if(isset($_GET['edit'])){
-                $edit_cat_id = $_GET['edit'];
+                $edit_cat_id = escape($_GET['edit']);
 
                 $query = "SELECT * FROM categories WHERE cat_id = {$edit_cat_id} ";
                 $selected_cat_id = mysqli_query($connection, $query);
@@ -26,7 +26,7 @@
             <?php  // Update query 
 
             if(isset($_POST['update'])){
-                $the_cat_title = $_POST['cat_title'];
+                $the_cat_title = escape($_POST['cat_title']);
 
                 $query = "UPDATE categories SET cat_title = '{$the_cat_title}' WHERE cat_id = {$cat_id} ";
                 $update_query_result = mysqli_query($connection, $query);
