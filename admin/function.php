@@ -2,7 +2,7 @@
 
 function escape($string){
     global $connection;
-    return mysqli_real_escape_string($connection, trim($string));
+    return mysqli_real_escape_string($connection, $string);
 }
 
 
@@ -98,7 +98,10 @@ function showAllCategories(){
             echo "<td> {$cat_id} </td>";
             echo "<td> {$cat_title} </td>";
             echo "<td> <a href='categories.php?edit={$cat_id}'> Edit </a> </td>";
-            echo "<td> <a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='categories.php?delete={$cat_id}'> Delete </a> </td>";
+
+            //echo "<td> <a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='categories.php?delete={$cat_id}'> Delete </a> </td>";
+
+            echo "<td><a rel='$cat_id' href='javascript:void(0)' class='delete_link'> Delete </a></td>";
         echo "</tr>";
 
     };

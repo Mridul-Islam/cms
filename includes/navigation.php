@@ -40,6 +40,10 @@
                     <li>
                         <a href="registration.php">Registration</a>
                     </li>
+
+                    <li>
+                        <a href="contact.php">Contact</a>
+                    </li>
                     
                     <?php // show Edit post button when loggen in and  stay to see single post
 

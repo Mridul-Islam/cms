@@ -1,7 +1,9 @@
 <?php
 
+include("delete_modal.php");
+
 if(isset($_POST['checkBoxArray'])){
-    $checkBoxes_id = escape($_POST['checkBoxArray']);
+    $checkBoxes_id = $_POST['checkBoxArray'];
 
     foreach($checkBoxes_id as $checkBoxValue){
         $bulk_options = escape($_POST['bulk_options']);
@@ -32,6 +34,7 @@ if(isset($_POST['checkBoxArray'])){
                     $post_category_id   = $row['post_category_id'];
                     $post_title         = $row['post_title'];
                     $post_author        = $row['post_author'];
+                    $post_user          = $row['post_user'];
                     $post_status        = $row['post_status'];
                     $post_image         = $row['post_image'];
                     $post_tags          = $row['post_tags'];
@@ -39,7 +42,7 @@ if(isset($_POST['checkBoxArray'])){
                     $post_date          = $row['post_date'];
 
 
-                    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_status, post_image, post_tags, post_content, post_date) VALUES({$post_category_id}, '{$post_title}', '{$post_author}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', now()) ";
+                    $query = "INSERT INTO posts(post_category_id, post_title, post_user, post_status, post_image, post_tags, post_content, post_date) VALUES({$post_category_id}, '{$post_title}', '{$post_user}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', now()) ";
                     $post_clone_insert_query = mysqli_query($connection, $query);
 
                     confirmQuery($post_clone_insert_query);
@@ -194,7 +197,11 @@ if(isset($_POST['checkBoxArray'])){
 
                     echo "<td> <a href='posts.php?source=edit_post&p_id={$post_id}' class='text-normal'>Edit</a> </td>";
 
-                    echo "<td> <a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}' class='text-danger'>Delete</a> </td>";
+                    //echo "<td> <a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}' class='text-danger'>Delete</a> </td>";
+
+
+                    echo "<td> <a rel='$post_id' href='javascript:void(0)' class='delete_link'> Delete </a> </td>";
+                    
 
                     echo "<td><a href='posts.php?reset={$post_id}' title='if your click it will set the value to 0'> {$post_views_count} </a></td>";
 
@@ -243,3 +250,26 @@ if(isset($_GET['reset'])){
 
 
 ?>
+
+
+
+<script>
+
+    $(document).ready(function(){
+        
+        $(".delete_link").on('click', function(){
+
+            var id = $(this).attr("rel");
+
+            var delete_url = "posts.php?delete="+ id +" ";
+
+            $(".modal_delete_link").attr("href", delete_url);
+
+            $("#myModal").modal('show');
+
+        });
+
+    });
+
+
+</script>

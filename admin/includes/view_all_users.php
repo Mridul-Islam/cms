@@ -1,3 +1,5 @@
+<?php include("delete_modal.php"); ?>
+
 <table class="table table-bordered table-hover table-striped table-responsive">
 	<thead>
 		<tr>
@@ -37,7 +39,10 @@
 				echo "<td><a href='users.php?change_to_admin={$user_id}'> Admin </a></td>";
 				echo "<td><a href='users.php?change_to_subscriber={$user_id}'> Subscriber </a></td>";
 				echo "<td><a href='users.php?source=edit_user&u_id={$user_id}'> Edit </a></td>";
-				echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='users.php?delete={$user_id}'> Delete </a></td>";
+				echo "<td><a rel='$user_id' href='javascript:void(0)' class='delete_link'> Delete </a></td>";
+
+				//echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='users.php?delete={$user_id}'> Delete </a></td>";
+			
 			echo "</tr>";
 		}
 
@@ -91,6 +96,29 @@ if(isset($_GET['change_to_subscriber'])){
 
 
 ?>
+
+
+
+<script>
+
+    $(document).ready(function(){
+        
+        $(".delete_link").on('click', function(){
+
+            var id = $(this).attr("rel");
+
+            var delete_url = "users.php?delete="+ id +" ";
+
+            $(".modal_delete_link").attr("href", delete_url);
+
+            $("#myModal").modal('show');
+
+        });
+
+    });
+
+
+</script>
 
 
 

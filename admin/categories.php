@@ -1,5 +1,7 @@
 <?php include("includes/admin_header.php"); ?>
 
+<?php include("includes/delete_modal.php"); ?>
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -75,3 +77,25 @@
         <!-- /#page-wrapper -->
 
 <?php include("includes/admin_footer.php"); ?>
+
+
+<script>
+
+    $(document).ready(function(){
+        
+        $(".delete_link").on('click', function(){
+
+            var id = $(this).attr("rel");
+
+            var delete_url = "categories.php?delete="+ id +" ";
+
+            $(".modal_delete_link").attr("href", delete_url);
+
+            $("#myModal").modal('show');
+
+        });
+
+    });
+
+
+</script>

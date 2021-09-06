@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2021 at 09:05 PM
+-- Generation Time: Sep 02, 2021 at 10:33 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -94,7 +94,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_user`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 7),
+(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 8),
 (34, 5, 'Welcome to vue.js', '', 'Shad', '2021-09-01', 'vue.js-logo.png', '<p>Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members.</p>', 'Vue.js, FrontEnd', 0, 'published', 13),
 (35, 5, 'Angular.js Tutorial', '', 'Mridul Islam', '2021-09-01', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'published', 0);
 
@@ -152,7 +152,9 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (28, '43bp62pn2hpdaujrcj251dss40', 1630415264),
 (29, 'fn3ln9t2uddufi151qvl11m2q4', 1630437174),
 (30, 'n4akakbmiqg7rdq62ebdsb1a6i', 1630498877),
-(31, 'sir0cu7apfu3abk426nh9k1tns', 1630523108);
+(31, 'sir0cu7apfu3abk426nh9k1tns', 1630523123),
+(32, 'vueuh490phd5diau6qkqa23750', 1630590013),
+(33, 'jlmjotkm4ntbjanmutlonv3hfo', 1630613891);
 
 --
 -- Indexes for dumped tables
@@ -220,7 +222,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

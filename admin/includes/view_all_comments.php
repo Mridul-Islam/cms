@@ -1,3 +1,5 @@
+<?php include("delete_modal.php"); ?>
+
 <table class="table table-bordered table-hover table-striped table-responsive">
 	<thead>
 		<tr>
@@ -95,7 +97,7 @@
 				// Delete comment function
 				if(isset($_GET['delete'])){
 					$delete_comment_id = escape($_GET['delete']);
-					$escaped_comment_id = mysqli_real_escape_string($delete_comment_id);
+					$escaped_comment_id = mysqli_real_escape_string($connection, $delete_comment_id);
 					if(isset($_SESSION['user_role'])){
 						if (isset($_SESSION['user_role']) == "Admin") {
 							$query = "DELETE FROM comments WHERE comment_id={$escaped_comment_id}";
@@ -110,7 +112,9 @@
 					header("Location: comments.php");
 				}
 				
-				echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='comments.php?delete={$comment_id}'> Delete </a></td>";
+				//echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='comments.php?delete={$comment_id}'> Delete </a></td>";
+
+				echo "<td><a rel='$comment_id' href='javascript:void(0)' class='delete_link'> Delete </a></td>";
 
 
 
@@ -124,3 +128,26 @@
 
 	</tbody>
 </table>
+
+
+
+<script>
+
+    $(document).ready(function(){
+        
+        $(".delete_link").on('click', function(){
+
+            var id = $(this).attr("rel");
+
+            var delete_url = "comments.php?delete="+ id +" ";
+
+            $(".modal_delete_link").attr("href", delete_url);
+
+            $("#myModal").modal('show');
+
+        });
+
+    });
+
+
+</script>
