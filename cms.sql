@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2021 at 10:33 PM
+-- Generation Time: Sep 06, 2021 at 02:30 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -40,8 +40,7 @@ INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (2, 'Python'),
 (4, 'PHP'),
 (5, 'JavaScript'),
-(7, '.NET'),
-(8, 'IOS');
+(7, '.NET');
 
 -- --------------------------------------------------------
 
@@ -65,7 +64,6 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`) VALUES
 (19, 33, 'shad', 'shad@gmail.com', 'You are nice....', 'approved', '2021-09-02'),
-(20, 33, 'Srijon', 'srijon@srijon.com', 'Yeah, you are great...', 'approved', '2021-09-02'),
 (22, 34, 'Arfan', 'Arfan@arfan.com', 'This is the best..', 'approved', '2021-09-02');
 
 -- --------------------------------------------------------
@@ -94,9 +92,16 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_user`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 8),
-(34, 5, 'Welcome to vue.js', '', 'Shad', '2021-09-01', 'vue.js-logo.png', '<p>Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members.</p>', 'Vue.js, FrontEnd', 0, 'published', 13),
-(35, 5, 'Angular.js Tutorial', '', 'Mridul Islam', '2021-09-01', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'published', 0);
+(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 8),
+(39, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
+(40, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
+(41, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
+(42, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
+(43, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
+(44, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
+(45, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
+(47, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
+(49, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +126,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `randSalt`) VALUES
-(13, 'Mahadi Hasan', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Mahadi', 'Hasan', 'MahadiHasan@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
 (17, 'Khalid bin walid', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Khalid bin', 'Walid', 'Khalid@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
 (18, 'Md Omar Faruk', '$2y$12$joikZHetX.x2s.uY.oAh.O99pqaG1JuX8x1vO/O85VFzQMm8CV5WS', 'Md Omar', 'Faruk', 'Omar@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
 (27, 'Shad', '$2y$12$.6IRmYshqoAmKr7EP5b5ueuarCsJxAf4DzmEDPvLiLyjZ7Ai3LJNK', 'Shofiul', 'Alam', 'shad@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
@@ -154,7 +158,11 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (30, 'n4akakbmiqg7rdq62ebdsb1a6i', 1630498877),
 (31, 'sir0cu7apfu3abk426nh9k1tns', 1630523123),
 (32, 'vueuh490phd5diau6qkqa23750', 1630590013),
-(33, 'jlmjotkm4ntbjanmutlonv3hfo', 1630613891);
+(33, 'jlmjotkm4ntbjanmutlonv3hfo', 1630613891),
+(34, 'rjkqjpcgqacvp2o5aqlrnagvje', 1630742183),
+(35, 'ks0sfbkq0p30buotqd6qjlpf5r', 1630852744),
+(36, '6i6al5lrjat5cfa96p753n1doj', 1630868435),
+(37, '1qbof37kvsgbuj37n9tiq2nasr', 1630931372);
 
 --
 -- Indexes for dumped tables
@@ -210,7 +218,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -222,7 +230,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

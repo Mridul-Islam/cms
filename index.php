@@ -14,7 +14,7 @@
 
                 <?php
 
-                $post_per_page = 10;
+                $post_per_page = 5;
 
                 if(isset($_GET['page'])){
                     $page_number = $_GET['page'];
@@ -32,7 +32,7 @@
 
 
                 // count the number of posts
-                $count_query = "SELECT * FROM posts";
+                $count_query = "SELECT * FROM posts WHERE post_status = 'published'";
                 $count_all_post_query = mysqli_query($connection, $count_query);
                 if(!$count_all_post_query){
                     die("Qeury Failed" . mysqli_error($connection));
@@ -40,9 +40,11 @@
                 $count_posts = mysqli_num_rows($count_all_post_query);
                 $count_page = ceil($count_posts/$post_per_page);
 
+                if($count_posts < 1){
+                    echo "<h1 class='text-center text-primary'> No post available. </h1>";
+                }
+                else{
 
-
-               
                 // show all post query
                 $query = "SELECT * FROM posts LIMIT $show, $post_per_page";
                 $select_all_posts_query = mysqli_query($connection,$query);
@@ -51,7 +53,7 @@
                     $post_id      = $row['post_id'];
                     $post_title   = $row['post_title'];
                     $post_author  = $row['post_author'];
-                    $post_user = $row['post_user'];
+                    $post_user    = $row['post_user'];
                     $post_date    = $row['post_date'];
                     $post_image   = $row['post_image'];
                     $post_content = substr($row['post_content'],0,200);
@@ -108,7 +110,9 @@
                 <?php
 
                     };
-                };  
+                }; 
+
+                }; 
 
                 ?>
 
@@ -134,10 +138,6 @@
                 }else{
                     echo "<li><a href='index.php?page={$i}'> {$i} </a></li>";
                 }
-
-
-
-
                 
             }
 
