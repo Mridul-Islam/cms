@@ -18,7 +18,7 @@
                     $the_author_name = $_GET['author'];
                 }
 
-                $query = "SELECT * FROM posts WHERE post_user='{$the_author_name}' ";
+                $query = "SELECT * FROM posts WHERE post_user='{$the_author_name}' AND post_status = 'published'";
                 $select_author_posts_query = mysqli_query($connection,$query);
 
                 if(!$select_author_posts_query){
@@ -26,11 +26,11 @@
                 }
 
                 while($row = mysqli_fetch_assoc($select_author_posts_query)){
-                    $the_post_id = $row['post_id'];
-                    $post_title = $row['post_title'];
-                    $post_user = $row['post_user'];
-                    $post_date = $row['post_date'];
-                    $post_image = $row['post_image'];
+                    $the_post_id  = $row['post_id'];
+                    $post_title   = $row['post_title'];
+                    $post_user    = $row['post_user'];
+                    $post_date    = $row['post_date'];
+                    $post_image   = $row['post_image'];
                     $post_content = $row['post_content'];
 
                 ?>

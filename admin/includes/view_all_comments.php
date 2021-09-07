@@ -106,10 +106,6 @@
 							header("Location: comments.php");
 						}
 					}
-					$query = "DELETE FROM comments WHERE comment_id={$escaped_comment_id}";
-					$delete_comment_query = mysqli_query($connection, $query);
-					confirmQuery($delete_comment_query);
-					header("Location: comments.php");
 				}
 				
 				//echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='comments.php?delete={$comment_id}'> Delete </a></td>";

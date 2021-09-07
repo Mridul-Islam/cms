@@ -23,9 +23,10 @@
                     $select_all_categories_query = mysqli_query($connection,$query);
 
                     while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
+                        $cat_id    = $row['cat_id']; 
                         $cat_title = $row['cat_title'];
                         echo "<li> 
-                            <a href='#'>{$cat_title}</a> 
+                            <a href='category.php?category={$cat_id}'>{$cat_title}</a> 
                         </li>";
                     }
 
@@ -41,10 +42,16 @@
                         <a href="registration.php">Registration</a>
                     </li>
 
-                    <li>
-                        <a href="contact.php">Contact</a>
-                    </li>
-                    
+
+                    <?php
+
+                    if(isset($_SESSION['user_role'])){
+                        echo "<li><a href='contact.php'> Contact </a></li>";
+                    }
+
+
+                    ?>
+
                     <?php // show Edit post button when loggen in and  stay to see single post
 
                     if(isset($_SESSION['user_role'])){
