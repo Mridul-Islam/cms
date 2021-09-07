@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2021 at 02:30 PM
+-- Generation Time: Sep 07, 2021 at 04:23 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -64,7 +64,7 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`) VALUES
 (19, 33, 'shad', 'shad@gmail.com', 'You are nice....', 'approved', '2021-09-02'),
-(22, 34, 'Arfan', 'Arfan@arfan.com', 'This is the best..', 'approved', '2021-09-02');
+(23, 33, 'Srijon', 'srijon@srijon.com', 'Ok this is great....', 'approved', '2021-09-07');
 
 -- --------------------------------------------------------
 
@@ -92,16 +92,18 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_user`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 8),
-(39, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
-(40, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
+(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 22),
+(39, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'published', 7),
+(40, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 1),
 (41, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
 (42, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
 (43, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
 (44, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
 (45, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
-(47, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
-(49, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0);
+(47, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 2),
+(49, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 3),
+(50, 5, 'Angular.js Tutorial', '', 'Shamim', '2021-09-07', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'draft', 37),
+(51, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-07', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 4);
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,9 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (34, 'rjkqjpcgqacvp2o5aqlrnagvje', 1630742183),
 (35, 'ks0sfbkq0p30buotqd6qjlpf5r', 1630852744),
 (36, '6i6al5lrjat5cfa96p753n1doj', 1630868435),
-(37, '1qbof37kvsgbuj37n9tiq2nasr', 1630931372);
+(37, '1qbof37kvsgbuj37n9tiq2nasr', 1630931372),
+(38, 'ndk49srbpijciaja2d83fnp45g', 1630956622),
+(39, '5i0stdiefrs77mgu942ci242jo', 1631024306);
 
 --
 -- Indexes for dumped tables
@@ -212,13 +216,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -230,7 +234,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
