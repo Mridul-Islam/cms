@@ -10,6 +10,7 @@ if(isset($_GET['p_id'])){
         $post_category_id   = $row['post_category_id'];
         $post_title         = $row['post_title'];
         $post_author        = $row['post_author'];
+        $post_user          = $row['post_user'];
         $post_status        = $row['post_status'];
         $post_image         = $row['post_image'];
         $post_tags          = $row['post_tags'];
@@ -24,7 +25,7 @@ if(isset($_GET['p_id'])){
 	if(isset($_POST['update_post'])){
 		$post_title       = escape($_POST['title']);
 		$post_category_id = escape($_POST['post_category']);
-		$post_author      = escape($_POST['author']);
+		$post_user        = escape($_POST['user']);
 		$post_status      = escape($_POST['post_status']);
 
 		$post_image       = escape($_FILES['image']['name']);
@@ -48,7 +49,7 @@ if(isset($_GET['p_id'])){
 
 		}
 
-		$query = "UPDATE posts SET post_title='{$post_title}', post_category_id='{$post_category_id}', post_author='{$post_author}', post_status='{$post_status}', post_image='{$post_image}', post_tags='{$post_tags}', post_content='{$post_content}', post_date=now() WHERE post_id='{$post_id}' ";
+		$query = "UPDATE posts SET post_title='{$post_title}', post_category_id='{$post_category_id}', post_user='{$post_user}', post_status='{$post_status}', post_image='{$post_image}', post_tags='{$post_tags}', post_content='{$post_content}', post_date=now() WHERE post_id='{$post_id}' ";
 		$edit_post_query_result = mysqli_query($connection, $query);
 
 		confirmQuery($edit_post_query_result);
@@ -82,7 +83,14 @@ if(isset($_GET['p_id'])){
 						$cat_id = $row['cat_id'];
 						$cat_title = $row['cat_title'];
 
-						echo "<option value='{$cat_id}'>$cat_title</option>";
+						if($cat_id == $post_category_id){
+							echo "<option selected value='{$cat_id}'>$cat_title</option>";
+						}
+						else{
+							echo "<option value='{$cat_id}'>$cat_title</option>";
+						}
+
+						
 					}
 
 					
@@ -93,7 +101,7 @@ if(isset($_GET['p_id'])){
 
 			<div class="form-group">
 				<label for="title">Post Author</label>
-				<input type="text" name="author" class="form-control" value="<?php echo $post_author ?>" >
+				<input type="text" name="user" class="form-control" value="<?php echo $post_user ?>" >
 			</div>
 
 			<div class="form-group">

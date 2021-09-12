@@ -19,6 +19,20 @@
 
     <!-- Log In -->
     <div class="well">
+
+        <?php
+
+        if(isset($_SESSION['user_role'])){
+            $username = $_SESSION['username'];
+            echo "<h4> Logged In as {$username} </h4>";
+
+            echo "<a href='includes/logout.php' class='btn btn-primary'> Logout </a>";
+        }
+        else{
+
+
+        ?>
+
         <h4>Log In</h4>
         <form action="includes/login.php" method="post">
             <div class="form-group">
@@ -33,6 +47,15 @@
                 </span>
             </div>
         </form>
+
+        <?php
+
+        }
+
+
+        ?>
+
+
         <!-- /.input-group -->
     </div>
 

@@ -15,6 +15,36 @@ function confirmQuery($result){
 
 
 
+
+// ******************************** Index functions ********************************
+
+
+//counting total posts,comments,users and categories
+function recordCount($table){
+    global $connection;
+    $query = "SELECT * FROM $table";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+    $count = mysqli_num_rows($result);
+
+    return $count;
+}
+
+
+//counting total published posts, draft posts, unapproved comments, subscriber users
+function subRecordCount($table, $column, $columnValue){
+    global $connection;
+    $query = "SELECT * FROM $table WHERE $column = '$columnValue'";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+    $count = mysqli_num_rows($result);
+
+    return $count;
+}
+
+
+
+
 // ******************************** Users functions *********************************
 
 function users_online(){

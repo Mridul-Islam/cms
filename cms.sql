@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2021 at 04:23 PM
+-- Generation Time: Sep 11, 2021 at 07:19 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -100,10 +100,11 @@ INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`,
 (43, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
 (44, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
 (45, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
-(47, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 2),
-(49, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 3),
+(47, 7, 'SEO', '', 'Shad', '2021-09-08', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 3),
+(49, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 4),
 (50, 5, 'Angular.js Tutorial', '', 'Shamim', '2021-09-07', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'draft', 37),
-(51, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-07', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 4);
+(51, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-08', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 6),
+(52, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-08', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 0);
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,9 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (36, '6i6al5lrjat5cfa96p753n1doj', 1630868435),
 (37, '1qbof37kvsgbuj37n9tiq2nasr', 1630931372),
 (38, 'ndk49srbpijciaja2d83fnp45g', 1630956622),
-(39, '5i0stdiefrs77mgu942ci242jo', 1631024306);
+(39, '5i0stdiefrs77mgu942ci242jo', 1631024306),
+(40, 'lg97hr2gu6sn5lgib73vuvv4fv', 1631047050),
+(41, 'oqc0kpubh4g0d1j5d6u3sau97l', 1631197921);
 
 --
 -- Indexes for dumped tables
@@ -222,7 +225,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -234,7 +237,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

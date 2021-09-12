@@ -64,31 +64,6 @@ if(isset($_GET['u_id'])){
 			echo "<p class='text-center text-danger'> Fields can not be empty.. </p>";
 		}
 
-
-		// if(!empty($password)){
-		// 	$query_password = "SELECT user_password FROM users WHERE user_id = $the_user_id";
-		// 	$get_user_query = mysqli_query($connection, $query);
-		// 	confirmQuery($get_user_query);
-
-		// 	$row = mysqli_fetch_assoc($get_user_query);
-		// 	$db_user_password = $row['user_password'];
-
-		// 	if($db_user_password != $password){
-		// 		$hashed_password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
-		// 	}
-
-		// 	$query = "UPDATE users SET username ='{$username}', user_password='{$hashed_password}', user_firstname='{$firstname}', user_lastname='{$lastname}', user_email='{$user_email}', user_role='{$user_role}' WHERE user_id=$the_user_id ";
-		
-		// 	$update_user_query = mysqli_query($connection, $query);
-		// 	confirmQuery($update_user_query);
-
-		// 	echo "<p class='bg-success text-center'>User Updated Successfully: <a href='./users.php'> View Users </a> </p>";
-		// 	echo "<br>";
-
-		// }else{
-		// 	echo "<p class='text-danger text-center'>Fields can not be empty.</p>";
-		// }
-
 	}
 }
 else{
