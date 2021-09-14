@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 07:19 AM
+-- Generation Time: Sep 14, 2021 at 08:19 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `cat_id` int(3) NOT NULL,
+  `cat_id` int(5) NOT NULL,
   `cat_title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -37,7 +37,6 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
-(2, 'Python'),
 (4, 'PHP'),
 (5, 'JavaScript'),
 (7, '.NET');
@@ -49,7 +48,7 @@ INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 --
 
 CREATE TABLE `comments` (
-  `comment_id` int(3) NOT NULL,
+  `comment_id` int(11) NOT NULL,
   `comment_post_id` int(3) NOT NULL,
   `comment_author` varchar(255) NOT NULL,
   `comment_email` varchar(255) NOT NULL,
@@ -64,7 +63,8 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`) VALUES
 (19, 33, 'shad', 'shad@gmail.com', 'You are nice....', 'approved', '2021-09-02'),
-(23, 33, 'Srijon', 'srijon@srijon.com', 'Ok this is great....', 'approved', '2021-09-07');
+(23, 33, 'Srijon', 'srijon@srijon.com', 'Ok this is great....', 'approved', '2021-09-07'),
+(25, 33, 'Aziz', 'Aziz@gmail.com', 'This is nice.......', 'unapproved', '2021-09-13');
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comm
 --
 
 CREATE TABLE `posts` (
-  `post_id` int(3) NOT NULL,
+  `post_id` int(11) NOT NULL,
   `post_category_id` int(3) NOT NULL,
   `post_title` varchar(255) NOT NULL,
   `post_author` varchar(255) NOT NULL,
@@ -92,19 +92,13 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_user`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 22),
-(39, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'published', 7),
+(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 30),
 (40, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 1),
 (41, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
-(42, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
-(43, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
-(44, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 0),
-(45, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
 (47, 7, 'SEO', '', 'Shad', '2021-09-08', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 3),
 (49, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 4),
-(50, 5, 'Angular.js Tutorial', '', 'Shamim', '2021-09-07', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'draft', 37),
-(51, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-08', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 6),
-(52, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-08', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 0);
+(50, 5, 'Angular.js Tutorial', '', 'Shamim', '2021-09-07', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'draft', 38),
+(51, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-08', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 6);
 
 -- --------------------------------------------------------
 
@@ -113,7 +107,7 @@ INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`,
 --
 
 CREATE TABLE `users` (
-  `user_id` int(3) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `user_firstname` varchar(255) NOT NULL,
@@ -133,7 +127,10 @@ INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `
 (18, 'Md Omar Faruk', '$2y$12$joikZHetX.x2s.uY.oAh.O99pqaG1JuX8x1vO/O85VFzQMm8CV5WS', 'Md Omar', 'Faruk', 'Omar@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
 (27, 'Shad', '$2y$12$.6IRmYshqoAmKr7EP5b5ueuarCsJxAf4DzmEDPvLiLyjZ7Ai3LJNK', 'Shofiul', 'Alam', 'shad@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
 (31, 'Shamim', '$2y$12$Hq31CLj0By8DZjEcEqUjsOvQx.Sd.2nBt5KRxNUmpE2.HVJcGbydu', 'Shamim', 'Hossain', 'shamimMridha@shamim.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(34, 'Mridul Islam', '$2y$12$yvzHJseRTAK.nz17wv9zXusOa7hU8Hh5YDvKlJMCPFYUEcW26rEwu', 'Mridul', 'Islam', 'mridulIslam@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22');
+(34, 'Mridul Islam', '$2y$12$gSodf7IkaUBLSbpeZTyAz.disSYA0XNAVjp6JAx6obkmap59k3GbK', 'Mridul', 'Islam', 'mridulIslam@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22'),
+(41, 'Mridul', '$2y$12$qlgXjoMk5M4YFflv2BAAnusCNmE9iOFmqiE1oEgBjaF06TMnvU7Be', '', '', '1610947@iub.edu.bd', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(42, 'Arfan Uddin', '$2y$12$Y0WCxEghsVo1XwfATvQCpepA9oh95N3qy.gYBgNPLgrRtwLBFEBvm', '', '', 'Arfan@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
+(49, 'Shamim Mridha', '$2y$12$WaxFC/k9klUj3IUapsVJfOSZ.dW8yIu2YcREYkwkr3nXKTaBNm5hS', '', '', 'shamimKhan@shamim.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22');
 
 -- --------------------------------------------------------
 
@@ -169,7 +166,18 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (38, 'ndk49srbpijciaja2d83fnp45g', 1630956622),
 (39, '5i0stdiefrs77mgu942ci242jo', 1631024306),
 (40, 'lg97hr2gu6sn5lgib73vuvv4fv', 1631047050),
-(41, 'oqc0kpubh4g0d1j5d6u3sau97l', 1631197921);
+(41, 'oqc0kpubh4g0d1j5d6u3sau97l', 1631197921),
+(42, 'k00nmoto1p2lruvg99581r9dt1', 1631453937),
+(43, 'svkd5a5cddjtoljv1ibfb20o43', 1631474702),
+(44, 'vmjksdsdshr0q86ap4r9lt8lvb', 1631516160),
+(45, '4co1ugng3tausgpdrah1lp261m', 1631524999),
+(46, 'tsq2og8d09bj6jssc5h88jhega', 1631566155),
+(47, '4d1e5arn022s33g3qs09depfbh', 1631613066),
+(48, 'httfrfm3m4qkdqekkq601a19a4', 1631613189),
+(49, '0r1k4m7teot4ipagngf1c3ufrv', 1631614542),
+(50, 'e4s50430vjdvppvod5ltm28poo', 1631614550),
+(51, 's8hh0e9ld7rr9vvod0rvtnv3qa', 1631615023),
+(52, '1tto6pl523m4ptc5nf71h0j6dk', 1631641519);
 
 --
 -- Indexes for dumped tables
@@ -213,31 +221,31 @@ ALTER TABLE `users_online`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
