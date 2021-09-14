@@ -166,12 +166,24 @@ if(isset($_POST['checkBoxArray'])){
                     echo "<td><a href='post_comments.php?post_id={$post_id}'> {$count_comments} </a></td>";
 
                     echo "<td> {$post_date} </td>";
-                    echo "<td><a href='../post.php?p_id={$post_id}'> View Post </a></td>";
-                    echo "<td> <a href='posts.php?source=edit_post&p_id={$post_id}' class='text-normal'>Edit</a> </td>";
+                    echo "<td><a class='btn btn-primary' href='../post.php?p_id={$post_id}'> View Post </a></td>";
+                    echo "<td> <a class='btn btn-info' href='posts.php?source=edit_post&p_id={$post_id}' class='text-normal'>Edit</a> </td>";
 
                     //echo "<td> <a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}' class='text-danger'>Delete</a> </td>";
 
-                    echo "<td> <a rel='$post_id' href='javascript:void(0)' class='delete_link'> Delete </a> </td>";
+                    //echo "<td> <a rel='$post_id' href='javascript:void(0)' class='delete_link'> Delete </a> </td>";
+
+                    ?>
+
+                    <form method="post">
+                        <input type="hidden" class='delete_link' name="post_id" value="<?php echo $post_id; ?>">
+                        <?php
+                            echo "<td><input type='submit' name='delete' class='btn btn-danger' value='Delete'></td>";
+                        ?>
+                    </form>
+
+
+                    <?php
 
                     echo "<td><a href='posts.php?reset={$post_id}' title='if your click it will set the value to 0'> {$post_views_count} </a></td>";
 
@@ -191,8 +203,10 @@ if(isset($_POST['checkBoxArray'])){
 
 <?php // Delete a post query
 
-if(isset($_GET['delete'])){
-    $the_post_id = $_GET['delete'];
+//if(isset($_GET['delete'])){
+if(isset($_POST['delete'])){
+    //$the_post_id = $_GET['delete'];
+    $the_post_id = $_POST['post_id'];
     $escaped_post_id = mysqli_real_escape_string($connection, $the_post_id);
     if(isset($_SESSION['user_role'])){
         if (isset($_SESSION['user_role']) == 'Admin') {

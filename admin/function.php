@@ -14,6 +14,11 @@ function confirmQuery($result){
 }
 
 
+function redirect($location){
+    header("Location: " . $location);
+}
+
+
 
 
 // ******************************** Index functions ********************************
@@ -80,6 +85,25 @@ users_online();
 
 
 
+function is_admin($username){
+    global $connection;
+    $query = "SELECT user_role FROM users WHERE username = '$username'";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+
+    $row = mysqli_fetch_array($result);
+
+    if($row['user_role'] == "Admin"){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+
+
 
 
 
@@ -97,12 +121,8 @@ function insert_categories(){
         else{
             $query = "INSERT INTO categories(cat_title) ";
             $query .= "VALUE('{$cat_title}')";
-
             $addInto_category_query = mysqli_query($connection, $query);
-
-            if(!$addInto_category_query){
-                die("Qeury Failed" . mysqli_error($connection));
-            }
+            confirmQuery($addInto_category_query);
         }
 
     }
@@ -143,17 +163,80 @@ function deleteCategory(){
 	global $connection;
 	if(isset($_GET['delete'])){
         $delete_cat_id = $_GET['delete'];
-        $escaped_cat_id = mysqli_real_escape_string($connection, $delete_cat_id);
+        $escaped_cat_id = escape($delete_cat_id);
 
         if(isset($_SESSION['user_role'])){
             if(isset($_SESSION['user_role']) == "Admin"){
                 $query = "DELETE FROM categories WHERE cat_id = {$escaped_cat_id} ";
                 $delete_query_result = mysqli_query($connection, $query);
-                header("Location: categories.php");
+                redirect('categories.php');
+                //header("Location: categories.php");
             }
         }
     }
 }
+
+
+
+//******************* Registration functions ****************************
+
+function register_user($username, $user_email, $user_password){
+    global $connection;
+    
+    $escaped_username       = escape($username);
+    $escaped_user_email     = escape($user_email);
+    $escaped_user_password  = escape($user_password );
+
+    $new_password = password_hash($escaped_user_password, PASSWORD_BCRYPT, array('cost' => 12)); 
+
+    $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
+    $query .= "VALUES('{$escaped_username}', '{$escaped_user_email}', '{$new_password}', 'Subscriber')";
+    $user_registration_query = mysqli_query($connection, $query);
+    confirmQuery($user_registration_query);
+    redirect("index.php");
+    
+}
+
+
+function username_exist($username){
+    global $connection;
+    $query = "SELECT username FROM users WHERE username = '$username' ";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+
+function email_exist($user_email){
+    global $connection;
+    $query = "SELECT user_email FROM users WHERE user_email = '$user_email' ";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
