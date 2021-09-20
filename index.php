@@ -1,5 +1,6 @@
 <?php include("includes/db.php"); ?>
 <?php include("includes/header.php"); ?>
+<?php include("admin/function.php"); ?>
 
     <!-- Navigation -->
     <?php include("includes/navigation.php");?>
@@ -32,7 +33,8 @@
 
 
                 // count the number of posts
-                if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
+                //if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
+                if(is_admin($_SESSION['username'])){
                     $count_query = "SELECT * FROM posts";
                 }
                 else{

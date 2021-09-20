@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2021 at 08:19 PM
+-- Generation Time: Sep 20, 2021 at 08:07 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -37,9 +37,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
-(4, 'PHP'),
+(4, 'PHP-Laravel'),
 (5, 'JavaScript'),
-(7, '.NET');
+(7, '.NET '),
+(10, 'Python');
 
 -- --------------------------------------------------------
 
@@ -92,13 +93,13 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_user`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 30),
+(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 31),
 (40, 4, 'SEO', '', 'Shad', '2021-09-06', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 1),
 (41, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 0),
-(47, 7, 'SEO', '', 'Shad', '2021-09-08', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 3),
+(47, 7, 'SEO', '', 'Shad', '2021-09-08', 'seo-logo.jpg', '<p>SEO is very important for a application……</p>', 'SEO', 0, 'draft', 4),
 (49, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-06', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'draft', 4),
-(50, 5, 'Angular.js Tutorial', '', 'Shamim', '2021-09-07', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'draft', 38),
-(51, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-08', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'draft', 6);
+(50, 5, 'Angular.js Tutorial', '', 'Shamim', '2021-09-07', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'published', 38),
+(51, 5, 'React Course', '', 'Md Omar Faruk', '2021-09-08', 'react_logo.png', '<p>React is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.</p>', 'React', 0, 'published', 6);
 
 -- --------------------------------------------------------
 
@@ -177,7 +178,10 @@ INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (49, '0r1k4m7teot4ipagngf1c3ufrv', 1631614542),
 (50, 'e4s50430vjdvppvod5ltm28poo', 1631614550),
 (51, 's8hh0e9ld7rr9vvod0rvtnv3qa', 1631615023),
-(52, '1tto6pl523m4ptc5nf71h0j6dk', 1631641519);
+(52, '1tto6pl523m4ptc5nf71h0j6dk', 1631641519),
+(53, 's6bpu16pap98aej3e1frck69fc', 1632080585),
+(54, 'ii4ajnudahffdv25brm65g86ja', 1632131626),
+(55, '69d9p21mf57pfge5lfsrr34ifm', 1632161203);
 
 --
 -- Indexes for dumped tables
@@ -221,7 +225,7 @@ ALTER TABLE `users_online`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -245,7 +249,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

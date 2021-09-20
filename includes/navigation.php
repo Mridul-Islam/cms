@@ -1,5 +1,4 @@
-<?php ob_start(); ?>
-<?php session_start(); ?>
+
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

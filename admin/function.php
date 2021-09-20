@@ -90,15 +90,16 @@ function is_admin($username){
     $query = "SELECT user_role FROM users WHERE username = '$username'";
     $result = mysqli_query($connection, $query);
     confirmQuery($result);
-
-    $row = mysqli_fetch_array($result);
-
-    if($row['user_role'] == "Admin"){
-        return true;
+    
+    while($row = mysqli_fetch_array($result)){
+        if($row['user_role'] == "Admin"){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
-    else{
-        return false;
-    }
+    
 
 }
 
@@ -119,11 +120,17 @@ function insert_categories(){
             echo "<p class='text-danger'>This field can not be empty</p>";
         }
         else{
-            $query = "INSERT INTO categories(cat_title) ";
-            $query .= "VALUE('{$cat_title}')";
-            $addInto_category_query = mysqli_query($connection, $query);
-            confirmQuery($addInto_category_query);
+            //$query = "INSERT INTO categories(cat_title) ";
+            //$query .= "VALUE('{$cat_title}')";
+            $statement = mysqli_prepare($connection, "INSERT INTO categories(cat_title) VALUES(?)");
+            //$addInto_category_query = mysqli_query($connection, $query);
+            confirmQuery($statement);
+
+            mysqli_stmt_bind_param($statement, "s", $cat_title);
+            mysqli_stmt_execute($statement);
         }
+
+        mysqli_stmt_close($statement);
 
     }
 
@@ -175,6 +182,9 @@ function deleteCategory(){
         }
     }
 }
+
+
+
 
 
 
