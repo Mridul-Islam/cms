@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index">CMS Home Page</a>
+                <a class="navbar-brand" href="/cms">CMS Home Page</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,25 +44,26 @@
                             $contact_class = 'active';
                         }
 
-                        echo "<li class='$category_class'>  <a href='category.php?category={$cat_id}'>{$cat_title}</a> </li>";
+                        //echo "<li class='$category_class'>  <a href='/cms/category.php?category={$cat_id}'>{$cat_title}</a> </li>";
+                        echo "<li class='$category_class'>  <a href='/cms/category/{$cat_id}'>{$cat_title}</a> </li>";
                     }
 
 
                     // set condition for show admin link
                     if(isset($_SESSION['user_role'])){
-                        echo "<li><a href='admin'> Admin </a></li>";
+                        echo "<li><a href='/cms/admin'> Admin </a></li>";
                     }
 
 
 
                     // set registration link show condition
                     if(!isset($_SESSION['user_role'])){
-                        echo "<li class='$registration_class'><a href='registration'>Registration</a></li>";
+                        echo "<li class='$registration_class'><a href='/cms/registration'>Registration</a></li>";
                     } 
 
 
                     if(!isset($_SESSION['user_role'])){
-                        echo "<li class='$contact_class'><a href='contact'> Contact </a></li>";
+                        echo "<li class='$contact_class'><a href='/cms/contact'> Contact </a></li>";
                     }
 
 
@@ -72,7 +73,7 @@
                         if(isset($_GET['p_id'])){
                             $the_post_id = $_GET['p_id'];
 
-                            echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'> Edit Post </a></li>";
+                            echo "<li><a href='/cms/admin/posts.php?source=edit_post&p_id={$the_post_id}'> Edit Post </a></li>";
                         }
                     }
 
