@@ -19,8 +19,8 @@
                 if(isset($_GET['category'])){
                     $the_cat_id = mysqli_real_escape_string($connection, $_GET['category']);
 
-                    //if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
-                    if(is_admin($_SESSION['username'])) {
+                    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
+                    //if(is_admin($_SESSION['username'])) {
                         //$query = "SELECT * FROM posts WHERE post_category_id = '{$the_cat_id}'";
                         $statement1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_user, post_date, post_image, post_content FROM posts WHERE post_category_id = ? ");
                     }

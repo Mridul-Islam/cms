@@ -54,12 +54,12 @@
 
                 ?>
 
-                        <h1 class="page-header text-center">
+                        <!-- <h1 class="page-header text-center">
                             Post
-                        </h1>
+                        </h1> -->
 
                         <!-- First Blog Post -->
-                        <h2>
+                        <h2 class="text-primary">
                             <?php echo $post_title;?>
                         </h2>
                         <p class="lead">

@@ -33,8 +33,8 @@
 
 
                 // count the number of posts
-                //if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
-                if(is_admin($_SESSION['username'])){
+                if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
+                //if(is_admin($_SESSION['username'])){
                     $count_query = "SELECT * FROM posts";
                 }
                 else{
