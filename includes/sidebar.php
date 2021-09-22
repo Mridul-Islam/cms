@@ -4,7 +4,8 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <form action="search.php" method="post">
+        <!-- <form action="/cms/search.php" method="post"> -->
+        <form action="/cms/search" method="post">
             <div class="input-group">
                 <input type="text" name="search" class="form-control">
                 <span class="input-group-btn">
@@ -27,7 +28,7 @@
             $username = $_SESSION['username'];
             echo "<h4> Logged In as {$username} </h4>";
 
-            echo "<a href='includes/logout.php' class='btn btn-primary'> Logout </a>";
+            echo "<a href='/cms/includes/logout.php' class='btn btn-primary'> Logout </a>";
         }
         else{
 
@@ -35,7 +36,7 @@
         ?>
 
         <h4>Log In</h4>
-        <form action="includes/login.php" method="post">
+        <form action="/cms/includes/login.php" method="post">
             <span class="text-danger"> <?php //echo isset($error['both'])? $error['both']: ''; ?> </span>
             <div class="form-group">
                 <input type="text" name="username" class="form-control" placeholder="Enter username here">
@@ -92,7 +93,9 @@
                     while($row = mysqli_fetch_assoc($query_result)){
                         $cat_id = $row['cat_id'];
                         $cat_title = $row['cat_title'];
-                        echo "<li><a href='category.php?category={$cat_id}'> {$cat_title} </a>
+                        // echo "<li><a href='/cms/category.php?category={$cat_id}'> {$cat_title} </a>
+                        // </li>";
+                        echo "<li><a href='/cms/category/{$cat_id}'> {$cat_title} </a>
                         </li>";
                     }
 
