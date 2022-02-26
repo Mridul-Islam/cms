@@ -29,7 +29,7 @@
             <a href="./categories.php"><i class="fa fa-fw fa-list"></i> Categories</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw fa-comments"></i> Comments</a>
+            <a href="./comments.php"><i class="fa fa-fw fa-comments"></i> Comments</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
