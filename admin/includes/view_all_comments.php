@@ -24,7 +24,6 @@
             <th>Date</th>
             <th>Approve</th>
             <th>Un-approve</th>
-            <th>Edit</th>
             <th>Delete</th>
         </thead>
         <tbody>
@@ -48,19 +47,12 @@
                 echo "<td> {$comment_status} </td>";
 
                 // Bring the comment post title and show here
-                $query = "SELECT * FROM posts WHERE post_id = {$comment_post_id}";
-                $comment_post = mysqli_query($connection, $query);
-                confirm_query($comment_post);
-                while($row = mysqli_fetch_assoc($comment_post)){
-                    $comment_post_title = $row['post_title'];
-                    echo "<td> {$comment_post_title} </td>";
-                }
-                
+                    showPostTitle($comment_post_id);
+
                 echo "<td> {$comment_date} </td>";
-                echo "<td><a href='#'>Approve</a></td>";
-                echo "<td><a href='#'>Un-Approve</a></td>";
-                echo "<td><a href='#'> Edit </a></td>";
-                echo "<td><a href='#'> Delete </a></td>";
+                echo "<td><a href='comments.php?c_approve_id={$comment_id}'>Approve</a></td>";
+                echo "<td><a href='comments.php?c_unapprove_id={$comment_id}'>Un-Approve</a></td>";
+                echo "<td><a href='comments.php?c_delete_id={$comment_id}'> Delete </a></td>";
             echo "</tr>";
         }
         echo "</tbody>";
@@ -74,9 +66,18 @@
 </table>
 <!-- ./ Show All Posts table -->
 
-<!-- Delete Post query -->
 <?php
 
+// Delete Comment query function
+if(isset($_GET['c_delete_id'])){
+    delete_comment($comment_post_id);
+}
 
+// Approve comment Query function
+comment_approve();
+
+// Comment Un-Approve Query function
+comment_unapprove();
 
 ?>
+

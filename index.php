@@ -11,60 +11,76 @@
         <div class="row">
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-                <h1 class="page-header bg-success text-center" style="padding-top: 0px; margin-top: 0px; margin-bottom: 50px">
-                    View All posts
-                </h1>
 
                 <?php
 
                 global $connection;
-                $query = "SELECT * FROM posts";
+                $query = "SELECT * FROM posts WHERE post_status='published'";
                 $all_posts = mysqli_query($connection, $query);
                 confirm_query($all_posts);
-                while($row = mysqli_fetch_assoc($all_posts)){
-                    $post_id      = $row['post_id'];
-                    $post_title   = $row['post_title'];
-                    $post_author  = $row['post_author'];
-                    $post_date    = $row['post_date'];
-                    $post_image   = $row['post_image'];
-                    $post_content = $row['post_content'];
+
+                $count_posts = mysqli_num_rows($all_posts);
+
+                if($count_posts > 0){
+
+                    echo "<h1 class='page-header bg-success text-center' style='padding-top: 0px; margin-top: 0px; margin-bottom: 50px'>
+                    View All posts
+                </h1>";
+
+                    while($row = mysqli_fetch_assoc($all_posts)){
+                        $post_id      = $row['post_id'];
+                        $post_title   = $row['post_title'];
+                        $post_author  = $row['post_author'];
+                        $post_date    = $row['post_date'];
+                        $post_image   = $row['post_image'];
+                        $post_content = $row['post_content'];
+                        $post_status  = $row['post_status'];
+                    ?>
+
+                        <!-- All Blog Posts -->
+                        <h2 class="text-center">
+                            <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                        </h2>
+                        <p class="lead text-center">
+                            by <a href="index.php"><?php echo $post_author; ?></a>
+                        </p>
+                        <p class="text-center"><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
+                        <hr>
+                        <div style="margin: auto">
+                            <a href="post.php?p_id=<?php echo $post_id; ?>"><img class="img-responsive" src="./images/<?php echo $post_image;?>" alt=""></a>
+                        </div>
+                        <hr>
+                        <p><?php echo substr($post_content, 0, 200); ?></p>
+                        <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                        <hr><hr>
+
+                <?php
+
+                    }
+
                 ?>
 
-                    <!-- All Blog Posts -->
-                    <h2 class="text-center">
-                        <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
-                    </h2>
-                    <p class="lead text-center">
-                        by <a href="index.php"><?php echo $post_author; ?></a>
-                    </p>
-                    <p class="text-center"><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
-                    <hr>
-                    <div style="margin: auto">
-                        <a href="post.php?p_id=<?php echo $post_id; ?>"><img class="img-responsive" src="./images/<?php echo $post_image;?>" alt=""></a>
-                    </div>
-                    <hr>
-                    <p><?php echo substr($post_content, 0, 200); ?></p>
-                    <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                    <hr><hr>
+                        <!-- Pager -->
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#">&larr; Older</a>
+                            </li>
+                            <li class="next">
+                                <a href="#">Newer &rarr;</a>
+                            </li>
+                        </ul>
 
                 <?php
 
                 }
-
+                else{
+                    echo "<h1 class='page-header bg-info text-center' style='padding-top: 0px; margin-top: 0px; margin-bottom: 50px'>
+                    No post Available 
+                </h1>";
+                }
 
                 ?>
-
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
 
             </div>
 
