@@ -5,7 +5,7 @@
 
 // Add post code
 global $connection;
-if(isset($_POST['create_post'])){
+if(isset($_POST['create_post'])) {
     $post_title         = $_POST['post_title'];
     $post_author        = $_POST['post_author'];
     $post_cat_id        = $_POST['post_category'];
@@ -17,13 +17,51 @@ if(isset($_POST['create_post'])){
     $post_date          = date('d-m-y');
     $post_comment_count = 0;
 
-    move_uploaded_file($post_tmp_image, "../images/$post_image");
+    // Form Validation
+    if ($post_title == '' || empty($post_title)) {
+        $validates[] = 'Post Title field can not be empty';
+    }
+    if ($post_author == '' || empty($post_author)) {
+        $validates[] = 'Post Author field can not be empty';
+    }
+    if ($post_cat_id == '' || empty($post_cat_id)) {
+        $validates[] = 'Post Category field can not be empty';
+    }
+    if ($post_tags == '' || empty($post_tags)) {
+        $validates[] = 'Post tags field can not be empty';
+    }
+    if ($post_status == '' || empty($post_status)) {
+        $validates[] = 'Post status field can not be empty';
+    }
+    if ($post_image == '' || empty($post_image)) {
+        $validates[] = 'Post image field can not be empty';
+    }
+    if ($post_content == '' || empty($post_content)) {
+        $validates[] = 'Post content field can not be empty';
+    }
+    else {
+        $validates[] = '';
+    }
+    // End form validation
 
-    $query = "INSERT INTO posts (post_title, post_author, post_category_id, post_tags, post_status, post_image, post_content, post_date, post_comment_count) VALUES('{$post_title}','{$post_author}','{$post_cat_id}','{$post_tags}','{$post_status}','{$post_image}','{$post_content}',now(),'{$post_comment_count}')";
+    $count_validates = count($validates);
 
-    $create_post_result = mysqli_query($connection, $query);
-    confirm_query($create_post_result);
+    if ($count_validates > 1) {
+        echo "<ul class='bg-warning well'>";
+        foreach ($validates as $validate) {
+            echo "<li class='text-danger'> $validate </li>";
+        }
+        echo "</ul>";
+    }
+    else {
+        // save image to server
+        move_uploaded_file($post_tmp_image, "../images/{$post_image}");
 
+        // create post query
+        $query = "INSERT INTO posts(post_title, post_author, post_category_id, post_tags, post_status, post_image, post_content, post_date, post_comment_count) VALUES ( '{$post_title}', '{$post_author}', '{$post_cat_id}', '{$post_tags}', '{$post_status}', '{$post_image}', '{$post_content}', now(), '{$post_comment_count}' ) ";
+        $create_post_result = mysqli_query($connection, $query);
+        confirm_query($create_post_result);
+    }
 }
 
 

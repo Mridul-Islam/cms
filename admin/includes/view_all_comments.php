@@ -5,7 +5,7 @@
 
     // Show all posts Query Functions
     global $connection;
-    $query = "SELECT * FROM comments";
+    $query = "SELECT * FROM comments ORDER BY comment_id DESC";
     $all_comments_result = mysqli_query($connection, $query);
     confirm_query($all_comments_result);
     $count = mysqli_num_rows($all_comments_result);

@@ -1,5 +1,3 @@
-<h2 class="text-center bg-info">All Posts</h2>
-<hr>
 
 <!-- Show All Posts table -->
 <table class="table table-bordered table-striped table-hover table-responsive">
@@ -8,13 +6,15 @@
 
     // Show all posts Query Functions
     global $connection;
-    $query = "SELECT * FROM posts";
+    $query = "SELECT * FROM posts ORDER BY post_id DESC";
     $all_posts_result = mysqli_query($connection, $query);
     confirm_query($all_posts_result);
     $count = mysqli_num_rows($all_posts_result);
     if($count > 0){
 
     ?>
+    <h2 class="text-center bg-info">All Posts</h2>
+    <hr>
         <thead>
             <th>Id</th>
             <th>Author</th>

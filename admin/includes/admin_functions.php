@@ -8,13 +8,10 @@ function confirm_query($result){
 }
 
 
-
-
-
-//*********************************** Categories Functions ***************************** //
+//*********************************** Start of Categories Functions ***************************** //
 function showAllCategories(){
     global $connection;
-    $query = "SELECT * FROM categories";
+    $query = "SELECT * FROM categories ORDER BY cat_id DESC";
     $categories = mysqli_query($connection, $query);
     confirm_query($categories);
     while($row = mysqli_fetch_assoc($categories)){
@@ -57,6 +54,7 @@ function deleteCategory(){
     }
 } // End of deleteCategory function
 
+//*********************************** End of Categories Functions ***************************** //
 
 
 
@@ -64,11 +62,7 @@ function deleteCategory(){
 
 
 
-
-
-
-
-// ************************************* POSTS Functions ************************************** //
+// ************************************* Start of POSTS Functions ************************************** //
 
 function update_post($the_edit_id, $db_post_image){
     global $connection;
@@ -101,6 +95,7 @@ function update_post($the_edit_id, $db_post_image){
     } // End of edit post code
 } // End of update post class
 
+// ************************************* End of POSTS Functions ************************************** //
 
 
 
@@ -109,9 +104,7 @@ function update_post($the_edit_id, $db_post_image){
 
 
 
-
-
-// ******************************** Comments Functions ******************************************//
+// ********************************** Starting of Comments Functions ******************************************//
 
 function delete_comment($comment_post_id){
     global $connection;
@@ -164,8 +157,81 @@ function showPostTitle($comment_post_id){
     }
 }// End of showPostTitle function
 
+// *************************************** End of Comments Functions ******************************************//
 
 
+
+
+
+
+
+
+// *************************************** Start of Users Functions *************************************************//
+
+function create_user(){
+    global $connection;
+    if(isset($_POST['create_user'])){
+        $user_firstname = $_POST['user_firstname'];
+        $user_lastname  = $_POST['user_lastname'];
+        $username       = $_POST['username'];
+        $user_email     = $_POST['user_email'];
+        $user_password  = $_POST['user_password'];
+        $user_role      = $_POST['user_role'];
+        $user_image     = $_FILES['user_image']['name'];
+        $user_tmp_image = $_FILES['user_image']['tmp_name'];
+
+        // Validation work for add user
+        if($user_firstname == '' || empty($user_firstname)){
+            $validates[] = 'Firstname field can not be empty';
+        }
+        if($user_lastname == '' || empty($user_lastname)){
+            $validates[] = 'Lastname field can not be empty';
+        }
+        if($username == '' || empty($username)){
+            $validates[] = 'Username field can not be empty';
+        }
+        if($user_email == '' || empty($user_email)){
+            $validates[] = 'Email field can not be empty';
+        }
+        if($user_password == '' || empty($user_password)){
+            $validates[] = 'Password field can not be empty';
+        }
+        if($user_role == '' || empty($user_role)){
+            $validates[] = 'User Role can not be empty';
+        }
+        if($user_image == '' || empty($user_image)){
+            $validates[] = 'User image can not be empty';
+        }
+        else{
+            $validates[] = "";
+        }
+
+        $validates_count = count($validates);
+        if($validates_count > 1){
+            echo "<ul class='bg-warning well'>";
+            foreach ($validates as $validate){
+                echo "<li class='text-danger'> $validate </li>";
+            }
+            echo "</ul>";
+        }
+        else{
+            // save image to the server
+            move_uploaded_file($user_tmp_image, "../images/{$user_image}");
+
+            // create user query
+            $query = "INSERT INTO users(user_firstname, user_lastname, username, user_email, user_password, user_role, user_image) ";
+            $query .= " VALUES ( '{$user_firstname}', '{$user_lastname}', '{$username}', '{$user_email}', '{$user_password}', '{$user_role}', '{$user_image}' ) ";
+            $query_result = mysqli_query($connection, $query);
+            confirm_query($query_result);
+            header("Location: users.php?source=add_user");
+
+        }
+        // End of Validation work for add user
+
+    }
+}// End of create user function
+
+// *************************************** End of Users Functions *************************************************//
 
 
 

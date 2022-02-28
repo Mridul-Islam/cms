@@ -43,7 +43,7 @@
                     <!-- Update Category form -->
                     <?php
 
-                    // Pull out the information of category and show the form
+                    // Pull out the information of category and show the Edit form
                     global $connection;
                     if(isset($_GET['cat_edit_id'])){
                         $the_cat_id = $_GET['cat_edit_id'];

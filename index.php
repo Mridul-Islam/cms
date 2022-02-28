@@ -15,7 +15,7 @@
                 <?php
 
                 global $connection;
-                $query = "SELECT * FROM posts WHERE post_status='published'";
+                $query = "SELECT * FROM posts WHERE post_status='published' ORDER BY post_id DESC";
                 $all_posts = mysqli_query($connection, $query);
                 confirm_query($all_posts);
 
@@ -42,7 +42,7 @@
                             <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                         </h2>
                         <p class="lead text-center">
-                            by <a href="index.php"><?php echo $post_author; ?></a>
+                            by <a href="#"><?php echo $post_author; ?></a>
                         </p>
                         <p class="text-center"><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
                         <hr>

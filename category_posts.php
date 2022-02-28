@@ -18,7 +18,7 @@
                 $the_cat_id = $_GET['c_id'];
 
                 global $connection;
-                $query = "SELECT * FROM posts WHERE post_category_id = {$the_cat_id}";
+                $query = "SELECT * FROM posts WHERE post_category_id = {$the_cat_id} ORDER BY post_id DESC";
                 $category_posts = mysqli_query($connection, $query);
                 confirm_query($category_posts);
                 $count = mysqli_num_rows($category_posts);
@@ -37,7 +37,7 @@
                             <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                         </h2>
                         <p class="lead text-center">
-                            by <a href="index.php"><?php echo $post_author; ?></a>
+                            by <a href="#"><?php echo $post_author; ?></a>
                         </p>
                         <p class="text-center"><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
                         <hr>
