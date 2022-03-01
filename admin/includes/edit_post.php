@@ -29,6 +29,11 @@ if(isset($_GET['edit_id'])){
 
 ?>
 
+        <?php
+            // Edit post code
+            update_post($the_edit_id, $db_post_image);
+        ?>
+
         <form action="" method="post" enctype="multipart/form-data">
             <!-- Left col-lg-6 -->
             <div class="col-lg-6 col-md-6">
@@ -74,8 +79,9 @@ if(isset($_GET['edit_id'])){
                         while($row = mysqli_fetch_assoc($all_categories)){
                             $db_cat_id = $row['cat_id'];
                             $db_cat_title = $row['cat_title'];
-
-                            echo "<option value='{$db_cat_id}'> {$db_cat_title} </option>";
+                            if($db_post_cat_id != $db_cat_id){
+                                echo "<option value='{$db_cat_id}'> {$db_cat_title} </option>";
+                            }
                         }
 
                         ?>
@@ -90,14 +96,24 @@ if(isset($_GET['edit_id'])){
                     <label for="post_status">Post Status:</label>
                     <select name="post_status" class="form-control">
                         <option value="<?php echo $db_post_status; ?>"> <?php echo $db_post_status; ?> </option>
-                        <option value="published"> publish </option>
-                        <option value="draft"> draft </option>
+                        <?php
+
+                        if($db_post_status == 'published'){
+                            echo "<option value='draft'> draft </option>";
+                        }
+                        else{
+                            echo "<option value='published'> publish </option>";
+                        }
+
+                        ?>
+
+
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Post Content:</label>
                     <textarea name="post_content" class="form-control" rows="5"><?php echo $db_post_content; ?></textarea>
-                </div>
+                </div><hr>
                 <div class="form-group">
                     <input type="submit" name="edit_post" value="Update" class="btn btn-primary" />
                     <a href="./posts.php" class="btn btn-primary"> Cancel </a>
@@ -107,9 +123,6 @@ if(isset($_GET['edit_id'])){
         </form>
 
 <?php
-
-        // Edit post code
-        update_post($the_edit_id, $db_post_image);
 
     } // End of while loop
 } // End of if(isset($_GET['edit_id'])) loop

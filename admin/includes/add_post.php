@@ -13,7 +13,7 @@ if(isset($_POST['create_post'])) {
     $post_status        = $_POST['post_status'];
     $post_image         = $_FILES['post_image']['name'];
     $post_tmp_image     = $_FILES['post_image']['tmp_name'];
-    $post_content       = $_POST['post_content'];
+    $post_content       = mysqli_real_escape_string($connection, $_POST['post_content']);
     $post_date          = date('d-m-y');
     $post_comment_count = 0;
 
@@ -61,6 +61,7 @@ if(isset($_POST['create_post'])) {
         $query = "INSERT INTO posts(post_title, post_author, post_category_id, post_tags, post_status, post_image, post_content, post_date, post_comment_count) VALUES ( '{$post_title}', '{$post_author}', '{$post_cat_id}', '{$post_tags}', '{$post_status}', '{$post_image}', '{$post_content}', now(), '{$post_comment_count}' ) ";
         $create_post_result = mysqli_query($connection, $query);
         confirm_query($create_post_result);
+        header("Location: posts.php?source=add_post");
     }
 }
 
@@ -124,7 +125,7 @@ if(isset($_POST['create_post'])) {
         <div class="form-group">
             <label>Post Content</label>
             <textarea name="post_content" class="form-control" rows="5"></textarea>
-        </div>
+        </div><hr>
         <div class="form-group">
             <input type="submit" name="create_post" value="Publish" class="btn btn-primary" />
             <a href="./posts.php" class="btn btn-primary"> Cancel </a>

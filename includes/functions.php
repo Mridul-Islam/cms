@@ -40,15 +40,39 @@ function createComment(){
         $comment_post_id = $_GET['p_id'];
         $comment_author  = $_POST['comment_author'];
         $comment_email   = $_POST['comment_author_email'];
-        $comment_content = $_POST['comment_content'];
+        $comment_content = mysqli_real_escape_string($connection, $_POST['comment_content']);
 
-        $query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ({$comment_post_id}, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'un-approve', now())";
-        $create_comment_result = mysqli_query($connection, $query);
-        confirm_query($create_comment_result);
+        if($comment_author == '' || empty($comment_author)){
+            $validates[] = 'Comment Author field can not be empty';
+        }
+        if($comment_email == '' || empty($comment_email)){
+            $validates[] = 'Comment email field can not be empty';
+        }
+        if($comment_content == '' || empty($comment_content)){
+            $validates[] = 'Comment content field can not empty';
+        }
+        else{
+            $validates[] = '';
+        }
+        $count_validates = count($validates);
+        if($count_validates > 1){
+            echo "<ul class='bg-warning text-danger'>";
+                foreach ($validates as $validate){
+                    echo "<li>$validate</li>";
+                }
+            echo "</ul>";
+        }
+        else{
+            $query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ({$comment_post_id}, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'un-approve', now())";
+            $create_comment_result = mysqli_query($connection, $query);
+            confirm_query($create_comment_result);
 
-        $comment_count_query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $comment_post_id";
-        $comment_count_query_result = mysqli_query($connection, $comment_count_query);
-        confirm_query($comment_count_query_result);
+            $comment_count_query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $comment_post_id";
+            $comment_count_query_result = mysqli_query($connection, $comment_count_query);
+            confirm_query($comment_count_query_result);
+            header("Location: post.php?p_id=$comment_post_id");
+        }
+
     }
 }// End of createComment function
 

@@ -77,21 +77,55 @@ function update_post($the_edit_id, $db_post_image){
         $post_content       = mysqli_real_escape_string($connection, $_POST['post_content']);
         $post_date          = date('d-m-y');
 
-        if(empty($post_image) || $post_image == ''){
-            $post_image = $db_post_image;
+
+        // Form Validation
+        if ($post_title == '' || empty($post_title)) {
+            $validates[] = 'Post Title field can not be empty';
+        }
+        if ($post_author == '' || empty($post_author)) {
+            $validates[] = 'Post Author field can not be empty';
+        }
+        if ($post_cat_id == '' || empty($post_cat_id)) {
+            $validates[] = 'Post Category field can not be empty';
+        }
+        if ($post_tags == '' || empty($post_tags)) {
+            $validates[] = 'Post tags field can not be empty';
+        }
+        if ($post_status == '' || empty($post_status)) {
+            $validates[] = 'Post status field can not be empty';
+        }
+        if ($post_content == '' || empty($post_content)) {
+            $validates[] = 'Post content field can not be empty';
+        }
+        else {
+            $validates[] = '';
+        }
+        // End form validation
+        $count_validates = count($validates);
+        if ($count_validates > 1) {
+            echo "<ul class='bg-warning well'>";
+            foreach ($validates as $validate) {
+                echo "<li class='text-danger'> $validate </li>";
+            }
+            echo "</ul>";
         }
         else{
-            unlink("../images/$db_post_image");
+            if(empty($post_image) || $post_image == ''){
+                $post_image = $db_post_image;
+            }
+            else{
+                unlink("../images/$db_post_image");
+                move_uploaded_file($post_tmp_image, "../images/$post_image");
+            }
+             // Edit post query
+            $edit_query = "UPDATE posts SET post_title='{$post_title}', post_author='{$post_author}', post_category_id={$post_cat_id}, post_tags='{$post_tags}', post_status='{$post_status}', post_image='{$post_image}', post_content='{$post_content}', post_date=now() WHERE post_id=$the_edit_id";
+
+            $edit_post_result = mysqli_query($connection, $edit_query);
+            confirm_query($edit_post_result);
+            //$_SESSION['update_post'] = "The post has been updated";
+            header("Location: posts.php?source=edit_post&edit_id=$the_edit_id");
         }
 
-        move_uploaded_file($post_tmp_image, "../images/$post_image");
-
-        $edit_query = "UPDATE posts SET post_title='{$post_title}', post_author='{$post_author}', post_category_id={$post_cat_id}, post_tags='{$post_tags}', post_status='{$post_status}', post_image='{$post_image}', post_content='{$post_content}', post_date=now() WHERE post_id=$the_edit_id";
-
-        $edit_post_result = mysqli_query($connection, $edit_query);
-        confirm_query($edit_post_result);
-        //$_SESSION['update_post'] = "The post has been updated";
-        header("Location: posts.php?source=edit_post&edit_id=$the_edit_id");
     } // End of edit post code
 } // End of update post class
 
@@ -230,6 +264,87 @@ function create_user(){
 
     }
 }// End of create user function
+
+function delete_user(){
+    global $connection;
+    if(isset($_GET['d_user_id'])){
+        $delete_user_id = $_GET['d_user_id'];
+        $delete_user_query = "DELETE FROM users WHERE user_id = $delete_user_id";
+        $delete_user_query_result = mysqli_query($connection, $delete_user_query);
+        confirm_query($delete_user_query_result);
+        header("Location: users.php");
+    }
+}// End of delete user function
+
+function update_user($the_user_id, $db_user_image){
+    global $connection;
+    if(isset($_POST['update_user'])){
+        $user_firstname = $_POST['user_firstname'];
+        $user_lastname = $_POST['user_lastname'];
+        $username = $_POST['username'];
+        $user_email = $_POST['user_email'];
+        $user_password = $_POST['user_password'];
+        $user_role = $_POST['user_role'];
+
+        $user_image = $_FILES['user_image']['name'];
+        $user_tmp_image = $_FILES['user_image']['tmp_name'];
+
+        // Validation work for edit user
+        if($user_firstname == '' || empty($user_firstname)){
+            $validates[] = 'Firstname field can not be empty';
+        }
+        if($user_lastname == '' || empty($user_lastname)){
+            $validates[] = 'Lastname field can not be empty';
+        }
+        if($username == '' || empty($username)){
+            $validates[] = 'Username field can not be empty';
+        }
+        if($user_email == '' || empty($user_email)){
+            $validates[] = 'Email field can not be empty';
+        }
+        if($user_password == '' || empty($user_password)){
+            $validates[] = 'Password field can not be empty';
+        }
+        if($user_role == '' || empty($user_role)){
+            $validates[] = 'User Role can not be empty';
+        }
+        else{
+            $validates[] = "";
+        }
+
+        $validates_count = count($validates);
+        if($validates_count > 1){
+            echo "<ul class='bg-warning well'>";
+            foreach ($validates as $validate){
+                echo "<li class='text-danger'> $validate </li>";
+            }
+            echo "</ul>";
+        }
+        else{
+            // edit image using condition
+            if($user_image == '' || empty($user_image)){
+                $user_image = $db_user_image ;
+            }
+            else{
+                unlink("../images/$db_user_image");
+                move_uploaded_file($user_tmp_image, "../images/{$user_image}");
+            }
+
+            // Update user query
+            $query = "UPDATE users SET user_firstname='{$user_firstname}', user_lastname='{$user_lastname}', username='{$username}', ";
+            $query .= "user_email='{$user_email}', user_password='{$user_password}', user_role='{$user_role}', user_image='{$user_image}' ";
+            $query .= "WHERE user_id=$the_user_id";
+            $query_result = mysqli_query($connection, $query);
+            confirm_query($query_result);
+            header("Location: users.php?source=edit_user&e_user_id={$the_user_id}");
+
+        }
+        // End of Validation work for edit user
+    }
+}// End of update user class
+
+
+
 
 // *************************************** End of Users Functions *************************************************//
 

@@ -51,16 +51,15 @@
 
             <!-- Blog Comments -->
 
+
+            <?php
+
+            // Create comment code
+            createComment();
+
+            ?>
             <!-- Comments Form -->
             <div class="well">
-
-                <?php
-
-                // Create comment code
-                createComment();
-
-                ?>
-
                 <h4>Leave a Comment:</h4>
                 <form action="" method="post" role="form">
                     <div class="form-group">

@@ -54,9 +54,11 @@
                     echo "<td><img src='../images/$user_image' alt='user_image' width='80px' height='50px'/></td>";
                 }
 
+                echo "<td><a href='users.php?source=edit_user&e_user_id={$user_id}'> Edit </a></td>";
+                echo "<td><a href='users.php?d_user_id={$user_id}'> Delete </a></td>";
+                // Delete User function
+                    delete_user();
 
-                echo "<td><a href='#'> Edit </a></td>";
-                echo "<td><a href='#'> Delete </a></td>";
             echo "</tr>";
 
         }
@@ -65,7 +67,7 @@
         echo "<h2 class='mt-50 text-center bg-info text-primary'>No User Available</h2>";
     }
 
-
     ?>
     </tbody>
 </table>
+
