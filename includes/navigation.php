@@ -32,12 +32,45 @@
             </ul>
 
             <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a href="index.php?login">LogIn</a>
-                </li>
-                <li>
-                    <a href="#">Registration</a>
-                </li>
+
+                <?php
+
+                if(isset($_SESSION['user_role'])){
+
+                ?>
+
+                }
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+                        <?php echo $_SESSION['username']; ?>
+                        <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="./includes/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                <?php
+
+                }
+                else{
+
+                ?>
+
+                    <li>
+                        <a href="#">LogIn</a>
+                    </li>
+                    <li>
+                        <a href="#">Registration</a>
+                    </li>
+
+                <?php
+
+                }
+
+                ?>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
