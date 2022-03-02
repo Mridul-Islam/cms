@@ -34,7 +34,6 @@
         <li>
             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
         </li>
-
     </ul>
 </div>
 <!-- /.navbar-collapse -->

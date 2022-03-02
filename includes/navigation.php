@@ -30,6 +30,15 @@
                     <a href="#">Contact</a>
                 </li>
             </ul>
+
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="index.php?login">LogIn</a>
+                </li>
+                <li>
+                    <a href="#">Registration</a>
+                </li>
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>

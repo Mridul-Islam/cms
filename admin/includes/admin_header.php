@@ -3,6 +3,24 @@
 <?php include "../includes/db.php"; ?>
 <?php include "./includes/admin_functions.php"; ?>
 
+<?php
+
+
+
+// Check for admin
+if(!isset($_SESSION['user_role'])){
+    header("Location: ../index.php");
+}
+if(isset($_SESSION['user_role'])){
+    $user_role = $_SESSION['user_role'];
+    if($user_role !== 'Admin'){
+        header("Location: ../index.php");
+    }
+
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
