@@ -1,11 +1,12 @@
-<h2 class="text-center bg-info" style="padding-top: 0; margin-top: 0;">Update User</h2>
+
+<h2 class="text-center bg-info" style="padding-top: 0; margin-top: 0;">Update Profile</h2>
 <hr>
 
 <?php
 
 global $connection;
-if(isset($_GET['e_user_id'])){
-    $the_user_id = $_GET['e_user_id'];
+if(isset($_GET['p_user_id'])){
+    $the_user_id = $_GET['p_user_id'];
 
     // Bring the information about edit user and show them to the form
     $query = "SELECT * FROM users WHERE user_id = $the_user_id";
@@ -21,7 +22,7 @@ if(isset($_GET['e_user_id'])){
         $db_user_role        = $row['user_role'];
         $db_user_description = $row['user_description'];
 
-?>
+        ?>
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="col-md-6">
@@ -71,18 +72,18 @@ if(isset($_GET['e_user_id'])){
                 <div class="form-group">
                     <label>Description about user:</label>
                     <textarea name="user_description" rows="7" class="form-control" ><?php echo $db_user_description; ?>
-                    </textarea>
+    </textarea>
                 </div><hr>
                 <div class="form-group">
                     <input type="submit" name="update_user" class="btn btn-primary" value="Update User" />
-                    <a href="users.php" class="btn btn-primary"> Cancel </a>
+                    <a href="./profile.php" class="btn btn-primary"> Cancel </a>
                 </div>
             </div>
 
 
         </form>
 
-<?php
+        <?php
 
     }
 }
@@ -92,9 +93,14 @@ if(isset($_GET['e_user_id'])){
 
 <?php
 
-    // Update User code
-    update_user($the_user_id, $db_user_image);
+// Edit code
+update_user($the_user_id, $db_user_image);
 
 
 
 ?>
+
+
+
+
+

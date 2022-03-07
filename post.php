@@ -96,7 +96,7 @@
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="./images/user-logo.jpg" alt="" width="80px" height="60px">
+                        <img class="media-object" src="./images/user-logo.png" alt="" width="80px" height="60px">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment_author; ?>

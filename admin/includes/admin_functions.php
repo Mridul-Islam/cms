@@ -205,16 +205,26 @@ function showPostTitle($comment_post_id){
 function create_user(){
     global $connection;
     if(isset($_POST['create_user'])){
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname  = $_POST['user_lastname'];
-        $username       = $_POST['username'];
-        $user_email     = $_POST['user_email'];
-        $user_password  = $_POST['user_password'];
-        $user_role      = $_POST['user_role'];
-        $user_image     = $_FILES['user_image']['name'];
-        $user_tmp_image = $_FILES['user_image']['tmp_name'];
+        $user_firstname   = $_POST['user_firstname'];
+        $user_lastname    = $_POST['user_lastname'];
+        $username         = $_POST['username'];
+        $user_email       = $_POST['user_email'];
+        $user_password    = $_POST['user_password'];
+        $user_role        = $_POST['user_role'];
+        $user_image       = $_FILES['user_image']['name'];
+        $user_tmp_image   = $_FILES['user_image']['tmp_name'];
+        $user_description = $_POST['user_description'];
 
         // Validation work for add user
+        $username_query = "SELECT * FROM users";
+        $username_query_result = mysqli_query($connection, $username_query);
+        confirm_query($username_query_result);
+        while($row = mysqli_fetch_assoc($username_query_result)){
+            $all_db_username = $row['username'];
+            if($username == $all_db_username){
+                $validates[] = 'This username field has already been taken';
+            }
+        }
         if($user_firstname == '' || empty($user_firstname)){
             $validates[] = 'Firstname field can not be empty';
         }
@@ -231,10 +241,13 @@ function create_user(){
             $validates[] = 'Password field can not be empty';
         }
         if($user_role == '' || empty($user_role)){
-            $validates[] = 'User Role can not be empty';
+            $validates[] = 'User Role field can not be empty';
         }
         if($user_image == '' || empty($user_image)){
-            $validates[] = 'User image can not be empty';
+            $validates[] = 'User image field can not be empty';
+        }
+        if($user_description == '' || empty($user_description)){
+            $validates[] = 'User description field can not be empty';
         }
         else{
             $validates[] = "";
@@ -279,12 +292,13 @@ function delete_user(){
 function update_user($the_user_id, $db_user_image){
     global $connection;
     if(isset($_POST['update_user'])){
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
-        $username = $_POST['username'];
-        $user_email = $_POST['user_email'];
-        $user_password = $_POST['user_password'];
-        $user_role = $_POST['user_role'];
+        $user_firstname   = $_POST['user_firstname'];
+        $user_lastname    = $_POST['user_lastname'];
+        $username         = $_POST['username'];
+        $user_email       = $_POST['user_email'];
+        $user_password    = $_POST['user_password'];
+        $user_role        = $_POST['user_role'];
+        $user_description = $_POST['user_description'];
 
         $user_image = $_FILES['user_image']['name'];
         $user_tmp_image = $_FILES['user_image']['tmp_name'];
@@ -306,7 +320,10 @@ function update_user($the_user_id, $db_user_image){
             $validates[] = 'Password field can not be empty';
         }
         if($user_role == '' || empty($user_role)){
-            $validates[] = 'User Role can not be empty';
+            $validates[] = 'User Role field can not be empty';
+        }
+        if($user_description == '' || empty($user_description)){
+            $validates[] = 'User description field can not be empty';
         }
         else{
             $validates[] = "";
@@ -332,7 +349,7 @@ function update_user($the_user_id, $db_user_image){
 
             // Update user query
             $query = "UPDATE users SET user_firstname='{$user_firstname}', user_lastname='{$user_lastname}', username='{$username}', ";
-            $query .= "user_email='{$user_email}', user_password='{$user_password}', user_role='{$user_role}', user_image='{$user_image}' ";
+            $query .= "user_email='{$user_email}', user_password='{$user_password}', user_role='{$user_role}', user_image='{$user_image}', user_description='{$user_description}' ";
             $query .= "WHERE user_id=$the_user_id";
             $query_result = mysqli_query($connection, $query);
             confirm_query($query_result);

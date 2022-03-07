@@ -29,16 +29,16 @@ create_user();
         <div class="form-group">
             <label for="password">User Password:</label>
             <input type="password" name="user_password" id="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="email">User Email:</label>
+            <input type="email" name="user_email" id="email" class="form-control" />
         </div><hr>
     </div>
     <!-- ./Left col-md-6 -->
 
     <!-- Right Col-md-6 -->
     <div class="col-md-6">
-        <div class="form-group">
-            <label for="email">User Email:</label>
-            <input type="email" name="user_email" id="email" class="form-control" />
-        </div>
         <div class="form-group">
             <label>User Role:</label>
             <select name="user_role" class="form-control">
@@ -51,7 +51,10 @@ create_user();
             <label for="image">User Image:</label>
             <input type="file" name="user_image" id="image" class="form-control" />
         </div>
-        <hr/><hr>
+        <div class="form-group">
+            <label>Description about user:</label>
+            <textarea name="user_description" rows="8" class="form-control" ></textarea>
+        </div><hr>
         <div class="form-group">
             <input type="submit" name="create_user" class="btn btn-primary" value="Create User" />
             <a href="users.php" class="btn btn-primary"> Cancel </a>
