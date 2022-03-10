@@ -1,12 +1,5 @@
 <h2 class="text-center bg-info">Edit Post</h2>
 <hr>
-<?php
-
-//if(isset($_SESSION['update_post'])){
-//    echo "<p class='text-center bg-success'> {$_SESSION['update_post']} </p>";
-//}
-
-?>
 
 <?php
 

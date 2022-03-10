@@ -11,6 +11,13 @@
 
             <?php
 
+            // Create comment code
+            createComment();
+
+            ?>
+
+            <?php
+
             global $connection;
             if(isset($_GET['p_id'])){
                 $the_post_id = $_GET['p_id'];
@@ -47,14 +54,6 @@
             ?>
 
             <!-- Blog Comments -->
-
-
-            <?php
-
-            // Create comment code
-            createComment();
-
-            ?>
             <!-- Comments Form -->
             <div class="well">
                 <h4>Leave a Comment:</h4>

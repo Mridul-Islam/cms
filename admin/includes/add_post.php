@@ -61,7 +61,7 @@ if(isset($_POST['create_post'])) {
         $query = "INSERT INTO posts(post_title, post_author, post_category_id, post_tags, post_status, post_image, post_content, post_date, post_comment_count) VALUES ( '{$post_title}', '{$post_author}', '{$post_cat_id}', '{$post_tags}', '{$post_status}', '{$post_image}', '{$post_content}', now(), '{$post_comment_count}' ) ";
         $create_post_result = mysqli_query($connection, $query);
         confirm_query($create_post_result);
-        header("Location: posts.php?source=add_post");
+        echo "<p class='bg-success text-center'> The post has been created successfully. <a href='./posts.php'> View Posts </a> </p>";
     }
 }
 

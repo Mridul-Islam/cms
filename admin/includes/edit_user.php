@@ -23,6 +23,14 @@ if(isset($_GET['e_user_id'])){
 
 ?>
 
+<?php
+
+// Update User code
+update_user($the_user_id, $db_user_image);
+
+?>
+
+
         <form action="" method="post" enctype="multipart/form-data">
             <div class="col-md-6">
                 <div class="form-group">
@@ -90,11 +98,3 @@ if(isset($_GET['e_user_id'])){
 ?>
 
 
-<?php
-
-    // Update User code
-    update_user($the_user_id, $db_user_image);
-
-
-
-?>

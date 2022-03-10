@@ -70,7 +70,7 @@ function createComment(){
             $comment_count_query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $comment_post_id";
             $comment_count_query_result = mysqli_query($connection, $comment_count_query);
             confirm_query($comment_count_query_result);
-            header("Location: post.php?p_id=$comment_post_id");
+            echo "<p class='text-center bg-success'> The comment has been submitted  and waiting for approval. </p>";
         }
 
     }

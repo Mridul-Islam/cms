@@ -122,8 +122,7 @@ function update_post($the_edit_id, $db_post_image){
 
             $edit_post_result = mysqli_query($connection, $edit_query);
             confirm_query($edit_post_result);
-            //$_SESSION['update_post'] = "The post has been updated";
-            header("Location: posts.php?source=edit_post&edit_id=$the_edit_id");
+            echo "<p class='bg-success text-center'> The post has been updated successfully. <a href='./posts.php'> View Posts </a> </p>";
         }
 
     } // End of edit post code
@@ -270,8 +269,8 @@ function create_user(){
             $query .= " VALUES ( '{$user_firstname}', '{$user_lastname}', '{$username}', '{$user_email}', '{$user_password}', '{$user_role}', '{$user_image}' ) ";
             $query_result = mysqli_query($connection, $query);
             confirm_query($query_result);
-            header("Location: users.php?source=add_user");
-
+            //header("Location: users.php?source=add_user");
+            echo "<p class='bg-success text-center'> The user has been created successfully. <a href='./users.php'> View Users </a> </p>";
         }
         // End of Validation work for add user
 
@@ -353,8 +352,8 @@ function update_user($the_user_id, $db_user_image){
             $query .= "WHERE user_id=$the_user_id";
             $query_result = mysqli_query($connection, $query);
             confirm_query($query_result);
-            header("Location: users.php?source=edit_user&e_user_id={$the_user_id}");
-
+            //header("Location: users.php?source=edit_user&e_user_id={$the_user_id}");
+            echo "<p class='bg-success text-center'> The user has been updated successfully. <a href='./users.php'> View Users </a> </p>";
         }
         // End of Validation work for edit user
     }
