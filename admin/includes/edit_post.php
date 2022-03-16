@@ -105,7 +105,7 @@ if(isset($_GET['edit_id'])){
                 </div>
                 <div class="form-group">
                     <label>Post Content:</label>
-                    <textarea name="post_content" class="form-control" rows="5"><?php echo $db_post_content; ?></textarea>
+                    <textarea name="post_content" class="form-control" rows="5" id="body"><?php echo $db_post_content; ?></textarea>
                 </div><hr>
                 <div class="form-group">
                     <input type="submit" name="edit_post" value="Update" class="btn btn-primary" />

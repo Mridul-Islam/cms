@@ -212,7 +212,7 @@ function create_user(){
         $user_role        = $_POST['user_role'];
         $user_image       = $_FILES['user_image']['name'];
         $user_tmp_image   = $_FILES['user_image']['tmp_name'];
-        $user_description = $_POST['user_description'];
+        $user_address     = $_POST['user_address'];
 
         // Validation work for add user
         $username_query = "SELECT * FROM users";
@@ -245,8 +245,8 @@ function create_user(){
         if($user_image == '' || empty($user_image)){
             $validates[] = 'User image field can not be empty';
         }
-        if($user_description == '' || empty($user_description)){
-            $validates[] = 'User description field can not be empty';
+        if($user_address == '' || empty($user_address)){
+            $validates[] = 'User address field can not be empty';
         }
         else{
             $validates[] = "";
@@ -265,8 +265,8 @@ function create_user(){
             move_uploaded_file($user_tmp_image, "../images/{$user_image}");
 
             // create user query
-            $query = "INSERT INTO users(user_firstname, user_lastname, username, user_email, user_password, user_role, user_image) ";
-            $query .= " VALUES ( '{$user_firstname}', '{$user_lastname}', '{$username}', '{$user_email}', '{$user_password}', '{$user_role}', '{$user_image}' ) ";
+            $query = "INSERT INTO users(user_firstname, user_lastname, username, user_email, user_password, user_role, user_image, user_address) ";
+            $query .= " VALUES ( '{$user_firstname}', '{$user_lastname}', '{$username}', '{$user_email}', '{$user_password}', '{$user_role}', '{$user_image}', '{$user_address}' ) ";
             $query_result = mysqli_query($connection, $query);
             confirm_query($query_result);
             //header("Location: users.php?source=add_user");
@@ -297,7 +297,7 @@ function update_user($the_user_id, $db_user_image){
         $user_email       = $_POST['user_email'];
         $user_password    = $_POST['user_password'];
         $user_role        = $_POST['user_role'];
-        $user_description = $_POST['user_description'];
+        $user_address     = $_POST['user_address'];
 
         $user_image = $_FILES['user_image']['name'];
         $user_tmp_image = $_FILES['user_image']['tmp_name'];
@@ -321,8 +321,8 @@ function update_user($the_user_id, $db_user_image){
         if($user_role == '' || empty($user_role)){
             $validates[] = 'User Role field can not be empty';
         }
-        if($user_description == '' || empty($user_description)){
-            $validates[] = 'User description field can not be empty';
+        if($user_address == '' || empty($user_address)){
+            $validates[] = 'User address field can not be empty';
         }
         else{
             $validates[] = "";
@@ -348,7 +348,7 @@ function update_user($the_user_id, $db_user_image){
 
             // Update user query
             $query = "UPDATE users SET user_firstname='{$user_firstname}', user_lastname='{$user_lastname}', username='{$username}', ";
-            $query .= "user_email='{$user_email}', user_password='{$user_password}', user_role='{$user_role}', user_image='{$user_image}', user_description='{$user_description}' ";
+            $query .= "user_email='{$user_email}', user_password='{$user_password}', user_role='{$user_role}', user_image='{$user_image}', user_address='{$user_address}' ";
             $query .= "WHERE user_id=$the_user_id";
             $query_result = mysqli_query($connection, $query);
             confirm_query($query_result);

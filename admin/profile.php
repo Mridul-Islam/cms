@@ -38,7 +38,6 @@
                         $user_role        = $row['user_role'];
                         $user_image       = $row['user_image'];
                         $user_address     = $row['user_address'];
-                        $user_description = $row['user_description'];
 
                 ?>
 
@@ -50,14 +49,22 @@
                                         <img src="../images/<?php echo $user_image; ?>" alt="" class="img-rounded img-responsive" width="320px" height="250px" />
                                     </div>
                                     <div class="col-sm-6 col-md-6">
-                                        <h4><?php echo $username; ?></h4>
-                                        <small><cite title="San Francisco, USA"> <?php echo $user_address; ?> <i class="glyphicon glyphicon-map-marker">
-                                                </i></cite></small>
+                                        <table class="table">
+                                            <tr>  <td class="small">First Name:</td> <td><?php echo $user_firstname; ?></td>  </tr>
+                                            <tr>  <td class="small">Last Name:</td> <td><?php echo $user_lastname; ?></td>  </tr>
+                                            <tr>  <td class="small">UserName:</td> <td><?php echo $username; ?></td>  </tr>
+                                            <tr>  <td class="small">User Role:</td> <td><?php echo $user_role; ?></td>  </tr>
+                                        </table>
+<!--                                        <h4>First Name: --><?php //echo $user_firstname; ?><!--</h4>-->
+<!--                                        <h4>Last Name: --><?php //echo $user_lastname; ?><!--</h4>-->
+<!--                                        <h4>UserName: --><?php //echo $username; ?><!--</h4>-->
+<!--                                        <h4>User Role: --><?php //echo $user_role; ?><!--</h4>-->
+                                        <small><cite title="Dhaka, Bangladesh"><i class="glyphicon glyphicon-map-marker">
+                                                </i> <?php echo $user_address; ?> </cite></small>
                                         <p>
                                             <i class="glyphicon glyphicon-envelope"></i><?php echo $user_email; ?>
                                             <br />
                                         </p>
-                                        <p> <?php echo $user_description; ?></p>
                                         <a href="./users.php?source=edit_profile&p_user_id=<?php echo $user_id; ?>" class="btn btn-primary">Edit Profile</a>
 
                                     </div>

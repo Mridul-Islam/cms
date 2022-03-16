@@ -230,7 +230,7 @@ $subscriber_count = mysqli_num_rows($subscriber_user_result);
 
             <?php
 
-            $element_text = ['posts', 'Active Posts', 'Draft Posts', 'Comments', 'Active Comments', 'Pending Comments', 'Users', 'Admin', 'Subscriber', 'Categories'];
+            $element_text = ['All posts', 'Active Posts', 'Draft Posts', 'Comments', 'Active Comments', 'Pending Comments', 'Users', 'Admin', 'Subscriber', 'Categories'];
             $element_count = [$post_count, $active_post_count, $draft_post_count, $comment_count, $approved_comment_count, $un_approved_comment_count, $user_count, $admin_count, $subscriber_count, $category_count];
 
             for($i = 0; $i < 10; $i++){

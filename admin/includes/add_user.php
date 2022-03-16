@@ -52,8 +52,8 @@ create_user();
             <input type="file" name="user_image" id="image" class="form-control" />
         </div>
         <div class="form-group">
-            <label>Description about user:</label>
-            <textarea name="user_description" rows="8" class="form-control" ></textarea>
+            <label>User Address:</label>
+            <textarea name="user_address" rows="8" class="form-control" ></textarea>
         </div><hr>
         <div class="form-group">
             <input type="submit" name="create_user" class="btn btn-primary" value="Create User" />

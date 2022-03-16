@@ -20,9 +20,17 @@ if(isset($_GET['p_user_id'])){
         $db_user_lastname    = $row['user_lastname'];
         $db_user_image       = $row['user_image'];
         $db_user_role        = $row['user_role'];
-        $db_user_description = $row['user_description'];
+        $db_user_address     = $row['user_address'];
 
         ?>
+
+
+<?php
+
+// Edit code
+update_user($the_user_id, $db_user_image);
+
+?>
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="col-md-6">
@@ -71,8 +79,7 @@ if(isset($_GET['p_user_id'])){
                 </div>
                 <div class="form-group">
                     <label>Description about user:</label>
-                    <textarea name="user_description" rows="7" class="form-control" ><?php echo $db_user_description; ?>
-    </textarea>
+                    <input type="text" class="form-control" name="user_address" value="<?php echo $db_user_address; ?>" />
                 </div><hr>
                 <div class="form-group">
                     <input type="submit" name="update_user" class="btn btn-primary" value="Update User" />
@@ -91,14 +98,6 @@ if(isset($_GET['p_user_id'])){
 ?>
 
 
-<?php
-
-// Edit code
-update_user($the_user_id, $db_user_image);
-
-
-
-?>
 
 
 
