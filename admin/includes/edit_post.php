@@ -43,6 +43,10 @@ if(isset($_GET['edit_id'])){
                     <img src="../images/<?php echo $db_post_image; ?>" width="300px" class="img-responsive img-thumbnail"/>
                     <input type="file" name="post_image" id="post_image" class="form-control">
                 </div>
+                <div class="form-group">
+                    <label for="post_tags">Post Tags:</label>
+                    <input type="text" name="post_tags" id="post_tags" class="form-control" value="<?php echo $db_post_tags; ?>" />
+                </div>
             </div>
             <!-- ./Left col-lg-6 -->
 
@@ -82,10 +86,6 @@ if(isset($_GET['edit_id'])){
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="post_tags">Post Tags:</label>
-                    <input type="text" name="post_tags" id="post_tags" class="form-control" value="<?php echo $db_post_tags; ?>" />
-                </div>
-                <div class="form-group">
                     <label for="post_status">Post Status:</label>
                     <select name="post_status" class="form-control">
                         <option value="<?php echo $db_post_status; ?>"> <?php echo $db_post_status; ?> </option>
@@ -109,7 +109,7 @@ if(isset($_GET['edit_id'])){
                 </div><hr>
                 <div class="form-group">
                     <input type="submit" name="edit_post" value="Update" class="btn btn-primary" />
-                    <a href="./posts.php" class="btn btn-primary"> Cancel </a>
+                    <a href="./posts.php" class="btn btn-primary"> Back </a>
                 </div>
             </div>
             <!-- ./ Right col-lg-6 -->

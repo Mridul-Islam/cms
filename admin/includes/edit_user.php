@@ -82,7 +82,7 @@ update_user($the_user_id, $db_user_image);
                 </div><hr>
                 <div class="form-group">
                     <input type="submit" name="update_user" class="btn btn-primary" value="Update User" />
-                    <a href="users.php" class="btn btn-primary"> Cancel </a>
+                    <a href="users.php" class="btn btn-primary"> Back </a>
                 </div>
             </div>
 

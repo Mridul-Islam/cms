@@ -29,6 +29,22 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+
+                <?php
+
+                if(isset($_SESSION['user_role'])){
+                    $the_user_role = $_SESSION['user_role'];
+                    if($the_user_role == 'Admin' && isset($_GET['p_id'])){
+                        $the_post_id = $_GET['p_id'];
+                        echo "<li>";
+                            echo "<a href='./admin/posts.php?source=edit_post&edit_id={$the_post_id}'> Edit Post </a>";
+                        echo "</li>";
+                    }
+                }
+
+                ?>
+
+
             </ul>
 
             <ul class="nav navbar-nav pull-right">
