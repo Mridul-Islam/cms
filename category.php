@@ -16,6 +16,7 @@
 
                 <?php
 
+                global $connection;
                 if(isset($_GET['category'])){
                     $the_cat_id = mysqli_real_escape_string($connection, $_GET['category']);
 
@@ -70,11 +71,6 @@
                             // $post_content = substr($row['post_content'],0,100);
 
                         ?>
-
-                        <h1 class="page-header">
-                            Page Heading
-                            <small>Secondary Text</small>
-                        </h1>
 
                         <!-- First Blog Post -->
                         <h2>

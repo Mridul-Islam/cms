@@ -15,6 +15,7 @@
 
                 <?php
 
+                global $connection;
                 $post_per_page = 5;
 
                 if(isset($_GET['page'])){
@@ -78,12 +79,7 @@
 
                     ?>
 
-                            <h1 class="page-header">
-                                Page Heading
-                                <small>Secondary Text</small>
-                            </h1>
-
-                            <!-- First Blog Post -->
+                            <!-- Blog Posts -->
                             <h2>
                                 <!-- <a href="post.php?p_id=<?php //echo $post_id;?>" > <?php //echo $post_title;?> </a> -->
                                 <a href="post/<?php echo $post_id;?>" > <?php echo $post_title;?> </a>

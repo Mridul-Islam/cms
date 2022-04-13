@@ -1,6 +1,7 @@
 <?php
 
 if(isset($_POST['create_post'])){
+    global $connection;
 	$post_title       = escape($_POST['title']);
 	$post_category_id = escape($_POST['post_category']);
 	$post_user        = escape($_POST['post_user_id']);
@@ -14,6 +15,7 @@ if(isset($_POST['create_post'])){
 	$post_date        = escape(date('d-m-y'));
 
 	move_uploaded_file($post_img_temp, "../images/$post_image");
+//    move_uploaded_file($post_img_temp, )
 
 	$query = "INSERT INTO posts(post_category_id, post_title, post_user, post_status, post_image, post_tags, post_content, post_date) VALUES({$post_category_id}, '{$post_title}', '{$post_user}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', now()) ";
 	$add_post_query_result = mysqli_query($connection, $query);
@@ -71,7 +73,7 @@ if(isset($_POST['create_post'])){
 	</div>
 
 	<div class="form-group">
-		<label for="users">Users</label>
+		<label for="users">User</label>
 		<select name="post_user_id" class="form-control">
 			
 			<?php

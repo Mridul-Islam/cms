@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - cms project</title>
+    <title>CMS Home</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/cms/css/bootstrap.min.css" rel="stylesheet">
