@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2021 at 09:05 PM
+-- Generation Time: Mar 07, 2022 at 02:19 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `cat_id` int(3) NOT NULL,
+  `cat_id` int(5) NOT NULL,
   `cat_title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -37,11 +37,14 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
-(2, 'Python'),
-(4, 'PHP'),
-(5, 'JavaScript'),
-(7, '.NET'),
-(8, 'IOS');
+(1, 'Procedural PHP'),
+(2, 'Laravel'),
+(3, 'Vue.Js'),
+(5, 'React'),
+(18, 'Android'),
+(41, 'Python'),
+(42, 'Java'),
+(43, 'IOS');
 
 -- --------------------------------------------------------
 
@@ -50,12 +53,12 @@ INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 --
 
 CREATE TABLE `comments` (
-  `comment_id` int(3) NOT NULL,
-  `comment_post_id` int(3) NOT NULL,
+  `comment_id` int(5) NOT NULL,
+  `comment_post_id` int(5) NOT NULL,
   `comment_author` varchar(255) NOT NULL,
   `comment_email` varchar(255) NOT NULL,
   `comment_content` text NOT NULL,
-  `comment_status` varchar(255) NOT NULL,
+  `comment_status` varchar(255) NOT NULL DEFAULT 'un-approved',
   `comment_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,9 +67,12 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`) VALUES
-(19, 33, 'shad', 'shad@gmail.com', 'You are nice....', 'approved', '2021-09-02'),
-(20, 33, 'Srijon', 'srijon@srijon.com', 'Yeah, you are great...', 'approved', '2021-09-02'),
-(22, 34, 'Arfan', 'Arfan@arfan.com', 'This is the best..', 'approved', '2021-09-02');
+(18, 15, 'shad', 'shad@gmai.com', 'Now this is working.. There are many variations of passages of Lorem Ipsum available, but the majority have suffere', 'approved', '2022-02-27'),
+(19, 15, 'Aziz', 'Aziz@gmail.com', 'Now this is working.. There are many variations of passages of Lorem Ipsum available, but the majority have suffere', 'approved', '2022-02-27'),
+(25, 22, 'shad', 'shad@gmai.com', 'Hi, This is Shad..', 'approved', '2022-03-01'),
+(28, 24, 'Arfan', 'arfan@gmail.com', 'Hi , This is Arfan and you did a excellent job..', 'approved', '2022-03-01'),
+(29, 24, 'shad', 'shad@gmai.com', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.', 'approved', '2022-03-01'),
+(30, 28, 'Srijon', 'srijon@gmail.com', 'Hi from srijon.', 'approved', '2022-03-01');
 
 -- --------------------------------------------------------
 
@@ -75,28 +81,34 @@ INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comm
 --
 
 CREATE TABLE `posts` (
-  `post_id` int(3) NOT NULL,
-  `post_category_id` int(3) NOT NULL,
+  `post_id` int(5) NOT NULL,
+  `post_category_id` int(5) NOT NULL,
   `post_title` varchar(255) NOT NULL,
   `post_author` varchar(255) NOT NULL,
-  `post_user` varchar(255) NOT NULL,
   `post_date` date NOT NULL,
   `post_image` text NOT NULL,
   `post_content` text NOT NULL,
-  `post_tags` varchar(255) NOT NULL,
-  `post_comment_count` int(3) NOT NULL,
-  `post_status` varchar(255) NOT NULL DEFAULT 'draft',
-  `post_views_count` int(11) NOT NULL
+  `post_tags` varchar(50) NOT NULL,
+  `post_comment_count` int(5) NOT NULL,
+  `post_status` varchar(255) NOT NULL DEFAULT 'draft'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_user`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count`) VALUES
-(33, 4, 'PHP developer', '', 'Mridul Islam', '2021-09-01', 'php_logo.png', '<p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1994. The PHP reference implementation is now produced by The PHP Group.</p>', 'PHP', 0, 'published', 7),
-(34, 5, 'Welcome to vue.js', '', 'Shad', '2021-09-01', 'vue.js-logo.png', '<p>Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members.</p>', 'Vue.js, FrontEnd', 0, 'published', 13),
-(35, 5, 'Angular.js Tutorial', '', 'Mridul Islam', '2021-09-01', 'AngularJS_logo.svg.png', '<p>AngularJS is a JavaScript-based open-source front-end web framework for developing single-page applications. It is maintained mainly by Google and a community of individuals and corporations.</p>', 'Angular', 0, 'published', 0);
+INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`) VALUES
+(4, 1, 'The PHP Beginner Course.', 'Mridul Islam', '2022-03-01', 'Black audi.jpg', 'This is a greate course for those persons who just started to Learn PHP. And i just love PHP. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '', 0, 'published'),
+(14, 5, 'React Course', 'Mridul Islam', '2022-02-27', 'react_logo.png', 'React is a very popular front-end technology framework. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'React', 0, 'published'),
+(15, 2, 'Laravel', 'Mridul Islam', '2022-03-02', 'laravel.png', 'Now this is working.. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'Laravel', -5, 'published'),
+(17, 5, 'React Native', 'Showrab', '2022-02-28', 'react-native-logo.jpg', 'React Native is an open-source UI software framework created by Meta Platforms, Inc. It is used to develop applications for Android, Android TV, iOS, macOS, tvOS, Web, Windows and UWP by enabling developers to use the React framework along with native platform capabilities', 'React', 1, 'draft'),
+(22, 3, 'ninja smoothies', 'Mridul Islam', '2022-02-28', 'vue.js-logo.png', 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is availabl', 'ninja smoothies, vue.js', 7, 'published'),
+(23, 2, 'cms', 'Mridul Islam', '2022-03-01', 'black rolls-royce.jpg', 'This project is created by Mridul Islam..', 'cms, laravel', 0, 'draft'),
+(24, 2, 'Car House', 'Mridul Islam', '2022-03-01', 'Black audi.jpg', '', 'Car house, Laravel, car showroom', 2, 'published'),
+(25, 18, 'Green Bangladesh', 'Mridul Islam', '2022-03-01', 'green-bangladesh.jpg', 'Bangladesh Charity Challenges - Land of unspoiled Nature Bangladesh creates an unforgettable impression of a land of peace, tranquility and enormous beauty; Bangladesh is the land of hundreds of serpentine rivers, crystal clear water lakes surrounded by evergreen hills, luxuriant tropical rain forests, beautiful cascades of green tea gardens.', 'Android, green Bangladesh', 0, 'published'),
+(26, 1, 'Dhaka city', 'Mridul Islam', '2022-03-01', 'dhaka-city.jpg', 'Dhaka is the capital city of Bangladesh, in southern Asia. Set beside the Buriganga River, it’s at the center of national government, trade and culture. The 17th-century old city was the Mughal capital of Bengal, and many palaces and mosques remain. American architect Louis Khan’s National Parliament House complex typifies the huge, fast-growing modern metropolis', 'Dhaka, PHP', 0, 'published'),
+(27, 2, 'Keypad Develper', 'Shad', '2022-03-01', 'asp-net-mvc-logo-.jpg', 'Laravel is very good to develop any web application..', 'Keypad, Laravel', 0, 'published'),
+(28, 5, 'Something to test', 'Showrab', '2022-03-01', 'AngularJS_logo.svg.png', 'Dhaka is the capital city of Bangladesh, in southern Asia. Set beside the Buriganga River, it’s at the center of national government, trade and culture. The 17th-century old city was the Mughal capital of Bengal, and many palaces and mosques remain. American architect Louis Khan’s National Parliament House complex typifies the huge, fast-growing modern metropolis', 'Test', 1, 'draft');
 
 -- --------------------------------------------------------
 
@@ -105,54 +117,25 @@ INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`,
 --
 
 CREATE TABLE `users` (
-  `user_id` int(3) NOT NULL,
+  `user_id` int(5) NOT NULL,
   `username` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
   `user_firstname` varchar(255) NOT NULL,
   `user_lastname` varchar(255) NOT NULL,
-  `user_email` varchar(255) NOT NULL,
   `user_image` text NOT NULL,
   `user_role` varchar(255) NOT NULL,
-  `randSalt` varchar(255) NOT NULL DEFAULT '$2y$10$iusesomecrazystrings22'
+  `randSalt` varchar(255) NOT NULL,
+  `user_address` varchar(255) NOT NULL,
+  `user_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `randSalt`) VALUES
-(13, 'Mahadi Hasan', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Mahadi', 'Hasan', 'MahadiHasan@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(17, 'Khalid bin walid', '$2y$10$iusesomecrazystrings2ui1qr860E30b0c9ijNqwCSwHnHdgz.1K', 'Khalid bin', 'Walid', 'Khalid@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(18, 'Md Omar Faruk', '$2y$12$joikZHetX.x2s.uY.oAh.O99pqaG1JuX8x1vO/O85VFzQMm8CV5WS', 'Md Omar', 'Faruk', 'Omar@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(27, 'Shad', '$2y$12$.6IRmYshqoAmKr7EP5b5ueuarCsJxAf4DzmEDPvLiLyjZ7Ai3LJNK', 'Shofiul', 'Alam', 'shad@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(31, 'Shamim', '$2y$12$Hq31CLj0By8DZjEcEqUjsOvQx.Sd.2nBt5KRxNUmpE2.HVJcGbydu', 'Shamim', 'Hossain', 'shamimMridha@shamim.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22'),
-(34, 'Mridul Islam', '$2y$12$yvzHJseRTAK.nz17wv9zXusOa7hU8Hh5YDvKlJMCPFYUEcW26rEwu', 'Mridul', 'Islam', 'mridulIslam@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_online`
---
-
-CREATE TABLE `users_online` (
-  `id` int(5) NOT NULL,
-  `session` varchar(255) NOT NULL,
-  `time` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users_online`
---
-
-INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
-(24, 'ah6hsh89oovm3gdpq7i825r4fa', 1630236239),
-(25, 'd4djd8icduqlmspuhptsndumec', 1630230184),
-(26, '9dm1jcvfua3rrp0uv65964bcqs', 1630230192),
-(27, 'fbkh9qnva0pv0k51d00bkj7mvc', 1630276952),
-(28, '43bp62pn2hpdaujrcj251dss40', 1630415264),
-(29, 'fn3ln9t2uddufi151qvl11m2q4', 1630437174),
-(30, 'n4akakbmiqg7rdq62ebdsb1a6i', 1630498877),
-(31, 'sir0cu7apfu3abk426nh9k1tns', 1630523108);
+INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_email`, `user_firstname`, `user_lastname`, `user_image`, `user_role`, `randSalt`, `user_address`, `user_description`) VALUES
+(9, 'Mridul Islam', '12345', 'md.mridulislam12345@gmail.com', 'Mridul', 'Islam', 'IMG_2038.JPG', 'Admin', '', '26/8, Kanchkura, Uttarkhan, Dhaka-1230', 'Hi, I am a web developer. And I created several projects. Update.                    ');
 
 --
 -- Indexes for dumped tables
@@ -183,12 +166,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `users_online`
---
-ALTER TABLE `users_online`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -196,31 +173,25 @@ ALTER TABLE `users_online`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `comment_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `post_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `users_online`
---
-ALTER TABLE `users_online`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

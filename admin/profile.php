@@ -1,103 +1,95 @@
-<?php include("includes/admin_header.php"); ?>
+<?php include "./includes/admin_header.php"; ?>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-<?php //information of admin after login
+    <!-- Top Menu Items -->
+    <?php include "./includes/admin_top_nav.php"; ?>
 
-if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <?php include "./includes/admin_side_nav.php"; ?>
 
-    $query = "SELECT * FROM users WHERE username = '{$username}' ";
-    $select_user_profile_query = mysqli_query($connection, $query);
-    confirmQuery($select_user_profile_query);
+</nav>
 
-    while ($row = mysqli_fetch_assoc($select_user_profile_query)) {
-        $profile_username = $row['username'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_password = $row['user_password'];
-        $user_email = $row['user_email'];
-    }
-}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h1 class="page-header text-center">
+                    Welcome
+                </h1>
 
+                <?php
 
+                global $connection;
+                // pull the user information
+                if(isset($_SESSION['username'])){
+                    $username = $_SESSION['username'];
+                    $query = "SELECT * FROM users WHERE username = '$username'";
+                    $query_result = mysqli_query($connection, $query);
+                    confirm_query($query_result);
+                    while($row = mysqli_fetch_assoc($query_result)){
+                        $user_id          = $row['user_id'];
+                        $username         = $row['username'];
+                        $user_firstname   = $row['user_firstname'];
+                        $user_lastname    = $row['user_lastname'];
+                        $user_email       = $row['user_email'];
+                        $user_password    = $row['user_password'];
+                        $user_role        = $row['user_role'];
+                        $user_image       = $row['user_image'];
+                        $user_address     = $row['user_address'];
 
-?>
+                ?>
 
-    <div id="wrapper">
+                        <!-- Profile -->
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="line-height: 2.0">
+                            <div class="well well-md">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <img src="../images/<?php echo $user_image; ?>" alt="" class="img-rounded img-responsive" width="320px" height="250px" />
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                        <table class="table">
+                                            <tr>  <td class="small">First Name:</td> <td><?php echo $user_firstname; ?></td>  </tr>
+                                            <tr>  <td class="small">Last Name:</td> <td><?php echo $user_lastname; ?></td>  </tr>
+                                            <tr>  <td class="small">UserName:</td> <td><?php echo $username; ?></td>  </tr>
+                                            <tr>  <td class="small">User Role:</td> <td><?php echo $user_role; ?></td>  </tr>
+                                        </table>
+<!--                                        <h4>First Name: --><?php //echo $user_firstname; ?><!--</h4>-->
+<!--                                        <h4>Last Name: --><?php //echo $user_lastname; ?><!--</h4>-->
+<!--                                        <h4>UserName: --><?php //echo $username; ?><!--</h4>-->
+<!--                                        <h4>User Role: --><?php //echo $user_role; ?><!--</h4>-->
+                                        <small><cite title="Dhaka, Bangladesh"><i class="glyphicon glyphicon-map-marker">
+                                                </i> <?php echo $user_address; ?> </cite></small>
+                                        <p>
+                                            <i class="glyphicon glyphicon-envelope"></i><?php echo $user_email; ?>
+                                            <br />
+                                        </p>
+                                        <a href="./users.php?source=edit_profile&p_user_id=<?php echo $user_id; ?>" class="btn btn-primary">Edit Profile</a>
 
-        <!-- Navigation -->
-        <?php include("includes/admin_navigation.php"); ?>
-
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Welcome to Admin
-                            <small><?php echo $username; ?></small>
-                        </h1>
-
-                        <?php // update profile query
-
-                        if(isset($_POST['update_profile'])){
-                            $user_firstname = $_POST['firstname'];
-                            $user_lastname = $_POST['lastname'];
-                            $update_username = $_POST['username'];
-                            $user_password = $_POST['password'];
-                            $user_email = $_POST['email'];
-                            $user_role = $_POST['role'];
-
-                            $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', username = '{$update_username}', user_password = '{$user_password}', user_email = '{$user_email}' WHERE username = '{$username}' ";
-                            $update_user_profile_query = mysqli_query($connection, $query);
-                            confirmQuery($update_user_profile_query);
-
-                        }
-
-
-
-                        ?>
-
-
-                        <form action="" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="firstname">FirstName</label>
-                                <input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo $user_firstname;?>">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="lastname">LastName</label>
-                                <input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo $user_lastname;?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="username">User Name</label>
-                                <input type="text" name="username" id="username" class="form-control" value="<?php echo $profile_username;?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" value="<?php echo $user_email;?>">
-                            </div>
-                            <!-- <div class="form-group">
-                                <label>Image</label>
-                                <input type="file" name="image" class="form-control">
-                            </div> -->
-                            <div class="form-group">
-                                <input type="submit" name="update_profile" value="Update Profile" class="btn btn-primary">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- /.row -->
+                        </div>
+                        <!-- ./ profile -->
+
+                <?php
+
+                    }
+                }
+
+
+                ?>
+
+
 
             </div>
-            <!-- /.container-fluid -->
-
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
 
-<?php include("includes/admin_footer.php"); ?>
+
+<?php include "./includes/admin_footer.php"; ?>

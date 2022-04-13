@@ -1,97 +1,73 @@
-<table class="table table-bordered table-hover table-striped table-responsive">
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Username</th>
-			<th>FirstName</th>
-			<th>LastName</th>
-			<th>Email</th>
-			<th>Role</th>
-		</tr>
-	</thead>
-	<tbody>
-		
-		<?php // show All user query
+<table class="table table-responsive table-hover table-bordered table-striped">
 
-		$query = "SELECT * FROM users";
-		$select_user_query = mysqli_query($connection, $query);
+    <?php
 
-		confirmQuery($select_user_query);
+    global $connection;
+    $query = "SELECT * FROM users ORDER BY user_id DESC ";
+    $query_result = mysqli_query($connection, $query);
+    confirm_query($query_result);
+    $count_user = mysqli_num_rows($query_result);
+    if($count_user > 0){
 
-		while($row = mysqli_fetch_assoc($select_user_query)){
-			$user_id = $row['user_id'];
-			$username = $row['username'];
-			$firstName = $row['user_firstname'];
-			$lastName = $row['user_lastname'];
-			$user_email = $row['user_email'];
-			$user_image = $row['user_image'];
-			$user_role = $row['user_role'];
+    ?>
 
-			echo "<tr>";
-				echo "<td> {$user_id} </td>";
-				echo "<td> {$username} </td>";
-				echo "<td> {$firstName} </td>";
-				echo "<td> {$lastName} </td>";
-				echo "<td> {$user_email} </td>";
-				echo "<td> {$user_role} </td>";
-				echo "<td><a href='users.php?change_to_admin={$user_id}'> Admin </a></td>";
-				echo "<td><a href='users.php?change_to_subscriber={$user_id}'> Subscriber </a></td>";
-				echo "<td><a href='users.php?source=edit_user&u_id={$user_id}'> Edit </a></td>";
-				echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='users.php?delete={$user_id}'> Delete </a></td>";
-			echo "</tr>";
-		}
+    <h2 class="text-center bg-info">All Users</h2>
+    <hr>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>User Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Role</th>
+            <th>Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
 
+    <?php
+        while($row = mysqli_fetch_assoc($query_result)){
+            $user_id = $row['user_id'];
+            $username = $row['username'];
+            $user_email = $row['user_email'];
+            $user_firstname = $row['user_firstname'];
+            $user_lastname = $row['user_lastname'];
+            $user_role = $row['user_role'];
+            $user_image = $row['user_image'];
 
+            echo "<tr>";
+                echo "<td> {$user_id} </td>";
+                echo "<td> {$username} </td>";
+                echo "<td> {$user_email} </td>";
+                echo "<td> {$user_firstname} </td>";
+                echo "<td> {$user_lastname} </td>";
+                echo "<td> {$user_role} </td>";
 
-		?>
+                // Show image using condition
+                if($user_image == '' || empty($user_image)){
+                    echo "<td><img src='../images/user-logo.png' alt='user_image' width='80px' height='50px'/></td>";
+                }
+                else{
+                    echo "<td><img src='../images/$user_image' alt='user_image' width='80px' height='50px'/></td>";
+                }
 
-	</tbody>
+                echo "<td><a href='users.php?source=edit_user&e_user_id={$user_id}'> Edit </a></td>";
+                echo "<td><a href='users.php?d_user_id={$user_id}'> Delete </a></td>";
+                // Delete User function
+                    delete_user();
+
+            echo "</tr>";
+
+        }
+    }
+    else{
+        echo "<h2 class='mt-50 text-center bg-info text-primary'>No User Available</h2>";
+    }
+
+    ?>
+    </tbody>
 </table>
-
-
-
-<?php  
-
-// delete user query
-if(isset($_GET['delete'])){
-	$delete_user_id = $_GET['delete'];
-	$escaped_user_id = mysqli_real_escape_string($connection, $delete_user_id);
-	if(isset($_SESSION['user_role'])){
-        if(isset($_SESSION['user_role']) == 'Admin'){
-		    $query = "DELETE FROM users WHERE user_id = $escaped_user_id";
-			$delete_user_query = mysqli_query($connection, $query);
-			confirmQuery($delete_user_query);
-			header("Location: users.php");
-    	}  
-	}
-}
-
-
-// change to admin query
-if(isset($_GET['change_to_admin'])){
-	$the_user_id = $_GET['change_to_admin'];
-
-	$query = "UPDATE users SET user_role = 'Admin' WHERE user_id = {$the_user_id}";
-	$change_to_admin_query = mysqli_query($connection, $query);
-	confirmQuery($change_to_admin_query);
-	header("Location: users.php");
-}
-
-
-// change to subscriber query
-if(isset($_GET['change_to_subscriber'])){
-	$the_user_id = $_GET['change_to_subscriber'];
-
-	$query = "UPDATE users SET user_role = 'Subscriber' WHERE user_id = {$the_user_id}";
-	$change_to_subscriber_query = mysqli_query($connection, $query);
-	confirmQuery($change_to_subscriber_query);
-	header("Location: users.php");
-}
-
-
-
-?>
-
-
-
 

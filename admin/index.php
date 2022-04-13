@@ -1,25 +1,29 @@
-<?php include("includes/admin_header.php"); ?>
+<?php include "./includes/admin_header.php"; ?>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-    <div id="wrapper">
-   <!-- Navigation -->
-        <?php include("includes/admin_navigation.php"); ?>
+            <!-- Top Menu Items -->
+            <?php include "./includes/admin_top_nav.php"; ?>
 
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <?php include "./includes/admin_side_nav.php"; ?>
+
+        </nav>
 
         <div id="page-wrapper">
-
             <div class="container-fluid">
-
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Welcome to Admin
-                            <small class="usernama"><?php echo $_SESSION['username']; ?></small>
+                        <h1 class="page-header text-center" style="margin-top: 0">
+                            Welcome
+                            <small><?php echo $_SESSION['username']; ?></small>
                         </h1>
                     </div>
                 </div>
-
                 <!-- /.row -->
+
+                <!-- row -->
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
@@ -30,15 +34,16 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
 
+                                        <?php
 
-                                        <?php  // show number of posts query
+                                        // Count all posts
+                                        global $connection;
+                                        $post_query = "SELECT * FROM posts";
+                                        $post_query_result = mysqli_query($connection, $post_query);
+                                        confirm_query($post_query_result);
+                                        $post_count = mysqli_num_rows($post_query_result);
 
-                                        $query = "SELECT * FROM posts";
-                                        $select_all_post_query = mysqli_query($connection, $query);
-                                        confirmQuery($select_all_post_query);
-                                        $post_count = mysqli_num_rows($select_all_post_query);
-
-                                        echo "<div class='huge'> {$post_count} </div>"
+                                        echo "<div class='huge'> {$post_count} </div>";
 
                                         ?>
 
@@ -46,7 +51,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="posts.php">
+                            <a href="./posts.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -64,14 +69,14 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
 
-                                        <?php  // show number of comments query
+                                        <?php
 
-                                        $query = "SELECT * FROM comments";
-                                        $select_all_comments_query = mysqli_query($connection, $query);
-                                        confirmQuery($select_all_comments_query);
-                                        $comment_count = mysqli_num_rows($select_all_comments_query);
-
-                                        echo "<div class='huge'> {$comment_count} </div>"
+                                        // Count all Comments
+                                        $comments_query = "SELECT * FROM comments";
+                                        $comments_query_result = mysqli_query($connection, $comments_query);
+                                        confirm_query($comments_query_result);
+                                        $comment_count = mysqli_num_rows($comments_query_result);
+                                        echo "<div class='huge'> {$comment_count} </div>";
 
                                         ?>
 
@@ -79,7 +84,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="comments.php">
+                            <a href="./comments.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -97,25 +102,22 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
 
-
                                         <?php
 
-                                        $query = "SELECT * FROM users";
-                                        $select_all_users_query = mysqli_query($connection, $query);
-                                        confirmQuery($select_all_users_query);
-                                        $users_count = mysqli_num_rows($select_all_users_query);
-
-                                        echo "<div class='huge'> {$users_count} </div>"
+                                        // Count all Users
+                                        $users_query = "SELECT * FROM users";
+                                        $users_query_result = mysqli_query($connection, $users_query);
+                                        confirm_query($users_query_result);
+                                        $user_count = mysqli_num_rows($users_query_result);
+                                        echo "<div class='huge'> {$user_count} </div>";
 
                                         ?>
-
-
 
                                         <div> Users</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="users.php">
+                            <a href="./users.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -133,15 +135,14 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
 
-
                                         <?php
 
-                                        $query = "SELECT * FROM categories";
-                                        $select_all_categories_query = mysqli_query($connection, $query);
-                                        confirmQuery($select_all_categories_query);
-                                        $categories_count = mysqli_num_rows($select_all_categories_query);
-
-                                        echo "<div class='huge'> {$categories_count} </div>"
+                                        // Count all Categories
+                                        $categories_query = "SELECT * FROM categories";
+                                        $categories_query_result = mysqli_query($connection, $categories_query);
+                                        confirm_query($categories_query_result);
+                                        $category_count = mysqli_num_rows($categories_query_result);
+                                        echo "<div class='huge'> {$category_count} </div>";
 
                                         ?>
 
@@ -149,7 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="categories.php">
+                            <a href="./categories.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -160,90 +161,95 @@
                     </div>
                 </div>
 
-
-
-                <?php
-                
-                // active post count query
-                $query = "SELECT * FROM posts WHERE post_status = 'published'";
-                $select_published_post_query = mysqli_query($connection, $query);
-                confirmQuery($select_published_post_query);
-                $published_post_count = mysqli_num_rows($select_published_post_query);
-
-
-                // count draft post query
-                $query = "SELECT * FROM posts WHERE post_status = 'draft' ";
-                $select_draft_post_query = mysqli_query($connection, $query);
-                confirmQuery($select_draft_post_query);
-                $draft_post_count = mysqli_num_rows($select_draft_post_query);
-
-
-                // unapproved comments count
-                $query = "SELECT * FROM comments WHERE comment_status = 'unapproved' ";
-                $unapproved_comment_query = mysqli_query($connection, $query);
-                confirmQuery($unapproved_comment_query);
-                $unapproved_comment_count = mysqli_num_rows($unapproved_comment_query);
-
-
-                // Subscriber user count
-                $query = "SELECT * FROM users WHERE user_role = 'Subscriber' ";
-                $subscriber_user_query = mysqli_query($connection, $query);
-                confirmQuery($subscriber_user_query);
-                $subscriber_count = mysqli_num_rows($subscriber_user_query);
-
-
-
-                ?>
-
-
-
-
-                
-                <!-- /.row -->
-                <div class="row">
-                    <script type="text/javascript">
-                        google.charts.load('current', {'packages':['bar']});
-                        google.charts.setOnLoadCallback(drawChart);
-
-                        function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['Data', 'Count'],
-
-                                <?php
-
-                                $element_text = ['All Posts', 'Active posts', 'Draft posts', 'Comments', 'Pending comments', 'Users', 'Subscriber User', 'Categories'];
-                                
-                                $element_count = [$post_count, $published_post_count, $draft_post_count, $comment_count, $unapproved_comment_count, $users_count, $subscriber_count, $categories_count];
-
-                                for($i = 0; $i < 8; $i++){
-                                    echo "['{$element_text[$i]}'" . "," . " {$element_count[$i]}],";
-                                }
-
-
-                                ?>
-
-                            ]);
-
-                            var options = {
-                                chart: {
-                                title: '',
-                                subtitle: '',
-                                }
-                            };
-
-                            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-                            chart.draw(data, google.charts.Bar.convertOptions(options));
-                        }
-                    </script>
+                <!-- CMS Chart -->
+                <div>
+                    <div id="columnchart_material" style="width: auto; height: 600px;"></div>
                 </div>
-                <div id="columnchart_material" style="width: auto; height: 500px;"></div>
+                <!-- ./ CMS Chart -->
 
-
+                <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
 
-<?php include("includes/admin_footer.php"); ?>
+
+<?php include "./includes/admin_footer.php"; ?>
+
+
+<?php
+
+// Active Post Count
+$active_posts_query = "SELECT * FROM posts WHERE post_status='published'";
+$active_posts_result = mysqli_query($connection, $active_posts_query);
+confirm_query($active_posts_result);
+$active_post_count = mysqli_num_rows($active_posts_result);
+
+// Draft post count
+$draft_posts_query = "SELECT * FROM posts WHERE post_status='draft'";
+$draft_posts_result = mysqli_query($connection, $draft_posts_query);
+confirm_query($draft_posts_result);
+$draft_post_count = mysqli_num_rows($draft_posts_result);
+
+// Approved Comments count
+$approved_comment_query = "SELECT * FROM comments WHERE comment_status='approved'";
+$approved_comment_result = mysqli_query($connection, $approved_comment_query);
+confirm_query($approved_comment_result);
+$approved_comment_count = mysqli_num_rows($approved_comment_result);
+
+// Un Approved Comments Count
+$un_approved_comment_query = "SELECT * FROM comments WHERE comment_status='un-approved'";
+$un_approved_comment_result = mysqli_query($connection, $un_approved_comment_query);
+confirm_query($un_approved_comment_result);
+$un_approved_comment_count = mysqli_num_rows($un_approved_comment_result);
+
+// Admin Users Count
+$admin_user_query = "SELECT * FROM users WHERE user_role='Admin'";
+$admin_user_result = mysqli_query($connection, $admin_user_query);
+confirm_query($admin_user_result);
+$admin_count = mysqli_num_rows($admin_user_result);
+
+// Subscriber Users Count
+$subscriber_user_query = "SELECT * FROM users WHERE user_role='Subscriber'";
+$subscriber_user_result = mysqli_query($connection, $subscriber_user_query);
+confirm_query($subscriber_user_result);
+$subscriber_count = mysqli_num_rows($subscriber_user_result);
+
+
+?>
+
+
+<!-- Chart javaScript Code -->
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Data', 'count'],
+
+            <?php
+
+            $element_text = ['All posts', 'Active Posts', 'Draft Posts', 'Comments', 'Active Comments', 'Pending Comments', 'Users', 'Admin', 'Subscriber', 'Categories'];
+            $element_count = [$post_count, $active_post_count, $draft_post_count, $comment_count, $approved_comment_count, $un_approved_comment_count, $user_count, $admin_count, $subscriber_count, $category_count];
+
+            for($i = 0; $i < 10; $i++){
+                echo "['{$element_text[$i]}'" . ", " . "$element_count[$i]],";
+            }
+
+            ?>
+
+        ]);
+
+        var options = {
+            chart: {
+                title: 'CMS Data',
+                subtitle: 'Posts, Users, Categories and Comments: count',
+            }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+</script>

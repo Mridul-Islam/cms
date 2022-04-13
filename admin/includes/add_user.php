@@ -1,39 +1,10 @@
+<h2 class="text-center bg-info">Create new User</h2>
+<hr>
+
 <?php
 
-if(isset($_POST['create_user'])){
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$firstname = $_POST['firstname'];
-	$lastname = $_POST['lastname'];
-	$user_email = $_POST['email'];
-
-	// $user_image = $_FILES['image']['name'];
-	// $user_temp_image = $_FILES['image']['tmp_name'];
-
-	$user_role = $_POST['role'];
-
-	//move_uploaded_file($user_temp_image, "../images/$user_image");
-
-	$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
-
-	if(!empty($username) && !empty($password) && !empty($firstname) && !empty($lastname) && !empty($user_email)){
-
-		$query = "INSERT INTO users (username, user_password, user_firstname, user_lastname, user_email,  user_role) ";
-		$query .= "VALUES ('{$username}', '{$password}', '{$firstname}', '{$lastname}', '{$user_email}', '{$user_role}')";
-		$create_user_query = mysqli_query($connection, $query);
-		confirmQuery($create_user_query);
-
-		echo "<div class='text-center bg-success'>User Created Successfully:" . " " . "<a href='users.php'> View Users</a>" . "<br> </div>";
-		echo "<br>";
-	}
-	else{
-		echo "<p class='text-center text-danger'> Fields can not be empty... </p>";
-	}
-
-
-	
-}
-
+// Create User code
+create_user();
 
 
 ?>
@@ -41,40 +12,53 @@ if(isset($_POST['create_user'])){
 
 
 <form action="" method="post" enctype="multipart/form-data">
-	<div class="form-group">
-		<label for="firstname">FirstName</label>
-		<input type="text" name="firstname" id="firstname" class="form-control">
-	</div>
-	<div class="form-group">
-		<label for="lastname">LastName</label>
-		<input type="text" name="lastname" id="lastname" class="form-control">
-	</div>
-	<div class="form-group">
-		<label>Select Role</label>
-		<select name="role" class="form-control">
-			<option value="">Select Options</option>
-			<option value="Admin">Admin</option>
-			<option value="Subscriber">Subscriber</option>
-		</select>	
-	</div>
-	<div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" name="email" id="email" class="form-control">
-	</div>
-	<div class="form-group">
-		<label for="username">User Name</label>
-		<input type="text" name="username" id="username" class="form-control">
-	</div>
-	<div class="form-group">
-		<label for="password">New Password</label>
-		<input type="password" name="password" id="password" class="form-control">
-	</div>
-	<!-- <div class="form-group">
-		<label>Image</label>
-		<input type="file" name="image" class="form-control">
-	</div> -->
-	<div class="form-group">
-		<input type="submit" name="create_user" value="Add User" class="btn btn-primary">
-		<a href="./users.php" type="button" class="btn btn-primary"> Cancel </a>
-	</div>
+    <!-- Left col-md-6 -->
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" name="user_firstname" id="firstname" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name: </label>
+            <input type="text" name="user_lastname" id="lastname" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password">User Password:</label>
+            <input type="password" name="user_password" id="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="email">User Email:</label>
+            <input type="email" name="user_email" id="email" class="form-control" />
+        </div><hr>
+    </div>
+    <!-- ./Left col-md-6 -->
+
+    <!-- Right Col-md-6 -->
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>User Role:</label>
+            <select name="user_role" class="form-control">
+                <option value="">Choose Role..</option>
+                <option value="Admin"> Admin </option>
+                <option value="Subscriber"> Subscriber </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="image">User Image:</label>
+            <input type="file" name="user_image" id="image" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>User Address:</label>
+            <textarea name="user_address" rows="8" class="form-control" ></textarea>
+        </div><hr>
+        <div class="form-group">
+            <input type="submit" name="create_user" class="btn btn-primary" value="Create User" />
+            <a href="users.php" class="btn btn-primary"> Cancel </a>
+        </div>
+    </div>
+    <!-- ./ Right Col-md-6 -->
 </form>

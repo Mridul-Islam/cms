@@ -1,126 +1,135 @@
+<h2 class="text-center bg-info">Create new Post</h2>
+<hr>
+
 <?php
 
-if(isset($_POST['create_post'])){
-	$post_title = $_POST['title'];
-	$post_category_id = $_POST['post_category'];
-	$post_user = $_POST['post_user_id'];
-	$post_status = $_POST['post_status'];
- 
- 	$post_image = $_FILES['image']['name'];
- 	$post_img_temp = $_FILES['image']['tmp_name'];
+// Add post code
+global $connection;
+if(isset($_POST['create_post'])) {
+    $post_title         = $_POST['post_title'];
+    $post_author        = $_POST['post_author'];
+    $post_cat_id        = $_POST['post_category'];
+    $post_tags          = $_POST['post_tags'];
+    $post_status        = $_POST['post_status'];
+    $post_image         = $_FILES['post_image']['name'];
+    $post_tmp_image     = $_FILES['post_image']['tmp_name'];
+    $post_content       = mysqli_real_escape_string($connection, $_POST['post_content']);
+    $post_date          = date('d-m-y');
+    $post_comment_count = 0;
 
-	$post_tags = $_POST['post_tags'];
-	$post_content = $_POST['post_content'];
-	$post_date = date('d-m-y');
+    // Form Validation
+    if ($post_title == '' || empty($post_title)) {
+        $validates[] = 'Post Title field can not be empty';
+    }
+    if ($post_author == '' || empty($post_author)) {
+        $validates[] = 'Post Author field can not be empty';
+    }
+    if ($post_cat_id == '' || empty($post_cat_id)) {
+        $validates[] = 'Post Category field can not be empty';
+    }
+    if ($post_tags == '' || empty($post_tags)) {
+        $validates[] = 'Post tags field can not be empty';
+    }
+    if ($post_status == '' || empty($post_status)) {
+        $validates[] = 'Post status field can not be empty';
+    }
+    if ($post_image == '' || empty($post_image)) {
+        $validates[] = 'Post image field can not be empty';
+    }
+    if ($post_content == '' || empty($post_content)) {
+        $validates[] = 'Post content field can not be empty';
+    }
+    else {
+        $validates[] = '';
+    }
+    // End form validation
 
-	move_uploaded_file($post_img_temp, "../images/$post_image");
+    $count_validates = count($validates);
 
-	$query = "INSERT INTO posts(post_category_id, post_title, post_user, post_status, post_image, post_tags, post_content, post_date) VALUES({$post_category_id}, '{$post_title}', '{$post_user}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', now()) ";
-	$add_post_query_result = mysqli_query($connection, $query);
+    if ($count_validates > 1) {
+        echo "<ul class='bg-warning well'>";
+        foreach ($validates as $validate) {
+            echo "<li class='text-danger'> $validate </li>";
+        }
+        echo "</ul>";
+    }
+    else {
+        // save image to server
+        move_uploaded_file($post_tmp_image, "../images/{$post_image}");
 
-	confirmQuery($add_post_query_result);
-
-	// this function will pull the last created id
-	$the_post_id = mysqli_insert_id($connection);
-
-	echo "<p class='bg-success text-center'>Post Created Successfully: <a href='../post.php?p_id={$the_post_id}'> View Post </a> or <a href='posts.php'>View All Post</a> </p>";
-		echo "<br>";
-
-
-
-
+        // create post query
+        $query = "INSERT INTO posts(post_title, post_author, post_category_id, post_tags, post_status, post_image, post_content, post_date, post_comment_count) VALUES ( '{$post_title}', '{$post_author}', '{$post_cat_id}', '{$post_tags}', '{$post_status}', '{$post_image}', '{$post_content}', now(), '{$post_comment_count}' ) ";
+        $create_post_result = mysqli_query($connection, $query);
+        confirm_query($create_post_result);
+        echo "<p class='bg-success text-center'> The post has been created successfully. <a href='./posts.php'> View Posts </a> </p>";
+    }
 }
-
 
 
 ?>
 
-
-
 <form action="" method="post" enctype="multipart/form-data">
-	
-	<div class="form-group">
-		<label for="title">Post Title</label>
-		<input type="text" name="title" class="form-control">
-	</div>
+    <!-- Left col-lg-6 -->
+    <div class="col-lg-6 col-md-6">
+        <div class="form-group">
+            <label for="post_title">Post Title</label>
+            <input type="text" name="post_title" id="post_title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="post_author">Post Author</label>
+            <input type="text" name="post_author" id="post_author" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="post_title">Select Category</label>
+            <select name="post_category" class="form-control">
+                <option value=""> Choose Option.. </option>
+                <?php
 
-	<div class="form-group">
-		<label for="post_category">Post Category</label>
-		<select class="form-control" name="post_category">
-			
-			<?php
+                // Bring all categories to show in the options
+                global $connection;
+                $query = "SELECT * FROM categories";
+                $all_categories = mysqli_query($connection, $query);
+                confirm_query($all_categories);
+                while($row = mysqli_fetch_assoc($all_categories)){
+                    $cat_id = $row['cat_id'];
+                    $cat_title = $row['cat_title'];
 
-			$query = "SELECT * FROM categories";
-			$select_categories_query_result = mysqli_query($connection, $query);
+                    echo "<option value='{$cat_id}'> {$cat_title} </option>";
+                }
 
-			confirmQuery($select_categories_query_result);
+                ?>
 
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="post_tags">Post Tags</label>
+            <input type="text" name="post_tags" id="post_tags" class="form-control" />
+        </div>
+    </div>
+    <!-- ./Left col-lg-6 -->
 
-			while ($row = mysqli_fetch_assoc($select_categories_query_result)) {
-				$cat_id = $row['cat_id'];
-				$cat_title = $row['cat_title'];
-
-				echo "<option value='{$cat_id}'> {$cat_title} </option>";
-			}
-
-
-
-			?>
-
-		</select>
-	</div>
-
-	<div class="form-group">
-		<label for="users">Users</label>
-		<select name="post_user_id" class="form-control">
-			
-			<?php
-
-			$user_query = "SELECT * FROM users";
-			$select_all_users = mysqli_query($connection, $user_query);
-			confirmQuery($select_all_users);
-
-			while($row = mysqli_fetch_assoc($select_all_users)){
-				$post_user_id = $row['user_id'];
-				$post_username = $row['username'];
-
-				echo "<option value='{$post_username}'> {$post_username} </option>";
-			}
-
-
-
-			?>
-
-
-		</select>
-	</div>
-
-	<div class="form-group">
-		<label for="post_status">Post Status</label>
-		<select name="post_status" class="form-control">
-			<option value="draft">Select option</option>
-			<option value="published">Publish</option>
-			<option value="draft">Draft</option>
-		</select>
-	</div>
-
-	<div class="form-group">
-		<label for="post_image">Post Image</label>
-		<input type="file" name="image" class="form-control">
-	</div>
-
-	<div class="form-group">
-		<label for="post_tags">Post Tags</label>
-		<input type="text" name="post_tags" class="form-control">
-	</div>
-
-	<div class="form-group">
-		<label for="post_content">Post Content</label>
-		<textarea class="form-control" name="post_content" id="body" cols="30" rows="10"></textarea>
-	</div>
-
-	<div class="form-group">
-		<input type="submit" name="create_post" class="btn btn-primary" value="Publish Post">
-		<a href="./posts.php" type="button" class="btn btn-primary">Cancel</a>
-	</div>
+    <!-- Right col-lg-6 -->
+    <div class="col-lg-6 col-md-6">
+        <div class="form-group">
+            <label for="post_status">Post Status</label>
+            <select name="post_status" class="form-control">
+                <option value=""> Choose Option.. </option>
+                <option value="published"> publish </option>
+                <option value="draft"> draft </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="post_image">Post Image</label>
+            <input type="file" name="post_image" id="post_image" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Post Content</label>
+            <textarea id="body" name="post_content" class="form-control" rows="5"></textarea>
+        </div><hr>
+        <div class="form-group">
+            <input type="submit" name="create_post" value="Publish" class="btn btn-primary" />
+            <a href="./posts.php" class="btn btn-primary"> Cancel </a>
+        </div>
+    </div>
+    <!-- ./ Right col-lg-6 -->
 </form>

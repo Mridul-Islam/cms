@@ -5,69 +5,59 @@
         <h4>Blog Search</h4>
         <form action="search.php" method="post">
             <div class="input-group">
-                <input type="text" name="search" class="form-control">
+                <input name="search" type="text" class="form-control">
                 <span class="input-group-btn">
-                    <button name="submit" class="btn btn-default" type="submit">
+                    <button name="search_submit" class="btn btn-default" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </span>
-            </div>
-        </form>
-        <!-- /.input-group -->
-    </div>
-
-
-    <!-- Log In -->
-    <div class="well">
-        <h4>Log In</h4>
-        <form action="includes/login.php" method="post">
-            <div class="form-group">
-                <input type="text" name="username" class="form-control" placeholder="Enter username here">
-            </div>
-            <div class="input-group">
-                <input type="password" name="password" class="form-control" placeholder="Enter password here">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" name="login" type="submit">
-                        Log In
                     </button>
                 </span>
             </div>
         </form>
         <!-- /.input-group -->
     </div>
+    <!-- ./ Blog Search -->
 
+    <!-- Log in Form -->
+    <?php
 
+    if(!isset($_SESSION['user_role'])){
 
+    ?>
 
+        <div class="well">
+            <h4>LogIn</h4>
+            <form action="./includes/login.php" method="post">
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="Enter Username" >
+                </div>
+                <div class="input-group">
+                    <input name="password" type="password" class="form-control" placeholder="Enter password here">
+                    <span class="input-group-btn">
+                <button name="login" class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+            </span>
+                </div>
+            </form>
+        </div>
+
+    <?php
+
+    }
+
+    ?>
+    <!-- ./ Log in Form -->
 
 
     <!-- Blog Categories Well -->
     <div class="well">
-
-        <?php
-
-        $query = "SELECT * FROM categories";
-        $query_result = mysqli_query($connection, $query);
-
-        if(!$query_result){
-            die("Qeury Failed" . mysqli_error($connection));
-        }
-
-
-        ?>
-
         <h4>Blog Categories</h4>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
                 <ul class="list-unstyled">
                     <?php
 
-                    while($row = mysqli_fetch_assoc($query_result)){
-                        $cat_id = $row['cat_id'];
-                        $cat_title = $row['cat_title'];
-                        echo "<li><a href='category.php?category={$cat_id}'> {$cat_title} </a>
-                        </li>";
-                    }
+                        showAllCategories();
 
                     ?>
                 </ul>
@@ -78,6 +68,9 @@
     </div>
 
     <!-- Side Widget Well -->
-    <?php include "widget.php"; ?>
+<!--    <div class="well">-->
+<!--        <h4>Side Widget Well</h4>-->
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>-->
+<!--    </div>-->
 
 </div>

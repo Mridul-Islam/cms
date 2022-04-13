@@ -1,47 +1,44 @@
-<?php include("includes/admin_header.php"); ?>
+<?php include "./includes/admin_header.php"; ?>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-    <div id="wrapper">
+    <!-- Top Menu Items -->
+    <?php include "./includes/admin_top_nav.php"; ?>
 
-        <!-- Navigation -->
-        <?php include("includes/admin_navigation.php"); ?>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <?php include "./includes/admin_side_nav.php"; ?>
 
-        <div id="page-wrapper">
+</nav>
 
-            <div class="container-fluid">
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Welcome to Admin
-                            <small><?php echo $_SESSION['username']; ?></small>
-                        </h1>
-                        
-                        <?php 
+                <?php
 
-                        if(isset($_GET['source'])){
-                            $source = $_GET['source'];
-                        }else{
-                            $source = "";
-                        }
+                if(isset($_GET['source'])){
+                    $source = $_GET['source'];
+                }
+                else{
+                    $source = '';
+                }
 
-                        switch($source){
-                            default:
-                                include ("includes/view_all_comments.php"); 
-                        }
+                switch($source){
+                    default:
+                        include './includes/view_all_comments.php';
+                }
 
-
-                        ?>
-
-
-                    </div>
-                </div>
-                <!-- /.row -->
+                ?>
 
             </div>
-            <!-- /.container-fluid -->
-
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
 
-<?php include("includes/admin_footer.php"); ?>
+
+<?php include "./includes/admin_footer.php"; ?>
