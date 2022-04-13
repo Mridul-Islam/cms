@@ -23,11 +23,11 @@
                     if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
                     //if(is_admin($_SESSION['username'])) {
                         //$query = "SELECT * FROM posts WHERE post_category_id = '{$the_cat_id}'";
-                        $statement1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_user, post_date, post_image, post_content FROM posts WHERE post_category_id = ? ");
+                        $statement1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ? ");
                     }
                     else{
                         //$query = "SELECT * FROM posts WHERE post_category_id = '{$the_cat_id}' AND post_status = 'published'";
-                        $statement2 = mysqli_prepare($connection, "SELECT post_id, post_title, post_user, post_date, post_image, post_content FROM posts WHERE post_category_id = ? AND post_status = ?");
+                        $statement2 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ? AND post_status = ?");
                         $published = 'published';
                     }
                 
@@ -37,14 +37,14 @@
                     if(isset($statement1)){
                         mysqli_stmt_bind_param($statement1, "i", $the_cat_id);
                         mysqli_stmt_execute($statement1);
-                        mysqli_stmt_bind_result($statement1, $post_id, $post_title, $post_user, $post_date, $post_image, $post_content);
+                        mysqli_stmt_bind_result($statement1, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
 
                         $statement = $statement1;
                     }
                     else{
                         mysqli_stmt_bind_param($statement2, "is", $the_cat_id, $published);
                         mysqli_stmt_execute($statement2);
-                        mysqli_stmt_bind_result($statement2, $post_id, $post_title, $post_user, $post_date, $post_image, $post_content);
+                        mysqli_stmt_bind_result($statement2, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
 
                         $statement = $statement2;
                     }
@@ -79,7 +79,7 @@
 
                         </h2>
                         <p class="lead">
-                            by <a href="/cms/author_posts.php?author=<?php echo $post_user; ?>"> <?php echo $post_user;?> </a>
+                            by <a href="/cms/author_posts.php?author=<?php echo $post_author; ?>"> <?php echo $post_author;?> </a>
                         </p>
                         <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date;?> </p>
                         <hr>

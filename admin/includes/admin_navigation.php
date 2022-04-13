@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">CMS Admin</a>
+                <a class="navbar-brand" href="index.php">Admin</a>
             </div>
 
 
@@ -16,12 +16,9 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
 
-                <li><a href="">Users Online: <span class="usersonline"></span> </a></li>
-
                 <li><a href="../index.php">Home Page</a></li>
-
+                <li><a href="">Users Online: <span class="usersonline"></span> </a></li>
                <!--  <li><a href="">Users Online: <?php //echo users_online(); ?> </a></li> -->
-
                 <li class="dropdown">
 
                     <?php
@@ -29,8 +26,6 @@
                     if(isset($_SESSION['username'])){
                         $username = $_SESSION['username'];
                     }
-
-
 
                     ?>
 

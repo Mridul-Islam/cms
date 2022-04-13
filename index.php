@@ -7,9 +7,7 @@
 
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
-
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
@@ -17,21 +15,17 @@
 
                 global $connection;
                 $post_per_page = 5;
-
                 if(isset($_GET['page'])){
                     $page_number = $_GET['page'];
                 }else{
                     $page_number = "";
                 }
-
                 if($page_number== "" || $page_number == 1){
                     $show = 0;
                 }
                 else{
                     $show = ($post_per_page * $page_number) - $post_per_page;
                 }
-
-
 
                 // count the number of posts
                 if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
@@ -49,13 +43,10 @@
                 $count_posts = mysqli_num_rows($count_all_post_query);
                 $count_page = ceil($count_posts/$post_per_page);
 
-                
-
                 if($count_posts < 1){
                     echo "<h1 class='text-center text-primary'> No post available. </h1>";
                 }
                 else{
-
                     // show post query
                     if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'){
                         $query = "SELECT * FROM posts LIMIT $show, $post_per_page";
@@ -70,7 +61,6 @@
                         $post_id      = $row['post_id'];
                         $post_title   = $row['post_title'];
                         $post_author  = $row['post_author'];
-                        $post_user    = $row['post_user'];
                         $post_date    = $row['post_date'];
                         $post_image   = $row['post_image'];
                         $post_content = substr($row['post_content'],0,200);
@@ -85,21 +75,8 @@
                                 <a href="post/<?php echo $post_id;?>" > <?php echo $post_title;?> </a>
                             </h2>
                             <p class="lead">
-                                by <a href="author_posts.php?author=<?php echo $post_user;?>"> 
-
-                                    <?php 
-
-                                    if(!empty($post_author)){
-                                        echo $post_author;
-                                    }
-                                    else if(!empty($post_user)){
-                                        
-                                        echo $post_user;
-                                    }
-
-
-                                    ?> 
-                                
+                                by <a href="author_posts.php?author=<?php echo $post_author;?>">
+                                    <?php echo $post_author; ?>
                                 </a>
                             </p>
                             <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date;?> </p>

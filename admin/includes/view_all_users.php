@@ -9,17 +9,20 @@
 			<th>LastName</th>
 			<th>Email</th>
 			<th>Role</th>
+            <th>Change Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
 		</tr>
 	</thead>
 	<tbody>
 		
-		<?php // show All user query
+		<?php
 
+        global $connection;
+        // show All user query
 		$query = "SELECT * FROM users";
 		$select_user_query = mysqli_query($connection, $query);
-
 		confirmQuery($select_user_query);
-
 		while($row = mysqli_fetch_assoc($select_user_query)){
 			$user_id    = $row['user_id'];
 			$username   = $row['username'];
@@ -28,7 +31,6 @@
 			$user_email = $row['user_email'];
 			$user_image = $row['user_image'];
 			$user_role  = $row['user_role'];
-
 			echo "<tr>";
 				echo "<td> {$user_id} </td>";
 				echo "<td> {$username} </td>";
@@ -36,10 +38,13 @@
 				echo "<td> {$lastName} </td>";
 				echo "<td> {$user_email} </td>";
 				echo "<td> {$user_role} </td>";
-				echo "<td><a href='users.php?change_to_admin={$user_id}'> Admin </a></td>";
-				echo "<td><a href='users.php?change_to_subscriber={$user_id}'> Subscriber </a></td>";
-				echo "<td><a href='users.php?source=edit_user&u_id={$user_id}'> Edit </a></td>";
-				echo "<td><a rel='$user_id' href='javascript:void(0)' class='delete_link'> Delete </a></td>";
+				echo "<td>
+                        <a href='users.php?change_to_admin={$user_id}'> Admin </a> || 
+                        <a href='users.php?change_to_subscriber={$user_id}'> Subscriber </a>
+                    </td>";
+				//echo "<td><a href='users.php?change_to_subscriber={$user_id}'> Subscriber </a></td>";
+				echo "<td><a href='users.php?source=edit_user&u_id={$user_id}' class='btn btn-primary'> Edit </a></td>";
+				echo "<td><a rel='$user_id' href='javascript:void(0)' class='delete_link btn btn-danger'> Delete </a></td>";
 
 				//echo "<td><a onClick=\" javascript: return confirm('Are you sure you want to delete this.') \" href='users.php?delete={$user_id}'> Delete </a></td>";
 			
