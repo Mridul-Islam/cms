@@ -1,6 +1,3 @@
-
-
-
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -58,12 +55,12 @@
 
                     // set registration link show condition
                     if(!isset($_SESSION['user_role'])){
-                        echo "<li class='$registration_class'><a href='/cms/registration'>Registration</a></li>";
+                        echo "<li class=''><a href='/cms/registration'>Registration</a></li>";
                     } 
 
 
                     if(!isset($_SESSION['user_role'])){
-                        echo "<li class='$contact_class'><a href='/cms/contact'> Contact </a></li>";
+                        echo "<li class=''><a href='/cms/contact'> Contact </a></li>";
                     }
 
 
