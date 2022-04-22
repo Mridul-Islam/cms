@@ -56,6 +56,7 @@
 
                     // set registration link show condition
                     if(!isset($_SESSION['user_role'])){
+                        //echo "<li class=''><a href='/cms/login.php'>LogIn</a></li>";
                         echo "<li class=''><a href='/cms/registration'>Registration</a></li>";
                     } 
 

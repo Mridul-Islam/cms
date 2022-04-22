@@ -14,7 +14,7 @@
                 <?php
 
                 global $connection;
-                $post_per_page = 5;
+                $post_per_page = 10;
                 if(isset($_GET['page'])){
                     $page_number = $_GET['page'];
                 }else{
@@ -63,7 +63,7 @@
                         $post_author  = $row['post_author'];
                         $post_date    = $row['post_date'];
                         $post_image   = $row['post_image'];
-                        $post_content = substr($row['post_content'],0,200);
+                        $post_content = substr($row['post_content'],0,500);
                         $post_status  = $row['post_status'];
 
 
@@ -82,7 +82,7 @@
                             <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date;?> </p>
                             <hr>
                             <!-- <a href="post.php?p_id=<?php echo $post_id; ?>"><img class="img-responsive" src="/cms/images/<?php echo $post_image; ?>" alt=""></a> -->
-                            <a href="/cms/post/<?php echo $post_id; ?>"><img class="img-responsive" src="/cms/images/<?php echo $post_image; ?>" alt=""></a>
+                            <a href="/cms/post/<?php echo $post_id; ?>"><img class="img-responsive" src="/cms/images/<?php echo $post_image; ?>" alt="" width="500px"></a>
                             <hr>
                             <p> <?php echo $post_content;?> </p>
                             <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
