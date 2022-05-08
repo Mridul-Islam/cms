@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2022 at 07:22 PM
+-- Generation Time: May 08, 2022 at 07:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -128,7 +128,9 @@ INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `
 (2, 'Showrab', '$2y$10$2FZWd2shKty3P/LNQGm6l.XSWkNu35hpIHe9k3/7rsO32espQtJPO', 'Showrab', 'Ahmed', 'Showrab@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22	'),
 (3, 'Mahadi Hasan', '$2y$10$2cQSUunAJH6gr4oPZiNAoOcdjzM2GCzm3AKc1hUKRVQ6iR/AZ7IzS', 'Mahadi', 'Hasan', 'mahadihasan@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22	'),
 (4, 'Shad', '$2y$10$1cY3M76FV8HB.Of6E/AUBOiK1EIG3QOWaQp4nqvKTh6wA8wJfUoie', 'Shofiul ', 'Alam', 'ShofiulAlamShad@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22	'),
-(5, 'Azizul Haq', '$2y$10$zbGJNlN2.Lkjg8QMPqt5aewK0wmSZaHo6mZ2N31QabFbKe.DE7Ne.', 'Azizul', 'Haq', 'AzizulHaq@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22	');
+(5, 'Azizul Haq', '$2y$10$zbGJNlN2.Lkjg8QMPqt5aewK0wmSZaHo6mZ2N31QabFbKe.DE7Ne.', 'Azizul', 'Haq', 'AzizulHaq@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22	'),
+(6, 'Arfan uddin', '$2y$12$4gL25NZGjm/xkdQaFmIX8ulGyhsAbrgn9I5VfVzl13GiJnC.y63Da', '', '', 'Arfan@gmail.com', '', 'Subscriber', '$2y$10$iusesomecrazystrings22	'),
+(7, 'Shakil Khan', '$2y$12$KAklmGPgXzRWq2/I.dFyPOVCFC8CFc8x61oiSWxjr0DEuPU/ue9bq', '', '', 'Shakil@gmail.com', '', 'Admin', '$2y$10$iusesomecrazystrings22	');
 
 -- --------------------------------------------------------
 
@@ -148,7 +150,8 @@ CREATE TABLE `users_online` (
 
 INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (1, 'o85oig415dse3j1p5f4mh6ek3h', 1649873993),
-(2, 'cf98ltujaclq6pl68bdtbhv1hk', 1650647980);
+(2, 'cf98ltujaclq6pl68bdtbhv1hk', 1650647980),
+(3, '9aaq3ju6d7jef5vpkfkh00jjre', 1652031869);
 
 --
 -- Indexes for dumped tables
@@ -210,13 +213,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

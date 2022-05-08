@@ -200,7 +200,7 @@ function register_user($username, $user_email, $user_password){
     $new_password = password_hash($escaped_user_password, PASSWORD_BCRYPT, array('cost' => 12)); 
 
     $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
-    $query .= "VALUES('{$escaped_username}', '{$escaped_user_email}', '{$new_password}', 'Subscriber')";
+    $query .= "VALUES('{$escaped_username}', '{$escaped_user_email}', '{$new_password}', 'Admin')";
     $user_registration_query = mysqli_query($connection, $query);
     confirmQuery($user_registration_query);
     redirect("index.php");
